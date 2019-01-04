@@ -1,7 +1,7 @@
 html { 
   font-family: 'Open Sans', 'helvetica', sans-serif;
   background: white;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 /* Titles */
@@ -61,9 +61,13 @@ body {margin: 0}
 body > article, footer {
   line-height: 1.6em;
   display: block;
-  max-width: 700px;
+  max-width: 840px;
   margin: 40px auto auto 355px;
-  padding: 20px 80px 10px;
+  padding: 20px 160px 10px;
+}
+
+body > footer {
+    font-size: 14px
 }
 
 article ol
@@ -124,8 +128,8 @@ a.blogroll:hover { text-decoration: underline; }
 
 /* Sidebar */
 aside {
-  font-size: 14px;
-  width: 220px; height: 100%;
+  font-size: 16px;
+  width: 260px; height: 100%;
   position: fixed;
   top: 0; left: 0;
   padding: 30px;
@@ -144,7 +148,7 @@ aside > ul {
 }
 aside > h2 { 
   text-transform: uppercase;
-  font-size: 14px; 
+  font-size: 16px; 
   margin-bottom: 5px;
 }
 

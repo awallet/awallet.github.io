@@ -98,11 +98,23 @@ article > header {
 
 
 /* Links */;
-a  { color:#1DAEDF; text-decoration:none; }
-a:visited { color:#1DAEDF; text-decoration:none; }
-a:link { color:#1DAEDF; text-decoration:none; }
-a:active { color:#1DAEDF; text-decoration:none; }
+a  { color:#1D79DF; text-decoration:none; } /* old: 1DAEDF */
+a:visited { color:#1D79DF; text-decoration:none; }
+a:link { color:#1D79DF; text-decoration:none; }
+a:active { color:#1D79DF; text-decoration:none; }
 a:hover { text-decoration: underline; }
+
+.blogroll {
+  font-weight: normal; 
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+a.blogroll { color: #EBEBFF; text-decoration:none; }
+a.blogroll:visited { color:#EBEBFF; text-decoration:none; }
+a.blogroll:link { color:#EBEBFF; text-decoration:none; }
+a.blogroll:active { color:#EBEBFF; text-decoration:none; }
+a.blogroll:hover { text-decoration: underline; }
 
 /* Code */
 .highlight pre {
@@ -137,7 +149,7 @@ aside > h2 {
 }
 
 #avatar {
-  width: 100px;
+  width: 150px;
   border-radius: 50%;
   display: block;
   margin: 0 10px 20px 0;
