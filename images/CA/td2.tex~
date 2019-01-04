@@ -1,0 +1,280 @@
+\documentclass[11pt]{exam}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noprintanswers % pour enlever les réponses
+\printanswers
+
+\unframedsolutions
+\SolutionEmphasis{\itshape\small}
+\renewcommand{\solutiontitle}{\noindent\textbf{A: }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%\usepackage[margin=0.73in]{geometry}
+%\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+%\usepackage{fullpage}
+
+
+\usepackage{hyperref}
+\usepackage{appendix}
+\usepackage{enumerate}
+
+
+\usepackage{times,graphicx,epsfig,amsmath,latexsym,amssymb,verbatim}%,revsymb}
+\usepackage{algorithmicx, enumitem, algpseudocode, algorithm, caption}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+% Handling comments and versions %%%
+%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\extra}[1]{}
+
+\renewcommand{\comment}[1]{\texttt{[#1]}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% THEOREMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{proposition}[theorem]{Proposition}
+
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+
+
+\newcommand{\nc}{\newcommand}
+\nc{\eps}{\varepsilon}
+\nc{\RR}{{{\mathbb R}}}
+\nc{\CC}{{{\mathbb C}}}
+\nc{\FF}{{{\mathbb F}}}
+\nc{\NN}{{{\mathbb N}}}
+\nc{\ZZ}{{{\mathbb Z}}}
+\nc{\PP}{{{\mathbb P}}}
+\nc{\QQ}{{{\mathbb Q}}}
+\nc{\UU}{{{\mathbb U}}}
+\nc{\OO}{{{\mathbb O}}}
+\nc{\EE}{{{\mathbb E}}}
+
+\newcommand{\field}{\mathbb{K}}
+\nc{\K}{K}
+\newcommand{\val}{\operatorname{val}}
+
+\pretolerance=1000
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DOCUMENT STARTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usetikzlibrary{automata}
+\DeclareMathOperator{\Vol}{Vol}
+
+\begin{document}
+
+{\noindent
+   \textsc{ENS Lyon --  M1 -- Computer Algebra}
+   \hfill { E.Kirshanova / A.Wallet // 2017--2018\\
+   }
+  }
+  \hrule
+% Titre de la feuille
+  \begin{center}
+    {\Large\textbf{
+   \textsc{Tutorial 2}
+    } } 
+  \end{center}
+  \hrule \vspace{5mm}
+
+\thispagestyle{empty}
+
+\vspace{0.2cm}
+
+%\Large
+\section{Alternative FFT algorithm}
+
+Let $P$ be a polynomial of degree at most $2^k - 1$, and write
+$P = P_h X^{2^{k-1}} + P_l$. Let $\omega$ be a primitive $2^k$-th root of 1.
+
+\begin{questions}
+
+\question Prove that $P(\omega^{2i}) = P_h(\omega^{2i}) + P_l(\omega^{2i})$
+and $P(\omega^{2i+1}) = - P_h(\omega^{2i+1}) + P_l(\omega^{2i+1})$.
+
+\begin{solution}
+This is because $\omega^{2^{k-1}} = -1$, so $(\omega^{2i})^{2^{k-1}} = (-1)^{2i} = 1$ and $(\omega^{2i+1})^{2^{k-1}} = (-1)^{2i+1} = -1$.
+\end{solution}
+
+\question Deduce an alternative FFT algorithm. You will need to introduce the
+polynomial \[
+Q(X) = P_l(\omega X) - P_h(\omega X).
+\]
+
+\begin{solution}
+Let $Q(X) = P_l(\omega X) - P_h(\omega X)$ and $R(X) = P_h(X) + P_l(X)$. We will show that the FFT of $P$ can be obtained in linear time from the FFT of $Q$ and $R$, which are polynomials of degree at most $2^{k-1}-1$. So if we denote by $T(2^k)$ the time to compute the FFT of a polynomial of degree at most $2^k-1$, we get that $T(2^k) = 2 T(2^{k-1}) + O(2^k)$, which gives us $T(2^k) = O(k2^k)$. This is the same idea as seen in the course except that we cut the polynomials in low degree/high degree instead of odd/even degree (and in the Fourier world, this translates in a separation in odd/even power instead of a separation of low/high power). It is the dual of the FFT algorithm seen during the course.
+
+It remains to prove that we can obtain the FFT of $P$ from the ones of $Q$ and $R$. We know that $\omega^2$ is a primitive $2^{k-1}$-th root of unity. So the FFT of $Q$ and $R$ give us the values $Q((\omega^2)^i)$ and $R((\omega^2)^i)$ for $0 \leq i \leq 2^{k-1}-1$. But following question 1, we know that $P(\omega^{2i}) = R((\omega^2)^i)$ and $P(\omega^{2i+1}) = Q((\omega^2)^i)$.
+So we can compute $P(\omega^j)$ in constant time from the FFT of $Q$ and $R$ for all $0 \leq j \leq 2^k-1$. This gives us the FFT of $P$ in time $O(2^k)$ from the FFT of $Q$ and $R$ and concludes the proof.
+
+Remark: computing $Q$ and $R$ takes linear time, so it does not affect the total complexity.
+\end{solution}
+\end{questions}
+
+\section{Is squaring easier than multiplying?}
+Show that computing the square of a $n$-digit number is not (asymptotically) easier than multiplying two $n$-digit numbers. We assume we work in a ring where we can divide by $2$.
+
+\begin{solution}
+Let $S(n)$ be the best complexity to compute the square of a number of $n$ digits and $M(n)$ the best complexity to compute the product of two $n$-digits numbers.
+Let $a$ and $b$ be two $n$-digits numbers we want to multiply. We have 
+$$ab = \frac{(a+b)^2 - a^2 - b^2}{2}.$$
+We get that
+$$ M(n) \leq S(n+1) + 2 S(n) + O(n)$$
+because addition and division by two takes time $O(n)$. Now, we know that $S(n) \leq n^2$ so $S(n+1) = O(S(n))$. And we also know that $S(n) \geq n$ (because we need at least to read the numbers) so $O(n) = O(S(n))$.
+Finally, we have that $M(n) = O(S(n))$.
+\end{solution}
+
+\section{The ``binary splitting'' method computation of $n!$}
+
+We want to compute $n!$ and assume that $n$ is a "small" integer (i.e. it fits into one machine word). We denote with $M(k)$ the cost (in terms of elementary operations) of the multiplication of two $k$-bit numbers, and we assume $2M(k/2)\leqslant M(k)$ (we recall some typical values: $M(k)=O(k^2)$ with naive multiplication, $O(k^{\log(3)/\log(2)})$ with Karatsuba multiplication and $O(k\log k\log\log k)$ with the FFT-in finite ring variant of the Sch\"{o}nhage \& Strassen algorithm). Use the fact that $\log n! \sim n\log n$.
+
+\begin{questions}
+
+\question What is the cost of multiplying $O(n)$-digit integer by a $O(1)$-digit integer by the naive algorithm. Argue that it is essentially optimal.
+\begin{solution}
+This is $O(n)$. It's optimal because it is the size of the largest integer, and we have to read all the digits of the numbers to compute the product.
+\end{solution}
+
+\question
+We first consider the simplest approach:
+$x_1=1,\ x_2=2x_1,\ x_3=3x_2,\ \ldots,\ x_n=nx_{n-1}.$  Show that the cost of this approach is $O(n^2 (\log n)^2)$.
+
+\begin{solution}
+For $k$ from 1 to $n$ we compute $k (k-1)!$. We know that $(k-1)!$ has size about $k\log(k)$ (in bits) so computing the product takes time $O(k (\log k)^2)$. As $k \leq n$, this is $O(n (\log n)^2)$, and we perform $n$ multiplications, so a total of $O(n^2 (\log n)^2)$ operations to compute $n!$.
+\end{solution}
+
+\question
+We define $$p(a,b)=(a+1)(a+2)\cdots (b-1)b=\frac{b!}{a!}.$$
+Suggest a recursive method to compute $n!$ with cost $O(\log n M(n\log n))$. 
+Conclude on the complexity of your method under different values of $M(k)$.
+%With the classical multiplication algorithms, is this more interesting than the simple method?
+\begin{solution}
+Note that if $a \leq c \leq b$ we have
+$$p(a,b) = p(a,c) p(c,b)$$
+We denote by $T(k)$ the complexity of computing $p(a,b)$ for $k = b-a$ and $a,b \leq n$. Let $c = (a+b)/2$ be the middle of $a$ and $b$. We can compute $p(a,b)$ by computing $p(a,c)$ and $p(c,b)$ and then taking the product. This gives us $T(k) \leq 2 T(k/2) + M(n \log n)$ (because $p(a,c)$ and $p(c,b)$ are less than $n!$).
+We want to compute $n! = p(1,n)$, which takes time $T(n)$. But using what we have said, we have that $T(n) = O(M(n \log n) \log n)$, which gives the desired complexity.
+
+If $M(n) = n^2$, it would be better to use the algorithm of question 2.
+\end{solution}
+\end{questions}
+
+\section{Logarithm and exponential}
+
+For polynomials $S,T\in \field[X]$ such that $S(0) = 0$ and $T(0) = 0$, we define
+\[\exp_n(S(X)) = \sum_{k=0}^{n-1} \frac{S(X)^k}{ k!} \bmod X^n\]
+\[\log_n(1 + T(X)) = \sum_{k=1}^{n-1} (-1)^{k+1} \frac{T(X)^k }{ k }\bmod X^n\]
+
+\begin{questions}
+	\question 
+	Assume $A(0) = 0$, prove that
+	$(A(X)+1)^{-1} = \sum_{k = 0}^{n-1} (-1)^{k}A(X)^k \bmod X^n$
+	\begin{solution}
+		\vspace{-30pt}
+		\begin{align*}
+			(A(X)+1) \cdot \sum_{k=0}^{n-1} (-1)^k A(X)^k &= \sum_{k=0}^{n-1} (A(X)+1)(-1)^k A(X)^k \\
+			&=\sum_{k=0}^{n-1} (-1)^k A(X)^{k+1} + \sum_{k=0}^{n-1} (-1)^k A(X)^k  \\
+			&=1+ \sum_{k=1}^{n-1} A(X)^k \Big( (-1)^{k-1}+(-1)^k \Big) + A(X)^n \\
+			&= 1 +A(X)^N.
+		\end{align*}
+	Since $A(0)=0$ (no free coefficient in $A$), we know that $A(X)^N = 0 \bmod X^N$.
+	
+	\end{solution}
+	\question Recall that $S(0) = 0$. Let $U_n(X) = S'(X)/(S(X)+1) = \sum_{k=0}^{n-2} u_k X^k \bmod X^{n-1}$ (note that $S(X)+1$ is invertible modulo $X^n$ because $S(0)+1 \neq 0$).
+	Prove that $$\log_n(1+S(X)) = \sum_{k=1}^{n-1} u_{k-1}\frac{X^{k}}{k} \bmod X^n$$
+	%(Hint: use question \ref{inversible}).
+	\begin{solution}
+		Define $G(X) = \sum_{k=1}^{n-1} u_{k-1} \frac{X^k}{k}$. We have
+		\[
+			G'(X) = \sum_{k=1}^{n-1} u_{k-1} k \frac{X^{k-1}}{k} = \sum_{k=0}^{n-2} u_k X^k = S'(X)/(S(X)+1) \bmod X^{n-1}.
+		\]
+		
+	Define further $H(X) = \sum_{k = 1}^{n-1} (-1)^{k+1} \frac{S(X)^k}{k}$. If we show that $G=H \bmod X^n$, than the statement follows from the Taylor expansion for $\log (1+x)$. For that we first prove that $G' = H' \bmod X^{n-1}$ and then that $G$ and $H$ have the same constant coefficient. We have
+	\[
+		H'(X) = \sum_{k=1}^{n-1} (-1)^{k+1} S(X)^{k-1} S'(X) = S'(X) \sum_{k=0}^{n-2} (-1)^{k} S(X)^k = \frac{S'(X)}{S(X)+1} \bmod X^{n-1},
+	\]
+	where we used the fact that $(-1)^{k+2} = (-1)^k$ and the result of the first question. 
+	In other words, we can write $G'(X) = H'(X) + X^{n-1} R$ for some polynomial $R$.
+	Then there exist an antiderivative (primitive) of $X^{n-1}R$ of the form $X^n \tilde{R}$ s.t.\ $G(X) = H(X)+X^n \tilde{R}+c$ for constant $c$. But we know that $G(0)=H(0)$ (as we defined then with $0\cdot x^0$), hence $c=0$ and we have $H=G \bmod X^n$.
+	\end{solution}
+	\question Deduce a quasi-linear time (in the degree of $S(X)$) algorithm to compute $\log_n(S(X)+1)$.
+	\begin{solution}
+		Compute $S'(X)$ in linear time, then compute $S'(X)/(S(X)+1) \bmod X^{n-1}$ to get the coefficients $u_k$ in quasi-linear time. Reconstruct $\log_n(S(X)+1)$ from the $u_k$'s using the algorithm from above in linear time.
+	\end{solution}
+	\question Prove that if $T(0) = 0$, then $\log_n(\exp_n(T(X)) = T(X)$ (remark that this is well defined because $\exp_n(T(0)) = 1$). (Hint: take the derivative).
+	\begin{solution}
+		Write $Y=\exp_n(T(X))-1$. Then we have
+		\begin{align*}
+			\log_n(\exp(T(X)))' &= \frac{Y'}{1+Y} \bmod X^{n-1} = \frac{\exp(T(X)) T'(X)}{Y(X)+1} \\
+			&=\frac{(Y(X)+1)T'(X)}{Y(X)+1} = T'(X) \bmod X^{n-1}.
+		\end{align*}
+		Furthermore, both sides evaluate to 0 at 0, so they are equal (the same arguments as in the previous question). 
+	\end{solution}
+	\question Let $Y = \exp_N(T(X))-1 \mod X^N$. Using the above, we have that
+	$$f(Y) = \log_N(1+Y)-T(X) = 0 \mod X^N.$$
+	Using Hensel lifting, deduce an algorithm for computing $Y = \exp_N(T(X))-1 \mod X^N$ using $O(M(N))$ operations in $K$. (Hint: remember that as $M$ is super-linear, we have that $M(N) + M(N/2) + \cdots + M(N/n^k) + \cdots \leq 2M(N)$).
+	\begin{solution}
+		Hensel's lifting theorem (in its simplified version) states that we can `lift' a root $r$ of a polynomial $f$ modulo $p$ (i.e., $f(r)=0 \bmod p^k $) provided $f'(r) \neq 0 \bmod p$. Furthermore, the `lifted' root $s$ is of the form $s=r-f(r) \cdot \bar{f} \bmod p^{m+k}$, where $\bar{f} = f'(r) \bmod p^m$.
+		With this theorem, we are going to lift the root $Y_n$ for $f(Y)$ which is a root modulo $2^{n} = N$ to the root $Y_{n+1}$ modulo $2^{n+1}$. 
+		
+		From Hensel's theorem, we have $Y_{n+1} = Y_n + \frac{T(X)-\log_N(1+Y)}{(\log_N(1+Y))'}.$  Note that we treat $f$ here as a polynomial in $Y$.
+		We can compute $Y_{n+1}$ from $Y_n$ in time $O(M(2^n))$: first, we compute $\log_N(1+Y)$ using question 3 (we do all the computation modulo $x^{2^{n+1}}$, not $x^N$, here $2^n \neq N$). This will take $O(M(2^n))$ time. Using question 4, we compute $\log_{2^{n+1}}(1+Y)'$ with the knowledge of $\log_{2^{n+1}}(1+Y)$ again in time $O(M(2^n))$. Finally, the division modulo $X^{2^{n+1}}$ will take $O(M(2^n))$. So, computing $Y_{n+1}$ from $Y_n$ will cost $O(M(2^n))$. We do it for $n$ from $1$ to $\log N$, which is in total $\sum_{k=0}^{\log N} O(M(2^k)) = O(M(N))$.
+	\end{solution}
+\end{questions}
+
+%\section{Multiplication of two polynomials}
+%
+%Give an algorithm to multiply a degree $1$ polynomial by a degree $2$
+%polynomial in at most $4$ multiplications. %5[2013 midterm exam, 20% correct
+%%answers].
+%
+%\begin{solution}
+%	Let $P = a + bX$ and $Q = c + d X + e X^2$. We denote by $R = PQ$, the product of $P$ and $Q$ of degree 3. To determine $R$, we need to evaluate it on 4 points. We choose $0,1,-1$ and $+\infty$.
+%	We obtain
+%	$$ R = ac + (ad+bc)X + (ae+bd) X^2 + be X^3$$
+%	and we have
+%	\begin{align*}
+%	R(0) &= P(0) Q(0) = ac \\
+%	R(1) &= P(1) Q(1) = (a+b)(c+d+e) = ac + ad + ae + bc + bd + be \\
+%	R(-1) &= P(-1) Q(-1) = (a-b)(c-b+e) = ac - ad + ae - bc + bd - be \\
+%	R(+\infty) &= P(+\infty) Q(+\infty) = be
+%	\end{align*}
+%	
+%	So to conclude, we reconstruct $R$ by computing 
+%	$$ R = R(0) + \frac{R(1)-R(-1)-2R(+\infty)}{2} X + \frac{R(1)+R(-1)-2R(0)}{2} X^2 + R(+\infty) X^3$$
+%	Total: 4 multiplications in $K$ and a bunch of additions/subtractions and divisions by 2 (which we assume is negligible compared to multiplications).
+%\end{solution}
+
+
+
+\end{document}
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

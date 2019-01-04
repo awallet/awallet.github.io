@@ -1,0 +1,362 @@
+\documentclass[11pt]{exam}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noprintanswers % pour enlever les réponses
+%\printanswers
+
+\unframedsolutions
+\SolutionEmphasis{\itshape\small}
+\renewcommand{\solutiontitle}{\noindent\textbf{A: }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%\usepackage[margin=0.73in]{geometry}
+%\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+%\usepackage{fullpage}
+
+
+\usepackage{hyperref}
+\usepackage{appendix}
+\usepackage{enumerate}
+
+
+\usepackage{times,graphicx,epsfig,amsmath,latexsym,amssymb,verbatim}%,revsymb}
+\usepackage{algorithmicx, enumitem, algpseudocode, algorithm, caption}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+% Handling comments and versions %%%
+%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\extra}[1]{}
+
+\renewcommand{\comment}[1]{\texttt{[#1]}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% THEOREMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{proposition}[theorem]{Proposition}
+
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+
+
+\newcommand{\nc}{\newcommand}
+\nc{\eps}{\varepsilon}
+\nc{\RR}{{{\mathbb R}}}
+\nc{\CC}{{{\mathbb C}}}
+\nc{\FF}{{{\mathbb F}}}
+\nc{\NN}{{{\mathbb N}}}
+\nc{\ZZ}{{{\mathbb Z}}}
+\nc{\PP}{{{\mathbb P}}}
+\nc{\QQ}{{{\mathbb Q}}}
+\nc{\UU}{{{\mathbb U}}}
+\nc{\OO}{{{\mathbb O}}}
+\nc{\EE}{{{\mathbb E}}}
+
+
+\newcommand{\field}{\mathbb{K}}
+\nc{\K}{K}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\val}{\operatorname{val}}
+\newcommand{\bigO}{\mathcal{O}}
+\DeclareMathOperator{\Span}{Span}
+\newcommand{\vc}[1]{\mathbf{#1}}
+
+\pretolerance=1000
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DOCUMENT STARTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usetikzlibrary{automata}
+\DeclareMathOperator{\Vol}{Vol}
+
+\begin{document}
+
+{\noindent
+   \textsc{ENS Lyon --  M1 -- Computer Algebra}
+   \hfill {E.Kirshanova / A.Wallet // 2017--2018\\
+  }
+  \hrule
+% Titre de la feuille
+  \begin{center}
+    {\Large\textbf{
+   \textsc{Tutorial 5}
+    } } 
+  \end{center}
+  \hrule \vspace{5mm}
+
+\thispagestyle{empty}
+
+\vspace{0.2cm}
+
+\section{Yet more applications of Gaussian elimination}
+
+For this exercise, $K$ is a field, and we consider an ambient linear space $K^n$ for some $n\geq 2$. All vectors will be row vectors.
+
+\begin{questions}
+  \question Let $V=\Span\{\vc v_1, \dotsc, \vc v_m\}$ be a linear subspace. Give an algorithm to compute a basis of $V$.
+
+  \begin{solution}
+    Consider the $m\times n$ matrix $M_V$ whose rows are $\vc v_1, \dotsc, \vc v_m$, and perform Gaussian elimination. We claim that the rows of the output form a basis of $V$.
+    
+    Up to a permutation of the rows (which does not change the spanned space), we can assume that the first row vector have the leftmost non-zero entry among all rows. At the first step, since $K$ is a field we can have a pivot in said entry. Then we zeroize this column by subtracting suitable multiples of $\vc v_1$ from the next rows, to obtain vectors $\vc v_i^{(1)}$, where $i\geq 2$. It can happen that the subtraction gives a zero vector: this means that the current row was colinear to $\vc v_1$, and we can discard it from the matrix. In any case, the rows of the resulting matrix are linear combination of the $\vc v_i$'s, so they belong to $V$.
+
+    If all the other lines have become $0$'s, then our space has dimension $1$ and we are done. Else, there is at least one non-zero entry in the remaining lines, and it is strictly to the right of the previous pivot. Up to a permutation of rows, we can assume this entry is on the second line. We zeroize the corresponding column as well, and if at any time a row $\vc w$ becomes $0$, then it was a linear combination of $\vc v_1$ and $\vc v_2^{(1)}$. The argument for discarding the $0$ rows extends to any step of the algorithm, as well as the fact that the new rows are still in $V$.
+
+    At the end of the algorithm, all vectors that where linear combinations of the previous ones have been discarded. This means that the output matrix is a basis of the space, as claimed. We focus on the worst case behaviour for the analysis (i.e.~the $i$-th pivot is the $(i,i)$-th entry, and we discard $0$'s only at the end, else it becomes difficult). The $i$-th step needs $\#$rows-$i-1=m-i-1$ line subtractions, that needs $\#$columns $\leq n-i$ multiplications to be done; to simplify, we assume $n$ multiplications are done. The algorithm ends when $i=\dim V$, since the input was a generating set. We obtain $n\cdot \sum_{i=0}^{\dim V}(m-i)$, which roughly gives $O(n\cdot\dim V(m-\dim V))$. Using $0\leq \dim V\leq n$ and being pessimistic, we find a cost of at most $O(n^2m)$. 
+
+  \end{solution}
+
+  \question Let $W=\Span\{ \vc w_1,\dotsc, \vc w_e\}$ be another linear subspace. Give an algorithm to compute a basis of $V+W$.
+
+  \begin{solution}
+    Using the first question, we can assume that $d=\dim V$ and $e=\dim W$ and that our input vectors form bases of their respective space, for a cost of at most $O(n^2\max(d,e))$. If $d$ or $e$ is equal to $n$, we are done. Else we consider the $(d+e)\times n$ matrix whose rows are $\vc v_1,\dotsc, \vc v_d,\vc w_1, \dotsc, \vc w_e$, and perform a Gaussian elimination. Again, whenever a $0$ rows appears, then it came from a vector that was a linear combination of the previous ones. We analyze with the same critera as before, and $m$ becomes $d+e$. The pessimistic approach gives $O(n^2(d+e))$.
+    
+    It is possible to do better by realizing that, assuming wlog.~that $d=\max(d,e)$, the basis of $V$ comes in a convenient form from the previous algorithm. In other words, the matrix of this question is already partially ``reduced'', and we only need to reduce the last $e$ vectors wrt.~the basis of $V$ (essentially meaning we start the elimination at the $d+1$ step). The analysis is more involved.    
+  \end{solution}
+    
+  \question Give an algorithm to compute a basis of $V \cap W$.
+
+  \begin{solution}
+    We start by computing bases for $V$ and $W$, and consider them as matrices $M_V \in K^{d\times n}, M_W \in K^{e\times n}$. In other words, the row-span of $M_V$ is $V$, and that of $M_W$ is $W$. This means that any $\vc u\in V\cap W$ can be written as $\vc u=\vc vM_V=\vc wM_W$, for some $\vc v, \vc w \in K^n$. Equivalently, $V\cap W$ identifies to the linear subspace $\{ (\vc v,\vc w) \in K^{2n}\,:\, (\vc v, \vc w)\cdot M =0\}$, where $M$ is the $(d+e)\times n$ matrix whose upper block is $M_V$ and lower block is $-M_W$: our target space is the row nullspace of $M$. A basis of such a space can be computed by Gaussian elimination.
+    
+  \end{solution}
+  
+\end{questions}
+  
+\section{An algorithm for computing the characteristic polynomial}
+
+{\em Let $A\in\mathcal{M}_n(\mathbb{K})$, the goal of the following method is to
+	compute the characteristic polynomial of $A$ with a cost better than $O(n^4)$.}
+
+\begin{questions}
+	
+	\question \label{qu:1}
+	Let $T$ be the transformation which acts on the left of a matrix $A$ through $L_i\leftarrow L_i+\alpha L_j,$ i.e., $T=I_n+\alpha E_{i,j}$. Here $E_{i,j}$ denotes an $n\times n$ matrix with 1 on the $(i,j)$ position and 0s everywhere else. Describe the
+	action of $T^{-1}$ on the right of $A$ in terms of column operations.
+	
+	\begin{solution}
+		We have $T^{-1} = I_n - \alpha E_{i,j}$. So if we multiply by $T^{-1}$ on the right of a matrix, we perform the operation $C_j \leftarrow C_j - \alpha C_i$ on the columns of the matrix.
+	\end{solution}
+	
+	
+	\question Using Question \ref{qu:1}, show that one can find
+	a matrix $R$ such that
+	
+	\[
+	RAR^{-1} =
+	\begin{bmatrix}
+	a_{1,1} & a'_{1,2} & \cdots & a'_{1,n} \\
+	l_2 & a'_{2,2} & \ddots & a'_{2,n} \\
+	0 & a'_{3,2} & \ddots & a'_{3,n} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	0 & a'_{n,2} & \cdots & a'_{n,n}
+	\end{bmatrix}.
+	\]
+	(Hint: perform row operations by multiplying on the left by some transformation matrices $T_i$ and see what happens on the columns when you multiply on the right by $T_i^{-1}$).
+	\begin{solution}
+		This is the same thing as for Gauss pivoting, except that instead of using the first element of the column, we use the one just below the diagonal. Assume $a_{2,1}$ is invertible, we compute $L_i \leftarrow L_i - \frac{a_{i,1}}{a_{2,1}} L_2$ for $i = 3$ to $n$. Then, when we multiply by the inverse of these transvection matrices on the right, we perform the operations $L_2 \leftarrow L_2 + \frac{a_{i,1}}{a_{2,1}} L_i$. This does not modify the first column, so we keep the zeros on the first column we created before, and we have a matrix like what was asked in the question.
+		
+		If $a_{2,1}$ is zero, we add any line with a non zero coefficient (and which is below the second line) to $L_2$, so that we have a non zero coefficient in the $L_2$ and continue with the above algorithm (if all elements in the first columns are zero (except possibly the one on the first line) then we are done). Again, when we compute the inverse of this transformation matrix and multiply by it on the right, this will act only on the columns with indices $\geq 2$ and so it will not modify our first column with zeros.
+		
+		\textit{Remark.} If we do the reduction like in gauss pivoting, using the first line to eliminate the other ones, then when we multiply by $R^{-1}$ and act on the columns, this will modify the first column and destroy the zero we created. This is why we have to keep one non zero element below the diagonal (we cannot do better, see question \ref{no_diag}).
+		
+	\end{solution}
+	
+	
+	\question Give an algorithm to compute the matrices $R_n$ and $M$ such that
+	
+	\[
+	R_nAR_n^{-1}=M=\begin{bmatrix}
+	m_{1,1} & m_{1,2} & m_{1,3} & \cdots & m_{1,n} \\
+	\ell_2 & m_{2,2} & m_{2,3} & \ddots & m_{2,n} \\
+	0 & \ell_3 & m_{3,3} & \ddots & m_{3,n} \\
+	\vdots & \vdots & \vdots & \ddots & \vdots \\
+	0 & \cdots & 0 & \ell_n & m_{n,n}
+	\end{bmatrix}
+	\]
+	using $O(n^3)$ operations in $\mathbb{K}$.
+	
+	
+	\begin{solution}
+		To compute $R_n$, first compute $R$ like in question 2. Call $A'$ the $(n-1) \times (n-1)$ matrix 
+		$$ A' 
+		=\begin{bmatrix}
+		a'_{2,2} & \ddots & a'_{2,n} \\
+		a'_{3,2} & \ddots & a'_{3,n} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		a'_{n,2} & \cdots & a'_{n,n}
+		\end{bmatrix}. $$
+		(i.e. the matrix $RAR^{-1}$ without its first line and column.)
+		Then, apply recursively the algorithm on $A'$. Let $R_n'$ and $M'$ be the result of the algorithm. We then have
+		$$ M
+		= \begin{bmatrix}
+		a_{1,1} & a'_{1,2} & \cdots & a'_{1,n} \\
+		l_2 & m'_{1,1} & \ddots & m'_{1,n-1} \\
+		0 & m'_{2,1} & \ddots & m'_{2,n-1} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		0 & m'_{n-1,1} & \cdots & m'_{n-1,n-1}
+		\end{bmatrix}$$
+		and
+		$R_n = R_n'' R$, where $R_n''$ is the $n \times n$ matrix, obtained from $R_n'$ by adding a line on the left and a column above, with zeros, except on the diagonal where there is a 1.
+		
+		\textit{Remark.} As $M'$ is Hessenberg, then $M$ is also Hessenberg.
+		
+		If $n = 2$, then output $M = A$ and $R = I_2$.
+		
+		\textbf{Complexity:} Computing $R$ and $RAR^{-1}$ in question 1 costs $O(n^2)$ (we perform $O(n)$ operations on the lines and columns, and each operation on a line or a column costs $O(n)$ operations in $K$). And we perform at most $n$ recursive calls (because the dimension decreases at each call). So the total complexity is $O(n^3)$.
+		
+	\end{solution}
+	
+	\emph{Remark:} such an ``almost triangular'' shape matrix is called an \emph{upper Hessenberg matrix}, i.e., a matrix that has zero entries below the first subdiagonal. We have shown how to reduce any matrix into (upper)
+	Hessenberg form.
+	
+	
+	\question Deduce an algorithm to compute the characteristic polynomial of $A$, with a complexity bound $O(n^3)$. Use the fact that two similar matrices have the same characteristic polynomial.
+	
+	\begin{solution}
+		We first compute $M$ as in previous question, in time $O(n^3)$. Matrices $M$ and $A$ are similar (i.e, $A=PMP^{-1}$ for some invertible $P$), so they have the same characteristic polynomial. In the following, we will then compute the characteristic polynomial of $M$. We will perform a Gauss pivoting to compute it, but as $M$ is Hessenberg, we will see that the complexity of gauss pivoting will drop to $O(n^3)$ (this is not the case for any matrix, because when we compute the characteristic polynomial, the coefficients are in $K[X]$ and not in $K$).
+		
+		To obtain a diagonal matrix, we perform Gaussian elimination on 
+		$$M-XI_n
+		= \begin{bmatrix} m_{1,1}-X & m_{1,2} & m_{1,3} & \cdots & m_{1,n} \\
+		\ell_2 & m_{2,2}-X & m_{2,3} & \ddots & m_{2,n} \\
+		0 & \ell_3 & m_{3,3}-X & \ddots & m_{3,n} \\
+		\vdots & \vdots & \vdots & \ddots & \vdots \\
+		0 & \cdots & 0 & \ell_n & m_{n,n}-X
+		\end{bmatrix}$$
+		
+		We will need to divide by $m_{1,1}-X$ so we will see our coefficients in $K(X)$ (and not $K[X]$).
+		
+		We can prove by induction that at the beginning of step $k$ of Gauss pivoting (starting at $k = 1$), if we only focus on the $(n-k+1) \times (n-k+1)$ matrix we still have to reduce, then this matrix is of the form
+		$$ \begin{bmatrix} \frac{P_{k,k}}{Q} & \frac{P_{k+1,k}}{Q} & \frac{P_{k+2,k}}{Q} & \cdots & \frac{P_{n,k}}{Q} \\
+		\ell_{k+1} & m_{{k+1},{k+1}}-X & m_{{k+1},{k+3}} & \ddots & m_{{k+1},n} \\
+		0 & \ell_{k+2} & m_{{k+2},{k+2}}-X & \ddots & m_{{k+2},n} \\
+		\vdots & \vdots & \vdots & \ddots & \vdots \\
+		0 & \cdots & 0 & \ell_n & m_{n,n}-X
+		\end{bmatrix}$$
+		where $\deg(P_{k,k}) \leq k$ and $\deg(Q), \deg(P_{i,k}) \leq k-1$ for $i \geq k+1$.
+		(This can be proven by induction: initialization ok, and then just $L_{k+1} \leftarrow L_{k+1} - \ell_{k+1} \frac{Q}{P_{k,k}} L_{k}$, check that this works).
+		
+		Each operation on polynomials costs $O(k)$ (because we just multiply polynomials of degree $k$ by polynomials of constant degree, and add polynomials of degree $k$). And we need to perform $O(n-k)$ operations at each step (there are $(n-k)$ elements in the second line). So the cost of each step is $O(k(n-k)) = O(n^2)$. And the total complexity of the algorithm is $O(n^3)$ (there are at most $k$ steps).
+		
+		In the end, we obtain a diagonal matrix, we compute its determinant by computing the product of the diagonal elements. This takes time $O(n^3)$ (multiplication of $n$ polynomials of degree at most $n$). The denominator of the algebraic fraction should cancel as we know that the result is a polynomial.
+	\end{solution}
+	
+	\question 
+	\label{no_diag}
+	Could it be possible to find $R$ such that $R^{-1}AR=M$ is upper triangular by (arbitrarily many) elementary operations in $\mathbb{K}$? If yes, explain how. If not, explain why.
+	
+	\begin{solution}
+          It is possible if and only if the characteristic polynomial of the matrix is a product of linear factors. One direction is clear (upper triangular implies characteristic polynomial as a product of linear factors), the other requires some work but it is well-known. An easy way to convince oneself is to realize that in an upper triangular matrix, the eigenvalues appear on the diagonal, and they are precisely the roots of the characteristic polynomial. If we are doing only operations in a non algebraically closed $K$, then its eigenvalues must belong to $K$.
+
+          Counter-examples exist whenever the base field is not algebraically closed (say, $K=\mathbb{R}$). For example, take $M=\begin{bmatrix} a &b \\ c & d\end{bmatrix}$ with $a,b,c,d \in \mathbb R$, such that $(a-d)^2 < 4bc$. It characteristic polynomial is $X^2-\text{Tr}(M)X+\det M=X^2-(a+d)X+(ad-bc)$, which has negative discriminant by assumption. Its roots are thus non-real, so there is no way we could expect a change of basis to put $M$ in triangular form with entries in $\mathbb R$. 
+
+ 		% Finding $R$ is easier than computing the roots of a degree $n$ polynomial in $K$. Indeed, let $P$ be a degree $n$ polynomial, then take $A$ its companion matrix. If we can compute $R$, then the diagonal coefficients of $R$ are the roots of $P$ (the characteristic polynomial of $R$).
+		% So if $K$ is not algebraically closed, then we cannot compute $R$.
+		
+		% Reciprocally, if $K$ is algebraically closed and if we can compute the roots of a polynomial $P$ in $K$ using elementary operations in $K$, then we can compute $\chi$ the characteristic polynomial of $A$, find a root $\alpha$ of $\chi$. Call $x$ an eigen-vector with eigen-value $\alpha$ (find $x$ solving a linear system). Then in basis $(x, b_2, \cdots, b_n)$, the matrix $A$ has a first column with only zeros except on the first line. And compute $R$ recursively.
+             
+	\end{solution}
+	
+	
+\end{questions}
+
+\section{Toeplitz linear systems}
+
+Let $M \in \mathcal{M}_n (\K)$ be a Toeplitz matrix, that is, 
+
+\[ M =
+\begin{bmatrix}
+m_0 & m_{-1} & \cdots & m_{-n+2} & m_{-n+1} \\
+m_1 & m_0 & \ddots & \ddots & m_{-n+2} \\
+\vdots & \ddots & \ddots & \ddots & \vdots \\
+m_{n-2} & \ddots & \ddots & \ddots & m_{-1} \\
+m_{n-1} & m_{n-2} & \cdots & m_1 & m_{0}
+\end{bmatrix}
+\]
+for some $m_{-n+1},\ldots,m_0,\ldots,m_{n-1} \in \K$.
+The goal of this exercise is to solve the linear
+system $M \vec{x} = \vec{y}$ more efficiently than with general-purpose
+algorithms. 
+\medskip
+
+\begin{questions}
+	\question What is the size of the input of our problem? And the size of the output?
+	
+	\begin{solution}
+		The size of the input is $3n-1$ elements in $K$ ($2n-1$ coefficients for the matrix and $n$ coefficients fof the vector $\vec{y}$).
+	\end{solution}
+	
+	For $k \in [n]$, we denote $M_k$ the upper left sub-matrix of $M$
+	of size $k \times k$.
+	\emph{We shall assume that $M_k$ is non-singular
+		(invertible) for all $k$.}
+	
+	We denote by $e_k^{(1)} \in \K^k$ the vector $(1,0,
+	\cdots, 0)^T$ and by $e_k^{(k)}\in \K^k$ the vector $(0, \cdots, 0,1)^T$
+	of size $k$. For $k \in [n]$, we define $\vec{f}_k \in \K^k$ by $M_k \vec{f}_k = e_k^{(1)}$,
+	and $\vec{b}_k \in \K^k$ by $M_k \vec{b}_k = e_k^{(k)}$.
+	
+	
+	\question Find $\vec{f}_1$ and $\vec{b}_1$.
+	
+	\begin{solution}
+		We want $\vec{f}_1$ of size 1 such that $(m_0) \vec{f}_1 = (1)$. We take $\vec{f}_1 = (m_0^{-1})$ (recall that we assumed that $(m_0)$ is invertible).
+		We have the same condition for $\vec{b}_1$, so we have $\vec{b}_1 = \vec{f}_1$.
+	\end{solution}
+	
+	\question Let $\vec{f}'_k = ( \vec{f}^T_{k-1}, 0)^T$, and $\vec{b}'_k = ( 0, \vec{b}_{k-1}^T)^T$. Compute $M_k \vec{f}'_k$  and $M_k \vec{b}'_k$. Deduce $\vec{f}_k$ and $\vec{b}_k$.
+	\begin{solution}
+		Due to the structure of $M$, we have that $M_k \vec{f}'_k = (1,0,\cdots, 0,\alpha)^T$ for some $\alpha \in K$. And similarly we have $M_k \vec{b}'_k = (\beta,0,\cdots, 0,1)^T$ for some $\beta \in K$. Now, we want to compute $\vec{f}_k$ (and $\vec{b}_k)$. We will start from $\vec{f}'_k$ and try to annihilate the $\alpha$ using the vector $\vec{b}'_k$. We search for $u,v \in K$ such that $\vec{f}_k = u\vec{f}'_k + v\vec{b}'_k$. This is equivalent to $u + v \beta = 1$ and $u \alpha + v = 0$. This is a linear system in $u$ and $v$ that can be solved if $\alpha \beta \neq 1$. So if $\alpha \beta \neq 1$ then we can find $u$ and $v$ and create $\vec{f}_k$. In the same way, we can construct $\vec{b}_k$. It remains to show that $\alpha \beta \neq 1$. If we had $\alpha \beta = 1$, then $M_k \vec{f}'_k = \alpha M_k \vec{b}'_k$. Hence $M_k (\vec{f}'_k-\alpha \vec{b}'_k) = 0$. But by assumption, $M_k$ is invertible, so $\vec{f}'_k-\alpha \vec{b}'_k = 0$ i.e. $\vec{f}'_k$ and $\vec{b}'_k$ are colinear. But this cannot be the case (for instance, the first coefficients of $\vec{f}_k$ is the same as the one of $\vec{f}_1$ and it is not zero).
+	\end{solution}
+	
+	\vspace{2mm}
+	For $k \in [n]$, let $\vec{y}^{(k)} = (y_1, \cdots, y_k)$ and define
+	$\vec{x}^{(k)} \in \K^k$ by $M_k \vec{x}^{(k)} = \vec{y}^{(k)}$. Note that we 
+	have $\vec{x} = \vec{x}^{(n)}$.
+	
+	\question Give an algorithm, which on input $\vec{x}^{(k-1)}$, $y_k$ and $\vec{b}_k$, computes  $\vec{x}^{(k)}$.
+	
+	\begin{solution}
+		Let $\vec{x'}^{(k)} = (\vec{x}^{(k-1)},0)$ be of size $k$. We have $M_k \vec{x'}^{(k)} = (\vec{y}^{(k-1)},\gamma)$ for some $\gamma \in K$. Then, define $\vec{x}^{(k)} = \vec{x'}^{(k)} +(y_{k} - \gamma) \vec{b}_k$ (with $y_{k}$ the $k$-th coefficient of $\vec{y}^{(k)}$). We have $M_k \vec{x}^{(k)} = \vec{y}^{(k)}$
+	\end{solution}
+	
+	\question Deduce an algorithm to solve a Toeplitz linear system. Give a complexity bound for your algorithm.
+	
+	\begin{solution}
+		Compute $\vec{x}^{(k)}$ for $k$ increasing from $1$ to $n$ using previous question. We have $x = \vec{x}^{(n)}$.
+		\textbf{Complexity:} Computing $\vec{f}_k$ and $\vec{b}_k$ from $\vec{f}_{k-1}$ and $\vec{b}_{k-1}$ takes $O(k)$ time (computing $\alpha$ and $\beta$ takes time $O(k)$). Then solving the system takes constant time and computing linear combination of two vectors of size $k$ takes time $O(k)$). In the same manner, computing $\vec{x}^{(k)}$ from $\vec{x}^{(k-1)}$, $y_k$ and $\vec{b}_k$ takes time $O(k)$. So the total complexity is $O(n^2)$.
+	\end{solution}
+	
+	
+\end{questions}
+
+\end{document}
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
