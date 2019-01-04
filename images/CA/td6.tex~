@@ -1,0 +1,439 @@
+\documentclass[11pt]{exam}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\noprintanswers % pour enlever les réponses
+\printanswers
+
+\unframedsolutions
+\SolutionEmphasis{\itshape\small}
+\renewcommand{\solutiontitle}{\noindent\textbf{A: }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%\usepackage[margin=0.73in]{geometry}
+%\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+%\usepackage{fullpage}
+
+
+\usepackage{hyperref}
+\usepackage{appendix}
+\usepackage{enumerate}
+
+
+\usepackage{times,graphicx,epsfig,amsmath,latexsym,amssymb,verbatim}%,revsymb}
+\usepackage{algorithmicx, enumitem, algpseudocode, algorithm, caption}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+% Handling comments and versions %%%
+%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\extra}[1]{}
+
+\renewcommand{\comment}[1]{\texttt{[#1]}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% THEOREMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{proposition}[theorem]{Proposition}
+
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+
+
+\newcommand{\nc}{\newcommand}
+\nc{\eps}{\varepsilon}
+\nc{\RR}{{{\mathbb R}}}
+\nc{\CC}{{{\mathbb C}}}
+\nc{\FF}{{{\mathbb F}}}
+\nc{\NN}{{{\mathbb N}}}
+\nc{\ZZ}{{{\mathbb Z}}}
+\nc{\PP}{{{\mathbb P}}}
+\nc{\QQ}{{{\mathbb Q}}}
+\nc{\UU}{{{\mathbb U}}}
+\nc{\OO}{{{\mathbb O}}}
+\nc{\EE}{{{\mathbb E}}}
+
+
+\newcommand{\field}{\mathbb{K}}
+\nc{\K}{K}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\val}{\operatorname{val}}
+\newcommand{\bigO}{\mathcal{O}}
+\DeclareMathOperator{\Span}{Span}
+\newcommand{\vc}[1]{\mathbf{#1}}
+
+\pretolerance=1000
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DOCUMENT STARTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usetikzlibrary{automata}
+\DeclareMathOperator{\Vol}{Vol}
+
+\begin{document}
+
+{\noindent
+   \textsc{ENS Lyon --  M1 -- Computer Algebra}
+   \hfill {E.Kirshanova / A.Wallet // 2017--2018\\
+  }
+  \hrule
+% Titre de la feuille
+  \begin{center}
+    {\Large\textbf{
+   \textsc{Tutorial 6}
+    } } 
+  \end{center}
+  \hrule \vspace{5mm}
+
+\thispagestyle{empty}
+
+\vspace{0.2cm}
+
+\section{Faster characteristic polynomial}
+
+Let $A$ be an $n\times n$ matrix. In this exercise, we will denote by $n^\omega$ the number of operations in $K$ needed to multiply two $n$ by $n$ matrices with coefficients in $K$. You will see in class that given a $n$ by $n$ matrix $M \in \M_n(K)$, we can compute $M^{-1}$ using $O(n^\omega)$ operations in $K$ (computing the inverse is asymptotically the same as multiplying).
+\begin{questions}
+	
+	\question 
+	\label{qu:1} 
+	Assume that $v$ is a vector such that $v$, $Av, A^2v, \dots, A^{n-1}v$ is
+	a basis of $\K^n$; then if $B$ is the matrix with columns $v, Av, A^2v, \dots, A^{n-1}v$, prove that $B^{-1} A B$ is a {\em companion matrix}, that is, a matrix of the following form.
+	
+	\[ C =
+	\begin{bmatrix}
+	0 & 0 & \cdots & 0 & c_0 \\
+	1 & 0 & \cdots & 0 & c_1 \\
+	0 & 1 & \cdots & 0 & c_2 \\
+	\vdots & \vdots & \ddots & \vdots & \vdots \\
+	0 & 0 & \cdots & 1 & c_{n-1}
+	\end{bmatrix}.
+	\]
+	\begin{solution}
+		One checks (by writing out matrices column-wise) that 
+		\[
+		 AB = B \cdot
+		 \begin{bmatrix}
+		 	0 & 0 & \cdots & 0 & \gamma_0 \\
+		 1 & 0 & \cdots & 0 &  \gamma_1 \\
+		 0 & 1 & \cdots & 0 &  \gamma_2 \\
+		 \vdots & \vdots & \ddots & \vdots & \vdots \\
+		 0 & 0 & \cdots & 1 &  \gamma_{n-1}
+		 \end{bmatrix}
+		\] 
+		Since we have an explicit basis, we know that $A^n v$ can be expressed as 
+		\[
+			A^n v = -\gamma_{n-1} A^{n-1}v - \ldots -\gamma_1 Av - \gamma_0 v,
+		\]
+		hence, the polynomial $\mu(x) = \sum_i \gamma_i x^i$ is the minimal polynomial for $A$ (it is monic and of minimal degree). This is also the characteristic polynomial for $A$ and $B^{-1}AB$ (as they are similar matrices). So we have that the companion matrix for $A$ is $C$.
+		%The matrix of $B^{-1}AB$ is the matrix of A in the basis $v, Av$, ... which is easily seen to be a companion matrix -- first column is $(0, 1, 0, ...)$, second column is $(0, 0, 1, 0, ...)$, etc. up to the last column which is $(a_0, a_1, \dots, a_{n-1})$.
+	\end{solution}
+	
+	\question 
+	\label{qu:2} 
+	If $B$ is given, what is the cost of computing the characteristic polynomial of $A$ using the previous question.
+	
+	\begin{solution}
+		Computing $B^{-1}AB$ takes time $O(n^\omega)$. Then, computing the characteristic polynomial of the companion matrix $B^{-1}AB$ takes time $O(n)$ because the coefficients are just the ones of the last column of the matrix (up to the sign). So the total complexity is $O(n^\omega)$.
+	\end{solution}
+	
+	\question Explain why from an $n\times n$ matrix multiplication in time $O(n^\omega)$ we
+	can deduce a $n\times m$ by $m\times k$ matrix multiplication algorithm in time
+	$O(\max(n,m,k)^\omega)$
+	
+	\begin{solution}
+		Just complete the matrices into square max(n,m,k) matrices by adding zeros.
+	\end{solution}
+	
+	\question Define $w_0 = v, w_1 = (v, Av), w_2 = (v, Av, A^2v, A^3v), \ldots, 
+	w_k = (v, Av, A^2v, \ldots, A^{2^k - 1} v)$
+	
+	Prove that $w_k$ can be computed in time $O(k n^{\omega})$ for $k<\log n$.
+	
+	\begin{solution}
+		We have that $w_k$ is the concatenation of $w_{k-1}$ and $A^{2^{k-1}} w_{k-1}$.
+		Computing all the $A^{2^l}, l \leq k$, costs $O(k n^\omega)$.
+		Then, deducing each $w_l$ from $w_{l-1}$ costs $O(n^\omega)$ (because we compute $A^{2^l} w_l$ with $A$ of size $n \times n$ and $w_l$ of size $n \times 2^l$ and $2^l \leq 2n$ and we use previous question).
+		Thus $O(k n^\omega)$ operations in $K$ overall.
+	\end{solution}
+	
+	\question Under the assumption that $v$ exists and that you know it, give a $O(n^\omega \log n)$ algorithm for computing the characteristic polynomial of a square matrix.
+	
+	\begin{solution}
+		Compute $(v, Av, \cdots, A^{n-1}v)$ using previous question with $k = \log n$. This takes time $O(n^\omega \log n)$. Then apply question \ref{qu:2} to get the characteristic polynomial in time $O(n^\omega)$.
+		The overall complexity is $O(n^\omega \log n)$ operations in $K$.
+	\end{solution}
+	
+	%[cf. end of A to Q0]
+	
+	\question Does there always exist a $v$ as in Question \ref{qu:1} ?
+	
+	\begin{solution}
+		No. Typical situation is when the {\em minimal} polynomial of A has degree$ < n$,
+		eg if $A = Id_n$. 
+		If $P(A) = 0$ with $\deg(P) < n$, then $A^{k}$ can be expressed as a linear combination of the $A^i$, $i < k$ for some $k \leq n-1$. But then, $A^kv$ is a linear combination of the $A^iv$ for $i < k$ and so $B$ is not invertible.
+		
+		There are other algorithms in that case.
+	\end{solution}
+	
+\end{questions}
+
+%\textit{Remark. A good final (but purely mathematical) question is to show that on the other hand, if the characteristic polynomial of A is irreducible, any nonzero $v$ works. This follows from the fact that there is no no-trivial $A$-stable subspaces (except $0$ and $\K$): if any $A^k v$ could be expressed as a lin combination of the preceeding $A^i v$, then these $A^i v$ would span an $A$-stable subspace.}
+
+\section{Sylvester matrices}
+
+Let $K$ be a field, and
+$P = \sum_{i=0}^{d_P} p_i X^i$, $Q = \sum_{i=0}^{d_Q} q_i X^i$ be two polynomials in $K[X]$ of respective degree $d_P$ and $d_Q$. Put $D = d_P + d_Q$,
+define $v_P = (p_0, p_1,\dots, p_{d_P}, 0, \dots, 0) \in K^{D}$
+and $v_Q = (q_0, q_1,\dots, q_{d_Q}, 0, \dots, 0) \in K^D$.
+
+For $x = (x_0, \dots, x_{D-1})$ a vector in $K^D$, define
+$C(x) = (0, x_0, \dots, x_{D-2})$.
+The \emph{Sylvester matrix} of $P$ and $Q$ is the matrix of
+size $D$ whose colums are
+$$(v_P, C(v_P), \dots, C^{d_Q-1}(v_P), v_Q, C(v_Q), \dots, C^{d_P - 1}(v_Q)).$$
+
+It is probably better illustrated on an example: if $P$ has degree $2$ and
+$Q$ degree $3$, then we have
+$$S(P, Q) := \left(
+\begin{array}{ccccccc}
+p_0 & 0 & 0 & q_0 & 0 \\
+p_1 & p_0 & 0 & q_1 & q_0\\
+p_2 & p_1& p_0 & q_2 & q_1\\
+0 & p_2 & p_1 & q_3 & q_2 \\
+0 & 0 & p_2 & 0 & q_3
+\end{array}
+\right).
+$$
+
+\subsection{Solving linear systems}
+
+\begin{questions}
+	\question Let $v = (v_0, \dots, v_{d_Q - 1}, w_0, \dots, w_{d_P - 1})
+	\in K^{D}$. Compute $S(P, Q)\cdot v$ and express it in terms
+	of the polynomials $V = \sum v_i X^i$ and $W = \sum w_i X^i$.
+	
+	\begin{solution}
+		We have that $S(P, Q)\cdot v$ is the coefficient vector of the polynomial $VP + WQ$.
+	\end{solution}
+	
+	\question What is the best complexity you can achieve for computing
+	a product $S(P, Q) \cdot v$ using fast arithmetic?
+	
+	\begin{solution}
+		Compute the product of polynomials $VP$ and $WQ$ (cf previous question; do not use the matrix form). This can be done in time $O(M(\max(d_P, d_Q)))$ (plus one addition of polynomials that does not affect the complexity).
+	\end{solution}
+	
+	
+	\question If $P, Q$ are coprime, what is the best complexity you can achieve for solving the equation $S(P, Q)\cdot v = w$? Or computing
+	the inverse of $S(P, Q)$?
+	
+	\begin{solution}
+		Solving $S(P,Q) \cdot v = w$ amounts to solve $VP+WQ = R$ for a given polynomial $R$ of degree $< d_P+d_Q$, looking for $V$ and $W$ such that $\deg(V) < d_Q$ and $\deg(W) < d_P$. The extended Euclidean algorithm gives us $A$ and $B$ such that $AP + BQ = 1$, because $P$ and $Q$ are coprime. Then, take $V = AR \mod Q$ and $W = BR \mod P$. We have that $\deg(V) < d_Q$ (because we reduced it modulo $Q$) and $\deg(W) < d_P$. It remains to show that $VP+WQ = R$.
+		But we have $VP+WQ = (AR+QS_1)P + (BR+PS_2)Q$ for some polynomials $S_1$ and $S_2$. Hence, $VP+WQ = (AP + BQ)R + PQ(S_1+S_2) = R \mod PQ$. But $\deg(R) < D$ and $\deg(VP+WQ) < D$ also because of our choice of $V$ and $W$. Hence, the two polynomials $R$ and $VP+WQ$ are equal in $K[X]$ and not only modulo $PQ$.
+		
+		To conclude, we can get a solution using $O(M(D)\log D)$ operations in $K$, using fast extended Euclidean algorithm (and then multiply by a polynomial of degree $D$ and reduce modulo polynomials of degree $D$ takes time $O(M(D))$).
+		
+		To compute the inverse, we can solve the equations $S(P,Q) \cdot v = w$ for all vectors $w$ of the canonical basis. This takes time $O(DM(D)\log D)$. We can save the $\log(D)$ because we only need to compute $A$ and $B$ once for all vectors $w$. And once we have $A$ and $B$, we obtain $v$ by computing product of polynomials of degree $D$ and some modulo. This gives us a complexity of $O(DM(D))$ to compute the inverse of $S(P,Q)$.
+	\end{solution}
+	
+\end{questions}
+
+\subsection{Computing $\det(S(F,G))$}
+
+\newcommand{\Res}{\ensuremath{\mathsf{Res}}}
+\newcommand{\LC}{\ensuremath{\mathsf{LC}}}
+
+	 Recall simple facts about the resultant $\Res(F,G)$ for $F = \LC(F) \prod_t (x-u_i), G = \LC(G) \prod_i(x-v_i)$ for $u_i, v_i \in \bar{K}$, where $\LC()$ is the leading coefficient:
+	\begin{enumerate}
+		\item $\Res(F,G) = \LC(F)^{\deg G} \LC(G)^{\deg F} \prod_{i,j}(u_i - v_j)$
+		\item $\Res(F,G) = \LC(F)^{\deg Q} \prod_i G(u_i)$
+	\end{enumerate}
+	\begin{questions}
+	\question Prove that for $F = GQ + R$:
+	\[
+		\Res(F, G) = (-1)^{\deg F \deg G} \LC(G)^{\deg F - \deg R} \cdot \Res(G,R).
+	\]
+	\vspace{-20pt}
+	\begin{solution}
+		\vspace{-20pt}
+		\begin{align*}
+			\Res(F,G) &= (-1)^{\deg F \deg G} \LC(G)^{\deg F} \Res(G,F) \\
+			& = (-1)^{\deg F \deg G} \LC(G)^{\deg F} \prod_{z_i : G(z_i)=0} F(z_i) \\
+			& = (-1)^{\deg F \deg G} \LC(G)^{\deg F} \prod_{z_i : G(z_i)=0} (Q(z_i)G(z_i) - R(z_i)) \\
+			& = (-1)^{\deg F \deg G} \LC(G)^{\deg F - \deg R} \cdot \LC(G)^{\deg R} \prod_{z_i : G(z_i)=0} R(z_i).
+		\end{align*}
+			
+	\end{solution}
+	\question Using the above equality deduce an algorithm to compute $\det(S(F,G))$ and analyse its complexity. 
+	\begin{solution}
+		On input $F, G$, we set $F_1 :=F, F_2:=G$ and repeat the following while $\deg F_i >0$: 
+		\begin{enumerate}
+			\item $F_{i+1} = F_{i-1} \bmod F_i$ (using Euclid, time: $M(n) \log n$ where $n=\max\{\deg F_{i+1}, \deg F_i\}$).
+			\item $R_i = (-1)^{d_{i-1} \cdot d_{i+1}} \cdot \LC(F_i)^{d_{i-1} - d_{i+1}} \cdot R_{i-1}$ (here $d_i = \deg F_i$); increment $i$. 
+		\end{enumerate}
+		After the loop, if $F_i!=0$, return $R_{i-1}\cdot LC(F_i)^{\deg F_{i-1}}$, otherwise, return 0.
+		
+		The correctness can be shown by noting that inside the while-loop we always have $\Res(F,G) = R_i \Res(F_i, F_{i+1})$. Each execution of the while-loop costs $O(M(\deg F)\log \deg F)$, and we execute the loop at most $\deg F$ times. In total, we have $O((\deg F)^2 \log deg F)$.
+	\end{solution}
+\end{questions}
+
+\section{Cauchy matrices}
+Let $\textbf{a}=(a_i)_{0\leqslant i\leqslant n-1}\in\K^n, \textbf{b}=(b_i)_{0\leqslant i\leqslant n-1}\in\K^n$. We assume that $a_i\neq b_j$ for all $i,j$ and that $a_i\neq a_j$ and $b_i\neq b_j$ for $i\neq j$. The \emph{Cauchy matrix} associated to these $n$-tuples is the matrix ${C(\textbf{a},\textbf{b})=(1/(a_i-b_j))_{0\leqslant i,j\leqslant n-1}}$. The goal of this exercise is to find $H$, the inverse of $C$, and compute $C \cdot y$
+
+\begin{questions}
+	\question Let $ A_i(x) = \frac{A(x)}{A'(a_i)(x-a_i)}, B_i(x) = \frac{B(x)}{B'(b_i)(x-b_i)}$ be the fundamental polynomials of the Lagrangian interpolation with $A(x) = \prod_i (x-a_i), B(x) = \prod_i(x-b_i)$. Prove that
+	\[
+		h_{i,j} = (a_j-b_i)\cdot A_j(b_i)\cdot B_i(a_j).
+	\]
+	In case $C$ is symmetric, prove that 
+	\[
+	h_{i,j} = (a_j-b_i)\cdot A_j(b_i) \cdot A_i(b_j).
+	\]
+	\begin{solution}
+		The algorithm is due to Samuel Schechter: \url{http://www.ams.org/journals/mcom/1959-13-066/S0025-5718-1959-0105798-2/S0025-5718-1959-0105798-2.pdf}
+		
+		We can express any polynomial $p(x)$ of degree at most $n-1$ as $p(x) = \sum p(a_i) A_i(x)$ (interpolation). Let as define $h_i$ as
+		\[
+			\frac{p(x)}{A(x)} = \sum_i \frac{h_i}{x-a_i}, \text{ \; from where \; }
+			h_i = \frac{p(a_i)}{A'(a_i)}.
+		\]
+		Further, let us define
+		\[
+			p(x) = -B_k(x) A(b_k) = p_k(x) \text{\; and \; }
+			h_{k,i} = \frac{p_k(a_i)}{A'(a_i)}.
+		\]
+		Then we have $\frac{B_k(x) A(b_k)}{A(x)} = \frac{p(x)}{A(x)} = \sum \frac{h_i}{(a_i -x) A'(a_i)} = \sum \frac{p_k(a_i)}{A'(a_i)(a_i - x)} = \sum \frac{h_{k,i}}{a_i -x}$.
+		
+		Let $x = b_j$. Then $B_k(b_j) = \frac{B(b_j)}{B'(b_k)(x-b_k)} = \delta_{j,k}$ (i.e, $0$ for $j \neq k$ and $1$ else). This leads to
+		\[
+			\sum_i \frac{h_{k,i}}{a_i - b_j} = \delta_{k,j},
+		\]
+		which is what we want to get $\mathbb{I}$. Namely, $h_{k,i} = \frac{-B_k(a_i) A(b_k)}{A'(a_i)} = \frac{-B_k(a_i)A_i(b_k) A'(a_i)(b_k - a_i)}{A'(a_i)}.$
+		
+		If $C$ is symmetric, we have that $a_i-b_j = a_j - b_i$ and $B_i(a_j) = A_i(b_j)$.
+	\end{solution}
+	\question Conclude on the complexity of computing $H$.
+	\begin{solution}
+		We construct $A(x), B(x)$ using product-trees (same for derivatives). Use multi-point evaluation to get $A_i, B_i$ in time $O(M(n) \log n)$. Since we have $n$ such pairs $A_i, B_i$, the overall running time is $O(n^2 \log n)$.
+	\end{solution}
+%	\question Give an algorithm that computes $C y$ for $y \in K^n$ in time $O(M(n) \log n)$ (Hint: construct a polynomial that has the solution-vector as the result of its multi-point evaluation).
+	\begin{solution}
+		Define $f(x) = \sum_{j=1}^n  \frac{y_i}{x-b_i}$. Note that the resulting vector $Cy$ exactly corresponds to evaluating $f(x)$ at $b_i$. Define further two polynomials $g(x) = \prod_i (x-a_i)$ and $h(x)$ of degree less $n-1$ s.t.\ 
+		\[
+			f(x) = \frac{h(x)}{g(x)} = \sum_{j=1}^n \frac{y_j}{x-a_j}. 
+		\]
+		Note that $h(x) = g(x) \sum_{j=1}^n \frac{y_j}{x-a_j} = \sum_j y_j \prod_{i \neq j} (x-a_i)$. It follows that
+		if $x=a_i$, then $h(a_i) = y_i \prod_{j \neq i} (a_j - a_i) = y_i g'(a_i)$ (since $g'(x) = \sum_{j=1}^n \prod_{i \neq j} (x -a_i)$). From here we can view $h(x)$ as the interpolation polynomial for the points $(a_i, y_ig'(a_i))$ and, hence, $f(b_i) = \frac{h(b_i)}{g(b_i)}$. Overall, the algorithm is as follows:
+		\begin{enumerate}
+			\item Compute $g(x)$ using product-trees (time: $O(M(n)\log n)$)
+			\item Compute the coeffs of $g'(x)$ (time: $O(n)$)
+			\item Compute $g(t_i), g'(t_i)$ using multipoint evaluation (time: $O(M(n)\log n)$)
+			\item Compute $h_j = y_j g'(b_j)$ (time $O(n)$)
+			\item Interpolate $h(x)$ (time $O(M(n)\log n)$).
+			\item Finally, compute $f(b_i) = \frac{h(b_i)}{g(b_i)}$.
+		\end{enumerate}
+	\textbf{Remark:} Another exercise would be to show that 
+	\[
+		\det C  = \frac{\prod_{j>k} (a_j - a_k)(b_k - b_j)}{\prod_{j,k} (a_j - b_k)}.
+	\]
+	\end{solution}
+\end{questions}
+
+
+%\iffalse
+\section{Quasi-Cauchy matrices}
+
+
+
+Let $\textbf{w}:=(w_0,\ldots,w_j)$. We define a $j\times j$ diagonal matrix $D(\textbf{w})$ by
+\[ D(\textbf{w}) =
+\begin{bmatrix}
+w_0 & 0 & \cdots & 0 \\
+0 & w_1 & \ddots & 0 \\
+0 & 0 & \ddots & 0 \\
+0 & 0 & \cdots & w_{j-1}
+\end{bmatrix}.
+\]
+
+Let now $\varphi_{\mathbf{x,y}}:\mathcal{M}_n(\K)\rightarrow\mathcal{M}_n(\K)$ defined by $\varphi_{\mathbf{x,y}}(A)=D(\mathbf{x})\cdot A-A\cdot D(\mathbf{y}).$
+With these notations, define the \emph{$(\mathbf{x,y})$-displacement rank} of $
+A$ to be the rank of $\varphi_{\mathbf{x,y}}(A)$. We shall assume that $\varphi_{
+	\mathbf{x,y}}(A)$ is an invertible mapping -- an easy fact, the proof of which is of little interest.
+
+\begin{questions}
+	\question What is the $(\mathbf{x,y})$-displacement rank of the Cauchy matrix $C(\mathbf{x,y})$?
+	
+	\begin{solution}
+		We have that $D(x)C(x,y) = (\frac{x_i}{x_i-y_j}){i,j}$ and $C-x,y)D(y) = (\frac{y_j}{x_i-y_j}$. Hence, $\varphi_{\mathbf{x,y}}(C(x,y) = J$ where $J$ is the $n \times n$ matrix with only ones. And the $(x,y)$-displacement rank of $C(x,y)$ in 1.
+	\end{solution}
+	
+	\question Let $\mathbf{u,v}$ be two (column) vectors in $\K^n$. Prove that $\varphi^{-1}_{\mathbf{x,y}}(\mathbf{u}\cdot {}^{t}{\mathbf{v}})=D(\mathbf{u})C
+	(\mathbf{x,y})D(\mathbf{v}).$
+	\begin{solution}
+		Because diagonal matrices commute, we have $\varphi_{\mathbf{x,y}}(D(\mathbf{u})C
+		(\mathbf{x,y})D(\mathbf{v})) = D(u)\varphi_{\mathbf{x,y}}(C(x,y)) D(v) = D(u) J D(v) = (u_iv_j)_{i,j} = uv^T$.
+	\end{solution}
+	
+	\question Deduce from the previous question that if a matrix $M$ has $(\mathbf{x,y})$-displacement rank $\alpha$, there exist vectors $\mathbf{g}_1,\ldots,\mathbf{g}_\alpha,\mathbf{h}_1,\ldots,\mathbf{h}_\alpha$ such that
+	\begin{equation}\label{lincomb}
+	M=\sum_{j=1}^{\alpha}D(\mathbf{g}_j)C(\mathbf{x,y})D(\mathbf{h}_j).
+	\end{equation}
+	(Hint: recall that if $N$ has rank $\alpha$, then $N = \sum_{i = 1}^\alpha N_i$ with $N_i$ of rank 1.)
+	
+	\begin{solution}
+		Let $N_i$ be as in the hint. We know that there exists two vectors $g_i$ and $h_i$ such that $N_i = g_ih_i^T$. Hence, if $N = D_{(x,y)}(M)$ has rank  $\alpha$, we have vectors $g_1, \cdots, g_\alpha$ and $h_1, \cdots, h_\alpha$ such that $N = \sum_{i = 1}^\alpha g_i h_i^T$. And using previous question plus the linearity of $\varphi_{\mathbf{x,y}}$, we obtain $M=\sum_{j=1}^{\alpha}D(\mathbf{g}_j)C(\mathbf{x,y})D(\mathbf{h}_j)$.
+	\end{solution}
+	
+	\question Prove conversely that if $M$ is of the form (\ref{lincomb}), then $M$ has $(\mathbf{x,y})$-displacement rank $\leqslant\alpha$.
+	
+	\begin{solution}
+		Perform the computations of previous question in the other way. We then have that $\varphi_{\mathbf{x,y}}(M)$ is a sum of $\alpha$ matrices of rank 1, hence its rank is at most $\alpha$.
+	\end{solution}
+	
+	For the rest of the exercise, we shall say that a matrix with $(\mathbf{x,y})$-displacement rank $\alpha$ is represented by $(\mathbf{x,y})$-generators of size
+	$k$ if $M$ is given as a pair of vector sequences $((\mathbf{g}_i)_{1\leqslant i
+		\leqslant\alpha},(\mathbf{h}_i)_{1\leqslant i\leqslant \alpha})\in(\K^\alpha)^2$
+	such that (\ref{lincomb}) holds. Overall, this means that, when $\alpha$ is small, we have a compact representation for $M$ (of size $O(\alpha n)$), and we might wonder whether we can do basic matrix arithmetic -- matrix/vector product, add, multiply, inverse, determinant -- using this compact representation (the
+	last two can be done but we'll not study them).
+	
+	
+	\question If $M$ is represented by $(\mathbf{x,y})$-generators of size $\alpha$ and $v$ is a vector, prove that one can compute $M\cdot v$ in complexity $O(\alpha
+	M(n)\log n)$.
+	
+	
+	\question If $M,M'$ are represented by $(\mathbf{x,y})$-generators of size $\alpha
+	$ and $\alpha'$, give $(\mathbf{x,y})$-generators of size $\alpha+\alpha'$ for $
+	M + M'$, which can be computed in time $O((\alpha+\alpha') n)$.
+	
+	
+	\question If $M,M'$ are represented by $(\mathbf{x,y})$-generators of size $\alpha
+	$ (resp. by $(\mathbf{y,z})$-generators of size $\alpha'$), give $(\mathbf{x,y})
+	$-generators of size $\alpha+\alpha'$ for $M\cdot M'$, which can be computed in
+	time $O(\alpha\alpha'M(n)\log n)$.
+	
+\end{questions}
+%\fi
+
+\end{document}
+
+

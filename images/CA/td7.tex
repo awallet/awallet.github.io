@@ -1,0 +1,296 @@
+\documentclass[11pt]{exam}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noprintanswers % pour enlever les réponses
+%\printanswers
+
+\unframedsolutions
+\SolutionEmphasis{\itshape\small}
+\renewcommand{\solutiontitle}{\noindent\textbf{A: }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%\usepackage[margin=0.73in]{geometry}
+%\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+%\usepackage{fullpage}
+
+
+\usepackage{hyperref}
+\usepackage{appendix}
+\usepackage{enumerate}
+
+
+\usepackage{times,graphicx,epsfig,amsmath,latexsym,amssymb,verbatim}%,revsymb}
+\usepackage{algorithmicx, enumitem, algpseudocode, algorithm, caption}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+% Handling comments and versions %%%
+%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\extra}[1]{}
+
+\renewcommand{\comment}[1]{\texttt{[#1]}}
+
+\newcommand*{\ScProd}[2]{\ensuremath{\langle#1\!\mathbin{,}\!#2\rangle}} %Scalar Product
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% THEOREMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{proposition}[theorem]{Proposition}
+
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+
+
+\newcommand{\nc}{\newcommand}
+\nc{\eps}{\varepsilon}
+\nc{\RR}{{{\mathbb R}}}
+\nc{\CC}{{{\mathbb C}}}
+\nc{\FF}{{{\mathbb F}}}
+\nc{\NN}{{{\mathbb N}}}
+\nc{\ZZ}{{{\mathbb Z}}}
+\nc{\PP}{{{\mathbb P}}}
+\nc{\QQ}{{{\mathbb Q}}}
+\nc{\UU}{{{\mathbb U}}}
+\nc{\OO}{{{\mathbb O}}}
+\nc{\EE}{{{\mathbb E}}}
+
+
+\newcommand{\field}{\mathbb{K}}
+\nc{\K}{K}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\val}{\operatorname{val}}
+\newcommand{\bigO}{\mathcal{O}}
+\DeclareMathOperator{\Span}{Span}
+\newcommand{\vc}[1]{\mathbf{#1}}
+
+\pretolerance=1000
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DOCUMENT STARTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usetikzlibrary{automata}
+\DeclareMathOperator{\Vol}{Vol}
+
+\begin{document}
+
+{\noindent
+   \textsc{ENS Lyon --  M1 -- Computer Algebra}
+   \hfill {E.Kirshanova / A.Wallet // 2017--2018\\
+  }
+  \hrule
+% Titre de la feuille
+  \begin{center}
+    {\Large\textbf{
+   \textsc{Tutorial }
+    } } 
+  \end{center}
+  \hrule \vspace{5mm}
+
+\thispagestyle{empty}
+
+\vspace{0.2cm}
+
+\section{Wiedemann's algorithm}
+Let $K$ be a finite field (e.g.~$\mathbb Z/p\mathbb Z$ with $p$ prime) and $M \in M_n(K)$ be an invertible matrix, with $\omega(M)$ non zero coefficients.
+\begin{questions}
+	\question Recall the main steps of Wiedemann's algorithm to compute a solution of $Mx = b$ for some vector $b$. What is its complexity ?
+	
+	\begin{solution}
+		Wiedemann's algorithm first compute the minimal polynomial $P$ of the matrix $M$. Then, as $M$ is invertible, its minimal polynomial is of the form 
+		$P = p_0 + p_1 X + \cdots + p_m X^m$ with $p_0 \neq 0$.
+		
+		Hence, we have $p_0b =  - p_1 Ab - \cdots - p_m A^mb$. And $x = - \frac{1}{p_0}(p_1 A + \cdots -+ p_m A^m)b$ is a solution of our equation.
+		To compute the minimal polynomial of $M$, we sample random vectors $u$ and $v$ ad we look for a recurrence relation between the terms $u A^i v$.
+		The complexity of the algorithm is $O(n)$ multiplications of the matrix $M$ and a vector. Hence, $O(n\omega(M))$ operations in $K$.
+	\end{solution}
+	
+	\question Assume now that $M$ is non invertible and that its minimal polynomial is known. Can you describe some non-zero vectors in its kernel?
+        \begin{solution}
+ As $M$ is non invertible, we know that $P = XQ$ for some polynomial $Q$. Moreover, $Q(M) \neq 0$ otherwise $P$ was not minimal. Hence, we can find a vector $x$ such that $y := Q(M)x \neq 0$. But as $MQ(M) = 0$, we then have $M y =0$ and we have found a non zero vector in the kernel of $M$. 
+          \end{solution}
+        
+        \question Deduce a probabilistic algorithm that finds a non zero element in $\ker M$. What complexity do you obtain ? Compare it with the approach using Gaussian elimination.
+	
+	\begin{solution}
+          We compute the minimal polynomial $P$ of $M$ as in Wiedemann's algorithm (this works in the same way, the only moment where we needed that $M$ is invertible was to say that $p_0 \neq 0$). This requires $O(n\omega(M))$ matrix-vector multiplications.
+
+          To find $x$, as $K$ is finite we can sample it uniformly in $K^n$. As $Q(M)$ is non zero, then its  kernel is a subspace of the whole space. In particular we have that $\Pr(x \in \text{Ker}(Q(M)) ) = 1/\#K^n \leq 1/2$. Hence, by sampling $x$ a constant number of time (at most 2 times in expectation), we find with very high probability a $x$ that is not in the kernel of $Q(M)$.
+          
+          Computing $Q(M)x$ then also costs $n$ multiplications matrix-vector,so that the overall complexity is still $O(n \omega(M))$.
+
+          Gaussian elimination runs in $O(n^3)$. In particular, Wiedemann's approach is more efficient as soon as $\omega(M)=O(n^{1+\epsilon})$, with $0\leq \epsilon<1$. An interesting example happens when $\omega(M)=O(n)$: this essentially means that the matrix has few non-zero coefficients, and we find a complexity of $O(n^2)$. These are sometime called ``sparse'', but it is difficult to give a rigorous definition. 
+        \end{solution}
+          \question Propose a modification to Wiedemann's algorithm for a non-square $M \in K^{n \times r}$ for $r < n$.
+          \begin{solution}
+				At least two solutions are possible. First, as proposed in the original Wiedemann's paper, we just pad $M$ with $n-r$ (randomly selected) columns.  The extended problem will have extra variables but no extra equations. Setting these extra variables to $0$ restricts the solution to be the solution of the original system. The solution to the extended system will set these extra variables to $0$ (use the uniqueness of the solution).
+				
+				A more elegant way is to consider a full-rank matrix $R \in K^{r \times n}$ (e.g., take $R = [\mathsf{Id} \; |\; S ]$ with a sparse component $S$). We do not perform the multiplication $RM$, instead,When generating the linear recurrence, compute $(RM)^i v, M^i v$ separately to make use of the sparseness of $R, M$. Finally, we use the fact that if $v \in \ker(RM)$, then $v \in \ker(M)$ ($R$ is full-rank).
+		\end{solution}
+	
+\end{questions}
+
+\section{Lanczos algorithm}
+	In this exercise we are going to consider a linear equation
+	\[
+		A x = b
+	\] 
+	over the real numbers and we assume we can compute with sufficient precision (i.e., values close to 0 are \emph{not} treated as 0). 
+	\begin{questions}
+		\question Show that we can further assume that $A$ is symmetric and positive definite.  
+		\begin{solution}
+			Assume originally we were given the equation $B x = b$ for a non-symmetric $B$. Then clearly $A = BB^t$ is symmetric, and its eigenvalues are the square of those of $B$, thus it is positive definite. We then solve $Ax' = b$ for $x'$. Once $x'$ is found, $x = B^t x'$ is a solution to the original problem. Note further that for the algorithm we are going to develop, we do not really need to explicitly compute $B B^t$, but rather we would only need to multiply $B B^t$ by a vector, which, in $B$ is sparse, we rather perform via a naive matrix-vector multiplication.
+		\end{solution}
+	
+		\question We thus assume $A$ is symmetric and positive definite.  Then, it induces scalar product as
+		\begin{align*}
+                  \ScProd{x}{y}_A :=& \ScProd{x}{Ay} = \ScProd{Ax}{y}%,\\
+                                    %  ||\cdot||_A :=& \sqrt{\ScProd{v}{v}_A}.
+		\end{align*}
+		Consider the following orthogonalization process:
+			\begin{itemize}
+				\item set $v_0 = b$;
+				\item for $i\geq 0$, set $w_i = A v_{i}$ and  
+				\begin{align*}
+                                  v_{i+1} &= w_i - \sum_{j =0}^{i} \frac{\ScProd{w_j}{v_i}_A}{\ScProd{v_j}{v_j}_A}\cdot v_j
+                                \end{align*}
+			\end{itemize}
+			Show that this creates indeed an orthogonal family in $\RR^n$ w.r.t. $A$. How many scalar products you need to compute this basis?
+			\begin{solution}
+                          This is analogous to a Gram-Schmidt orthogonalization; the difference is that we iteratively construct an orthonormal family of $\mbox{Span}(v_1, Av_1,\dotsc, A^kv_1)$ (also known as Krylov space), instead of modifying an already known basis. The normalization ensures the process gives unit vectors. The orthogonality is seen by induction.
+
+                          A difference is that at most two fractions of scalar products only are needed for each new vector. Indeed, the construction makes new vectors orthogonal to those previously built. More precisely, let $i>j+1$. As $w_{j} \in V_{j+1}$, the construction ensures that $\ScProd{w_j}{v_i}_A=0$
+                        
+                            % To be more precise, let $V_i=\mbox{Span}(v_0=b, \dotsc, v_i)$. We can show that $V_{i+1}=\mbox{Span}(b) + AV_i = \mbox{Span}(b)+AV_{i-1}+\mbox{Span}(Av_i)=V_i+\mbox{Span}(Av_i)$, where the last equality is obtained by a standard induction. This means that for each $i$, $w_i=Av_i \in V_{i+1}$, so it is orthogonal
+
+                          Hence we only need to compute $\ScProd{w_i}{v_i}$ and $\ScProd{w_i}{v_{j-1}}$ and their numerator. Another interpretation is that the matrix of the orthogonalization process is tridiagonal.
+			
+				\end{solution}
+                                \question Show how to compute the solution $x$ in time $O(n^2)$.
+
+                                \begin{solution}
+                                  There is an $m\leq n$ such that $v_m=0$. In this case, $V_m=V_{m-1}$. Hence by construction and this observation, $Ax-b \in V_{m-1}$. We claim that $$x=\sum_{j<m} \frac{\ScProd{b}{v_i}}{\ScProd{v_i}{v_i}_A}v_i$$
+                                  is a solution. To see this, take any $v_i$ and observe that by definition $\ScProd{x}{v_i}_A=\ScProd{Ax}{v_i}=\frac{\ScProd{b}{v_i}}{\ScProd{v_i}{v_i}_A}$ so that $\ScProd{Ax-b}{v_i}=0$ for all $i$. In other words, $\|Ax-b\|=0$ (this is the Euclidean norm), so that $Ax=b$ (up to normalization).
+                                  
+                                  \end{solution}
+                                
+		\question What might get wrong in the above process? 
+			\begin{solution}
+				The orthogonalization process fails if we obtain $v_j = 0$ for $j\leq n$, so we do not obtain an orthogonalized basis. It that case, we can approximate a solution, writing it only in the $\{v_1, \ldots, v_j\}$ basis. Arguing that this approximation is good enough is pain ( \url{https://pdfs.semanticscholar.org/cdd3/840ecba13dd2684760b3514b29335b3d5ed7.pdf}), so we do not do it unless I find an elegant and a short way to do it. 
+			\end{solution}
+	\end{questions}
+\section{Iterative methods for solving linear systems}
+
+In this exercise, we let that $K = \RR$ or $K = \CC$. We will consider iterative methods to compute an approximation of the solution of a system 
+\begin{equation}
+\label{system}
+Ax = b
+\end{equation}
+with $A$ an invertible matrix of size $n$.
+
+\begin{questions}
+	
+	\question
+	\label{qu_1}
+	Let $A = M-N$ with $M,N \in M_n(K)$ and $M$ invertible. Show that solving \eqref{system} is equivalent to find a fixed point of the function $f : K^n \rightarrow K^n$ defined by $f(x) = M^{-1}Nx  + M^{-1}b$.
+	
+	\begin{solution}
+		This is just rewriting. Note that if $M$ does not have a specific structure, computing $M^{-1}$ is as long as directly compute $A^{-1}$.
+	\end{solution}
+
+        We first design an algorithm to compute an approximation of $x$ under some assumptions: \begin{itemize}
+        \item we assume that $x$ is the unique fixed point of $f$;
+        \item for some known $x_0 \in K$, the sequence defined by $x_{n+1}=f(x_n)$ converges to $x$.
+        \end{itemize}
+        In a second part, we will give a sufficient condition for these assumptions. 
+
+        \question {\bf Jacobi's method:} assume that $A$ has no zero on its diagonal. Show that the next term in the sequence can be computed in $O(n^2)$ operations for a good choice of $M,N$.
+        \begin{solution}
+          The idea is to split $A$ in its lower and upper triangular part. For example, let $M$, resp.~$N$, be the lower, resp.~strictly upper triangular part of $A$. The assumption about the diagonal of $A$ ensures that $M$ is invertible. We can compute $Nx_n$ in $O(n^2)$ operations in $K$. With our choice of $M$, computing $M^{-1} Nx$ is the same as solving a linear system for a triangular matrix, which can be done in $O(n^2)$ operations in $K$. Hence, each step costs $O(n^2)$ operations in $K$.
+        \end{solution}
+
+        Further assume that there exists $0\leq k<1$ such that, for all $x_1,x_2 \in K^n$, we have $\|f(x_1)-f(x_2)\|\leq k\| x_1-x_2\|$. Such a map is called {\em a contraction}. 
+        
+        \question  Give an algorithm to compute an approximation of $x$ such that $Ax = b$ with at least $r$ bits of precision for each coordinate. What is its complexity in terms of operations in $K$ (assume we already know a ball of radius 10 containing $x$)?
+
+        \begin{solution}
+          For all $n \geq 1$ we have $\|x_{n+1}-x_n\| = \|f(x_n)-f(x_{n-1})\| \leq k \|x_n-x_{n-1}\| \leq \cdots \leq k^n \|x_1-x_0\|$. Fix some $n\geq 1$ and let $m>n$ be arbitrary. The above implies that $\|x_m-x_n\| \leq \sum_{i = n}^{m-1} \|x_{i+1}-x_i\| \leq \sum_{i = n}^{m-1} k^i \|x_1-x_0\| \leq \frac{k^n}{1-k}\|x_1-x_0\|$. By assumptions, the subsequence of the $x_m=f(x_{m-1})$'s converges to $x$, so that letting $m$ go to infinity gives $\|x_n-x\|\leq \frac{k^n}{1-k}\|x_1-x_0\|$.
+
+          To obtain $r$ bits of precision, we should take this quantity to be less than $2^{-r}$. This means that $n = O(\frac{r}{\log(1/k)})$, thus we need $O(r)$ steps to get a precision of $r$ bits. From the previous question, the total complexity to get $r$ bits of precision is $O(rn^2)$ operations in $K$. If we only need a precision $r$ much smaller than $n$, this is more efficient than Gauss pivoting.
+        \end{solution}
+
+        	We now give general examples of contractions. Let $M \in M_n(K)$ be a matrix. We define the matrix norm of $M$ associated to $\|.\|$ by $$|||M||| = \sup_{x \in K^n\backslash \{0\}}\left(\frac{\|Mx\|}{\|x\|}\right).$$
+	
+	\question Prove that $|||M||| = \max_{x \in K^n, \|x\| = 1}\left(\|Mx\|\right)$ (beware, there is now a max and not a sup). (Hint: use the fact that the unit ball is compact in $K^n$).
+
+        \begin{solution}
+          First we can restrict the definition to the unit ball, since for any vector $x$, we can write $x=\|x\| \cdot \frac{x}{\| x\|}$. Then I am not sure what we should say: linear application between finite dimensional spaces are always continuous, finite dimensional balls are compacts, and and a continuous function on a compact set is bounded and reaches its bounds ? Or do we reprove continuity of linear maps ?
+        \end{solution}
+        
+	\question
+	\label{qu_3}
+	Let $f$ be as in question \ref{qu_1}, and give a condition on $M$ and $N$ such that $f$ is a contraction.
+	
+	\begin{solution}
+		For all $x,y \in K^n$, we have $\|f(x)-f(y)\| \leq k \|x-y\|$ with $k = ||| M^{-1}N|||$. Hence, ii is enough to ask $|||M^{-1}N||| < 1$.
+	\end{solution}
+	
+	\question Let $A$ be a strictly row diagonally dominant matrix, that is $|a_{i,i}| > \sum_{j \neq i} |a_{i,j}|$ for all $1 \leq i \leq n$. Prove that the Jacobi's method converges for $A$ (Hint : use the $\| \cdot \|_\infty$ norm to prove that the condition of question \ref{qu_3} is satisfied).
+	
+	\begin{solution}
+		Let $x \in K^n$ be such that $\| x \|_\infty = 1$. We want to prove that $\| M^{-1}Nx \|_\infty < 1$. We let $y=M^{-1}Nx$, so that $My = Nx$. We prove by induction on $i$ that $|y_i| < 1$, which proves $\| y \|_\infty < 1$. For $i = 0$, we have $y_0 = \frac{(Nx)_0}{a_{0,0}}$. But $|(Nx)_0| = |\sum_{j > 0} a_{0,j}x_j| < \sum_{j > 0} |a_{0,j}| < |a_{0,0}|$. This proves $|y_0| < 1$.
+		
+		For $i > 0$, we have $y_i = \frac{(Nx)_i + \sum_{j<i} a_{j,i}y_j}{a_{i,i}}$. But $|(Nx)_i + \sum_{j<i} a_{j,i}y_j| \leq \sum_{j > i} |a_{j,i} x_j| + \sum_{j<i} |a_{j,i}y_j| \leq \sum_{j \neq i} |a_{j,i}| < a_{i,i}$. By induction, $\|y\|_\infty = \| M^{-1}Nx\|_\infty< 1$, and since $x$ was arbitrary, the previous question shows that $|||M^{-1}N||| < 1$.
+	\end{solution}
+
+          
+	\textbf{Banach-Picard's fixed point theorem} : we now show that the ``contraction'' assumption implies the two others. 
+	\question  Let $g: K^n\rightarrow K^n$ be a contraction. Prove that $g$ has at most one fixed point $\ell$ in $K^n$.
+        \begin{solution}
+          % \textbf{Unicity:}
+          Assume there exist two fixed points $\ell_1$ and $\ell_2$. Then we have $\|g(\ell_1)-g(\ell_2)\| \leq k \|\ell_1-\ell_2\|$. But as $g(\ell_1) = \ell_1$ and $g(\ell_2) = \ell_2$, we obtain $\|\ell_1-\ell_2\|\leq k \|\ell_1-\ell_2\|$ with $k < 1$. This can only happen if $\ell_1=\ell_2$, so there is at most 1 fixed point.
+        \end{solution}
+	
+	\question
+	\label{qu_2}
+	Let $x_0 \in K^n$ be any vector and define $x_{n+1} = g(x_n)$. Prove that this sequence converges. What is its limit ? What is the speed of convergence of this sequence ?
+	
+	\begin{solution}       
+		\textbf{Existence:} Recall from the previous questions that for all $m>n$, we have $\|x_m-x_n\| \leq \frac{k^n}{1-k}\|x_1-x_0\|$. As the right hand side goes to $0$ when $n$ goes to infinity, $(x_n)$ is a Cauchy sequence. Since $K^n$ in a complete space, this sequence converges toward some limit $\ell \in K^n$. On the one hand, since $f$ is continuous (because it is a contraction), we have $\lim f(x_n) = f(\lim x_n)=f(\ell)$. On the other hand, the sequence $(x_{n+1})=(f(x_n))$ also converges to $\ell$. Hence, $f$ has a fixed point and the sequence $(x_n)$ converges to this fixed point. Observe that any initial condition $x_0$ can be used.
+		
+		\textbf{Convergence speed:} It is also about the inequality $\|x_m-x_n\|\leq \frac{k^n}{1-k}\|x_1-x_0\|$. When $m$ tends to infinity and $n$ is fixed, we get $\|x_n-\ell\|\leq \frac{k^n}{1-k}\|x_1-x_0\|$, which gives us a bound on the speed of convergence (the smaller $k$, the faster the sequence converges).
+		
+	\end{solution}
+	
+
+\end{questions}
+
+
+\end{document}
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

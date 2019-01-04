@@ -1,0 +1,257 @@
+\documentclass[11pt]{exam}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\noprintanswers % pour enlever les réponses
+\printanswers
+
+\unframedsolutions
+\SolutionEmphasis{\itshape\small}
+\renewcommand{\solutiontitle}{\noindent\textbf{A: }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\usepackage[margin=0.99in]{geometry}
+%\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+%\usepackage{fullpage}
+
+
+\usepackage{hyperref}
+\usepackage{appendix}
+\usepackage{enumerate}
+
+
+\usepackage{times,graphicx,epsfig,amsmath,latexsym,amssymb,verbatim}%,revsymb}
+\usepackage{algorithmicx, enumitem, algpseudocode, algorithm, caption}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+% Handling comments and versions %%%
+%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\extra}[1]{}
+
+\renewcommand{\comment}[1]{\texttt{[#1]}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% THEOREMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{proposition}[theorem]{Proposition}
+
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+
+
+\newcommand{\nc}{\newcommand}
+\nc{\eps}{\varepsilon}
+\nc{\RR}{{{\mathbb R}}}
+\nc{\CC}{{{\mathbb C}}}
+\nc{\FF}{{{\mathbb F}}}
+\nc{\NN}{{{\mathbb N}}}
+\nc{\ZZ}{{{\mathbb Z}}}
+\nc{\PP}{{{\mathbb P}}}
+\nc{\QQ}{{{\mathbb Q}}}
+\nc{\UU}{{{\mathbb U}}}
+\nc{\OO}{{{\mathbb O}}}
+\nc{\EE}{{{\mathbb E}}}
+
+\nc{\K}{K}
+\newcommand{\field}{\mathbb{K}}
+\newcommand{\val}{\operatorname{val}}
+\newcommand{\M}{\mathcal{M}}
+
+\pretolerance=1000
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DOCUMENT STARTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usetikzlibrary{automata}
+\DeclareMathOperator{\Vol}{Vol}
+
+\begin{document}
+
+{\noindent
+   \textsc{ENS Lyon --  M1 -- Computer Algebra}
+ \hfill { E.Kirshanova / A.Wallet // 2017--2018\\
+   	}\\
+  }
+  \hrule
+% Titre de la feuille
+  \begin{center}
+    {\Large\textbf{
+   \textsc{Homework 2} \\[5pt]
+    }
+	Due:  20.03
+	} 
+  \end{center}
+  \hrule \vspace{5mm}
+
+\thispagestyle{empty}
+
+\vspace{0.2cm}
+
+%\Large
+
+
+\section{Hermite Interpolation}
+
+For $i \in \{1,\cdots,n\}$, let $(x_i, y_i, z_i) \in \mathbb{K}^3$ with $x_i$
+pairwise distinct. An Hermite interpolating polynomial for $(x_i,
+y_i, z_i)$ is a polynomial $P$ of degree $\leq 2n-1$ such that $P(x_i) =
+y_i$ and $P'(x_i) = z_i$.
+
+
+\begin{questions}
+\question Show that such a $P$ exists and is unique. 
+\begin{solution}
+First, we prove that if $P$ exists, then it is unique. Assume that we have $P$ of degree $2n-1$ such that $P(x_i) = P'(x_i) = 0$ for all $i$. Let $i$ be fixed, we have $P=(X-x_i)Q$ for some $Q$ (because $P(x_i) = 0$). Then, $P'(X) = Q(X)+(X-x_i)Q'(X)$ and hence $P'(x_i) = Q(x_i)$. But by hypothesis $P'(x_i) = 0$. So we have $Q(x_i) = (X-x_i)Q_1$ for some polynomial $Q_1$. Finally, we have $(X-x_i)^2 | P$. This is true for all $i$, and as the $x_i$'s are distinct, the polynomials $(X-x_i)^2$ are pairwise coprime. Hence $\prod_i (X-x_i)^2 | P$ and we have a contradiction because $\deg(\prod_i (X-x_i)^2) = 2n > \deg P$. To conclude, $P = 0$. Now, if we have $P_1$ and $P_2$ satisfying the question, then $P_1-P_2$ satisfies $(P_1-P_2)(x_i) = (P_1-P_2)'(x_i) = 0$ and hence $P_1-P_2 = 0$ and we have unicity.
+For existence, either wait for next question (we construct the polynomial so it should exist). Or use a dimension argument: the dimension of all polynomials $P$ of degree at most $2d-1$ is $2d$. And the conditions $P(x_i) = y_i$ and $P'(x_i) = z_i$ are $2d$ linear constraints. This shows that $P$ is solution of a linear system with a square matrix. But we have proven with unicity that this matrix is full rank, so it is invertible and we have a solution $P$.
+\end{solution}
+
+
+%\question Give an algorithm to find $P$. What is the
+%  complexity of this algorithm? Hint: Try to generalize Newton's
+%  algorithm for interpolation.
+%  (You should not give the same algorithm as in next question).
+%  
+%\begin{solution}
+%Let $P$ be the polynomial we are looking for. Write the Euclidean division of $P$ by $(X-x_n)^2$. We have $$P(X) = (X-x_n)^2 Q(X) + aX+b.$$
+%But using $P(x_n) = ax_n+b = y_n$ and $P'(x_n) = a = z_n$, we obtain that $a = z_n$ and $b = y_n-z_n\cdot x_n$. Hence, evaluating $P$ and $P'$ on the $x_i$'s ($i < n$) we have $y_i = P(x_i) = (x_i-x_n)^2 Q(x_i)+ z_n (x_i-x_n)+y_n $ and $z_i = P'(x_i) = 2(x_i-x_n)Q(x_i)+(x_i-x_n)^2Q'(x_i)+ z_n$. That is, $Q$ is a polynomial of degree at most $2(n-1)-1$ satisfying, for $1 \leq i \leq n-1$
+%\begin{align*}
+%Q(x_i) &= \frac{y_i-y_n-z_n(x_i-x_n)}{(x_i-x_n)^2}\\
+%Q'(x_i) &= \frac{(z_i+z_n)(x_i-x_n)-2(y_i-y_n)}{(x_i-x_n)^3}
+%\end{align*}
+%So $Q$ satisfies the same problem as $P$, with $n-1$ points. We can compute $P$ recursively, by computing $Q$ and then let $P = (X-x_n)Q+aX+b$
+%
+%\textit{Complexity:} We have $T(n) = T(n-1)+O(n)$ (because computing the euclidean division of $P$ by $(X-x_n)^2$ takes time $O(2n)$ and computing the value of $Q(x_i)$ and $Q'(x_i)$ can be done with a constant number of operations in $K$). So the total complexity is $O(n^2)$ operations in $K$.
+%\end{solution}
+
+\question Use the exercise about fast CRT (TD4) %\ref{CRT} 
+  to give a quasi-linear time 
+  algorithm to find P (Hint: try to express the constraints $P(x_i) =y_i$ and $P'(x_i) = z_i$ as a unique constraint of the form $P \equiv Q_i \mod (X-x_i)^2$ for some polynomial $Q_i$ of degree $1$).
+  
+  \begin{solution}
+  We have that $P(x_i) = y_i$ and $P'(x_i) = z_i$ if and only if
+  $$ P(X) \equiv (y_i-z_ix_i) + z_iX \mod (X-x_i)^2$$
+  (check it).
+  Then, constructing $P$ is the same as constructing the solution to the CRT problem $P \equiv u_i \mod (X-x_i)^2$ with $u_i$ some degree 1 polynomial. Using the result of the CRT exercise, this can be done in time $O(M(n) \log n)$ (where the degree of the resulting polynomial is $O(n)$).
+  \end{solution}
+
+\question Can you state a generalization to higher order
+  derivatives? With a different order at each point? 
+  
+  \begin{solution}
+  Let $P$ be a polynomial, $x$ be a point and $k$ be an integer. We want to satisfy
+  \begin{equation}
+  \label{multiple_order}
+  P^{(i)}(x) = \gamma_i \ \  \text{ for $0 \leq i < k$}
+  \end{equation}
+  for some values $\gamma_i$. We can show that there is a polynomial $R$ of degree at most $k-1$ such that equation \ref{multiple_order} is equivalent to 
+  \begin{equation}
+  P \equiv R \mod (X-x)^k
+  \end{equation}
+  Moreover, we can compute $R$ in time $O(k)$. This is the same idea as in previous question, $R$ is simply a polynomial of degree $k$ with $R^{(i)}(x) = \gamma_i$ for all $i$. To build $R$ we start by its higher degree coefficient, that must satisfies the condition $R^{(k)}(x) = \gamma_k$. This fixes the higher degree coefficient and we go to lower degree coefficients one by one. (This is a triangular system we are trying to solve).
+  If now we want $P$ such that 
+  \begin{equation*}
+  P^{(i)}(x_j) = \gamma_{i,j} \ \  \text{ for $0 \leq i < k_j$}
+  \end{equation*}
+  with order that depends on the points, it suffices to build a solution to the CRT problem
+  \begin{equation*}
+  P \equiv R_j \mod (X-x_j)^{k_j} \ \ \text{ for all $j$}
+  \end{equation*}
+  We can build such a CRT in quasilinear time in the degree of the solution $P$ (i.e. $\sum_j k_j$).
+  
+  \textbf{Remark.} We cannot ask for $P'(x) = \gamma$ with no condition on $P(x)$. If we are looking for a $P$ of degree $0$ such that $P'(x) = \gamma$ (we only have one condition so we would like to find a solution of degree 0), then either $\gamma = 0$ and all polynomials of degree 0 are solution, or $\gamma \neq 0$ and we do not have solutions. This is not an interesting case. That is why we restrict ourselves to problems where we have constraints on $P^{(i)}(x)$ for all $i$ between 0 and some $k$ (with no gap).
+  
+  \end{solution}
+\end{questions}
+
+
+
+\section{Hensel-type strategy for solving linear system}
+
+\emph{In this exercise, we study algorithms to solve $Mx = b$, $M\in
+	\M_n(\K[X]), b\in \K[X]^n$. We shall assume that the degree of all
+	coordinates of $M, b$ is $\leqslant d$.}
+\medskip
+
+{\em Cramer's formulas show that if $x$ is a solution to $Mx = b$,
+	$(\det M)\cdot x \in \K[X]^n$, and the coefficients of
+	$(\det M)\cdot x$ have degree $\leqslant nd$. We'll also assume that
+	$\det M(u) \neq 0$ for all $u \in \K$.}
+\medskip
+
+\begin{questions}
+	
+	\question What is the complexity of computing $B := (M \bmod X)^{-1}$?
+	
+	\begin{solution}
+		Computing $M \mod X$ takes time $O(n^2)$ (just keep the constant coefficient of each polynomial in the matrix $M$). Then, $(M \bmod X)$ has coefficients in $K$ and so computing $(M \bmod X)^{-1}$ takes time $O(n^3)$.
+	\end{solution}
+	
+	%\emph{Let $y \in \K[[X]]^n$ be a solution of $My = b$, and define $y_i = y
+	%  \bmod X^i$, $r_i = b - My_i$.}
+	
+	{\em Let $y_i \in \K[X]^n$ be a solution of $My_i = b \bmod X^i$, and define $r_i = b - My_i$.}
+	
+	\question Prove that $r_i = \lambda_i X^i$ for some $\lambda_i \in \K[X]^n$.
+	If $z_i = B\lambda_i \bmod X$, prove that
+	$y_{i+1} = y_i + X^i z_i$ and $r_{i+1} = r_i - X^i Mz_i$.
+	
+	\begin{solution}
+		We have $MY_i = b \mod X^i$ so there exists $\lambda_i \in K[X]^n$ such that $b- MY_i = \lambda_i X^i$. Moreover, we have $Mz_i = \lambda_i \mod X$. So
+		\begin{align*}
+		M(y_i + X^i z_i)
+		&= My_i + X^i Mz_i \\
+		&= b-r_i + X^i (\lambda_i + XR) && \text{for some $R\in K[X]^n$} \\
+		&= b-X^i \lambda_i  + X^i \lambda_i + X^{i+1}R \\
+		&= b \mod X^{i+1} 
+		\end{align*}
+		Hence, we have $y_{i+1} = y_i + X^i z_i$. Then, $r_{i+1} = b-My_{i+1} = b-My_i-X^i Mz_i = r_i -X^i Mz_i$.
+	\end{solution}
+	
+	\question What is the complexity of computing $y_{nd+1}$ using this method? Assuming
+	that $\det M$ is given as input or precomputed, deduce an algorithm for solving
+	$Mx = b$.
+	
+	\begin{solution}
+		Computing $r_{i+1}$ from the values at step $i$ takes $O(n^2d)$ operations in $K$. Then, computing $\lambda_{i+1}$ takes time $O(nd)$ and computing $z_{i+1}$ takes time $O(n^2)$. Finally, computing $y_{i+1}$ takes time $O(in) = O(n^2d)$ if $i \leq nd+1$. We have seen that to compute $B$ and the values at step $0$ takes time $O(n^3)$. Hence, the total complexity to compute $y_{nd+1}$ is $O(n^3d^2)$.
+		
+		We transform $Mx = b$ into $My = \det(M)b$. We know that $y = \det(M)x$ is solution of the second equation. Moreover, $\det(M)x \in K[X]$ and has degree at most $nd$. Hence, if we have a solution $y_{nd+1}$ such that $My_{nd+1} = \det(M)b \mod X^{nd+1}$, assuming $M$ is invertible modulo $X^{nd+1}$, we have $y_{nd+1} = \det(M)x \mod X^{nd+1}$ and both polynomials have degree at most $nd$, so they are equal in $K[X]$. Then, we recover $x$ by dividing by $\det(M)$ (which is known).
+	\end{solution}
+	
+	\question If we need to compute $\det M$ beforehand, then this computation is going
+	to dominate the complexity of linear system solving. Can we avoid computing
+	the determinant? (Hint: use rational reconstruction.)
+	
+	\begin{solution}
+		Computing $\det M$ by evaluation/interpolation takes time $O(n^4d + n^3 M(d) \log d)$ (cf td5), which is more than what we had in previous question (as long as $d < n$).
+		
+		We know that the solution $x$ satisfies $x = y/\det(M)$ with $\deg(y) \leq nd$ and $\deg(M) \leq nd$. So if we know $x \mod X^{2nd+1}$, then we can reconstruct each coefficient of $x$ using rational reconstruction in time quasi-linear in $nd$. This means $\tilde{O}(n^2d)$ to reconstruct $x$ (which is less than the other steps of the algorithm). We just need to compute $y_{2nd+1}$ instead of $y_{nd+1}$, but this does not change the asymptotic complexity.
+	\end{solution}
+	
+	
+\end{questions}
+
+
+\end{document}
+
+
