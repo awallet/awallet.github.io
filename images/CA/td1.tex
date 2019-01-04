@@ -1,0 +1,402 @@
+\documentclass[11pt]{exam}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noprintanswers % pour enlever les réponses
+%\printanswers
+
+\unframedsolutions
+\SolutionEmphasis{\itshape\small}
+\renewcommand{\solutiontitle}{\noindent\textbf{A: }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\usepackage[margin=0.73in]{geometry}
+%\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+%\usepackage{fullpage}
+
+
+\usepackage{hyperref}
+\usepackage{appendix}
+\usepackage{enumerate}
+
+
+\usepackage{times,graphicx,epsfig,amsmath,latexsym,amssymb,verbatim}%,revsymb}
+\usepackage{algorithmicx, enumitem, algpseudocode, algorithm, caption}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+% Handling comments and versions %%%
+%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\extra}[1]{}
+
+\renewcommand{\comment}[1]{\texttt{[#1]}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% THEOREMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{proposition}[theorem]{Proposition}
+
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+
+
+\newcommand{\nc}{\newcommand}
+\nc{\eps}{\varepsilon}
+\nc{\RR}{{{\mathbb R}}}
+\nc{\CC}{{{\mathbb C}}}
+\nc{\FF}{{{\mathbb F}}}
+\nc{\NN}{{{\mathbb N}}}
+\nc{\ZZ}{{{\mathbb Z}}}
+\nc{\PP}{{{\mathbb P}}}
+\nc{\QQ}{{{\mathbb Q}}}
+\nc{\UU}{{{\mathbb U}}}
+\nc{\OO}{{{\mathbb O}}}
+\nc{\EE}{{{\mathbb E}}}
+
+\nc{\K}{K}
+\newcommand{\val}{\operatorname{val}}
+
+\pretolerance=1000
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DOCUMENT STARTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usetikzlibrary{automata}
+\DeclareMathOperator{\Vol}{Vol}
+
+\begin{document}
+
+{\noindent
+   \textsc{ENS Lyon --  M1 -- Computer Algebra}
+   \hfill { E.Kirshanova / A.Wallet // 2017--2018\\
+  }
+  \hrule
+% Titre de la feuille
+  \begin{center}
+    {\Large\textbf{
+   \textsc{Tutorial 1}
+    } } 
+  \end{center}
+  \hrule \vspace{5mm}
+
+\thispagestyle{empty}
+
+\vspace{0.2cm}
+
+%\Large
+
+\section{Remainder of a sparse polynomial}
+{\sl In this exercise we are interested in computing a remainder of a sparse polynomial $S$ after dividing by a polynomial $D$, where $S,D\in K[X]$. (Assume that operations in $K$ have unit cost.)}
+
+
+\begin{questions}
+
+\question Give an example showing that assuming that $S$ is sparse does not lead to better bounds for the classical division algorithm. 
+\begin{solution}$S = X^n$ and $D = X-1$ for a large integer $n$. $S$ is sparse but during naive division, the successive quotients are $X^n$, $X^{n-1}, \dots, X^2, X$.
+\end{solution}
+
+\question What is the cost of an operation in $ K[X]/(D(X))$?
+\begin{solution}
+Multiplication of $P$ and $Q$ in $ K[X]/(D(X))$ is in $O(\deg(D)^2)$ (assuming $P$ and $Q$ are already of degree less than $\deg(D)$). Compute $PQ$ in $K[X]$ in $O(\deg(D)^2)$ (we assumed operations in $K$ are $O(1)$). Then reducing a polynomial of degree less than $2 \deg(D)$ by $D$ costs $O(\deg(D)^2)$. So multiplication in $ K[X]/(D(X))$ can be performed in $O(\deg(D)^2)$. The same is true for addition (the final reduction modulo $D$ gives the $O(\deg(D)^2)$ even if addition in $K[X]$ is linear and not quadratic in the degree).
+\end{solution}
+
+\question Show that one can compute $X^N \mod D(X)$ in time $O ((\deg D)^2 \log N)$. (Hint: use fast exponentiation.)
+\begin{solution}
+Perform fast exponentiation by reducing mod $D$ after each multiplication. We need $\log(N)$ multiplications to compute $X^N$ by fast exponentiation, and each multiplication in $ K[X]/(D(X))$ is in $O(\deg(D)^2)$ (cf previous question) so we get the desired complexity.
+\end{solution}
+
+\question Assume that $S$ has $\omega$ nonzero terms. Show that you get an algorithm of complexity $O(\omega (\deg D)^2\log \deg S)$ which beats the classical division for $ \omega$ at most  $\frac{\deg S-\deg D}{\deg D \log \deg S}$.
+
+\begin{solution}
+Write $S = \sum_{1 \leq i \leq \omega} s_i X^{n_i}$. For each $i$, compute $X^{n_i}$ modulo $D$ using the algorithm of the previous question. This takes at most $O((\deg D)^2 \log \deg S)$ operations in $K$ for each $X^{n_i}$ so in total it takes $O(\omega (\deg D)^2\log \deg S)$ operations in $K$. Then compute $\sum_{1 \leq i \leq \omega} s_i (X^{n_i} \mod D) \mod D$, which takes $O(\deg(D)^2 \omega)$ operations in $K$ and does not change the previous complexity. So we obtain the desired result.
+
+The classical division algorithm takes $O(\deg D (\deg S-\deg D) )$ operations in $K$. When $\omega \leq \frac{\deg S-\deg D}{\deg D \log \deg S}$, we have $\omega (\deg D)^2\log \deg S \leq \deg D (\deg S -\deg D)$.
+\end{solution}
+\end{questions}
+
+\section{Exact division}
+
+{\sl The goal of this exercise is to show that we can have a constant
+  gain on (naive) polynomial division in the case where we know
+  beforehand that the division is exact. As is always the case with
+  constant gain, we'll need to argue in the end that our complexity
+  model is sound.}
+\medskip
+Let $A(X) = \sum_{k=0}^{2n-1} a_k X^k$ and $B(X) = \sum_{k=0}^{n-1} b_k X^k$.
+
+
+\begin{questions}
+\question Prove that one can compute $Q_\ell =
+\sum_{k=n-\ell}^{n} q_k X^k$ such that $\deg (A - BQ_{\ell}) <
+2n-1-\ell$ using $\ell + 1$ divisions and $\ell (\ell + 1)/2$
+multiplications in $\K$.
+{\sl Note that we are not interested in the remainder $A - BQ_{\ell}$, only in $Q_{\ell}$.}
+
+\begin{solution}
+We prove it by induction. For $\ell = 0$, take $Q_l = \frac{a_{2n-1}}{b_{n-1}} X^n$. This needs 1 division and 0 multiplications (and 0 additions).
+Assume we have already computed $Q_l$. We know that $A-BQ_l = c X^{2n-2-l} + \dots$. We will take $Q_{l+1} = Q_l + \frac{c}{b_{n-1}}X^{n-1-l}$. So we need to compute $c$. This is one coefficient of $A$ minus one coefficient of $BQ_l$. To compute one coefficient of $BQ_l$, we uses at most $l+1$ multiplications and $l$ additions (because $Q_l$ has at most $l+1$ non zero coefficients). So we need $l+1$ multiplications and $l+1$ additions to compute $c$. So in total, to compute $Q_{l+1}$ we need to compute $Q_l$ plus 1 division, $l+1$ multiplications and $l+1$ additions. When we sum everything, we obtain that we need $l+1$ divisions, $\frac{l(l+1)}{2}$ multiplications and $\frac{l(l+1)}{2}$ additions to compute $Q_l$.
+\end{solution}
+
+\question Prove that the algorithm of {\textbf 1.} can be used to compute
+$S_\ell = \sum_{k=0}^\ell s_k X^k$ such that $\val(A - S_{\ell}B) > \ell$ using $\ell+1$
+divisions and $\ell(\ell + 1)/2$ multiplications in $\K$. (Where $\val(P)$ is the smallest degree of monomial of $P$ with nonzero coefficient.)
+
+\begin{solution}
+Take $A' = X^{2n-1} A(\frac{1}{X})$ and $B' = X^{n-1} B(\frac{1}{X})$ (this just reverse the coefficients of $A$ and $B$). Compute $Q_l$ as in question 1 for $A'$ and $B'$ and set $S_l = X^{n} Q_l(1/X)$. Denote by $T = A' - B' Q_l$, which is of degree $\leq 2n-2-l$. We have
+\begin{align*}
+A - B Q_l &= X^{2n-1} A'(\frac{1}{X}) + X^{n-1} B'(\frac{1}{X}) \cdot X^{n} Q_l(\frac{1}{X}) \\
+&= X^{2n-1} T(\frac{1}{X})
+\end{align*}
+
+But as $T$ is of degree less that $2n-2-l$, we have that $A-BQ_l$ has a valuation greater than $l+1$ which is what we wanted.
+\end{solution}
+
+\question Assume that we know, for some reason, that $B | A$ and
+want to compute $A/B$. Use {\textbf 1} \& {\textbf 2} to give an
+algorithm for this task, and compare this with the ``schoolbook''
+division.
+
+\begin{solution}
+As we know that $B$ divides $A$, we also know that if we compute $Q_l$ until $l = n$ we will obtain the quotient $A/B$. So $Q_l$ contains the $l+1$ highest degree coefficients of the quotient $A/B$. In the same way, $S_l$ contains the $l+1$ coefficients of the terms of lower degree. So if we take $l = \lfloor n/2 \rfloor$, we have that $A/B = Q_l \oplus S_l$ (we do not add the central coefficient if it appears in both $Q_l$ and $S_l$, we just take it once).
+
+Complexity: $2(l+1) \sim n$ divisions and $2l(l+1)/2 \sim n^2/4$ multiplications. Compared to the schoolbook division: $n$ divisions and $n^2$ multiplications. We gain a factor 4.
+\end{solution}
+
+
+\question We only counted divisions and multiplications, but in a
+standard algebraic model, addition and subtraction also have a
+comparable cost. Does our result really make sense?
+
+\begin{solution}
+Number of additions in our algorithm: $2l(l+1)/2 \sim n^2/4$ compared to $n^2$ in the schoolbook algorithm. This is again better.
+\end{solution}
+
+\end{questions}
+
+%\pagebreak
+
+\section{Multiplication of bivariate polynomials}
+Fact: Let $c_0,\ldots c_d$ be $d+1$ distinct elements of $K$ and $Q_0,\ldots Q_d\in K[X]$. There is a unique polynomial $P\in K[X,Y]$ of $Y$-degree at most $d$ satisfying $P(X,c_i)=Q_i$ for every $i=0,\ldots d$.
+
+Let us assume that we can efficiently find such $P$. Again, assume that operations in $K$ have unit cost.
+
+
+\begin{questions}
+\question What is the cost of a naive multiplication of two bivariate polynomials $A$ and $B$ of $X$-degree at most $D_1$ and $Y$-degree at most $D_2$?
+\begin{solution}
+The monomials of $A$ and $B$ are of the form $X^mY^n$ for $0 \leq m \leq D_1$ and $0 \leq n \leq D_2$. So there are at most $(D_1+1)(D_2+1)$ monomials. And multiplying two polynomials is quadratic in the number of monomials so $O(D_1^2 D_2^2)$.
+
+We can also say that $A,B \in K[X][Y]$ so multiplying them takes $O(D_2^2)$ operations if $K[X]$ and each operation in $K[X]$ is in $O(D_1^2)$ because the degree in $X$ is at most $D_1$.
+\end{solution}
+
+\question Give an algorithm that computes $A(X,c)$ for a given $c\in K$, with $A$ of $X$-degree at most $D_1$ and $Y$-degree at most $D_2$. What is its cost?
+\begin{solution}
+Let $A = \sum_{0 \leq i \leq D_2} A_i(X)Y^i$ with $A_i \in K[X]$ of degree at most $D_1$. To evaluate $A(X,c)$, we let $R = 0$ and for $i = 0$ to $D_2$ do:
+\begin{itemize}
+\item compute $c^i$, which is $O(1)$ because we already computed $c^{i-1}$ ($i$ is increasing)
+\item compute $A_i(X)c^i$ which is $O(D_1)$ operations in $K$
+\item add $A_i(X)c^i$ to $R$, which is again $O(D_1)$ operations in $K$.
+\end{itemize}
+In total, computing $R(X) = A(X,c)$ takes $O(D_1 D_2)$ operations in $K$.
+\end{solution}
+
+\question Using the fact above, describe an algorithm for multiplying bivariate polynomials. (Which would, assuming that we have a fast algorithm for multiplication of polynomials of one variable, beat the naive multiplication.)
+\begin{solution}
+Assume that $|K| \geq 2D_2+1$ and take $c_0, \dots, c_{2D_2}$ distinct elements in $K$. Let $R$ be the ring $K[X]$. This is an integral (and commutative) domain, so if $P \in R[Y]$ is of degree less than $d$ and has $d+1$ roots or more, it is the zero polynomial.
+
+Let $A$ and $B$ seen as polynomials in $R[Y]$. We compute $a_i = A(X,c_i) \in R$ and $b_i = B(X,c_i) \in R$ for all $i$'s. Then, let $Q_i = a_i b_i \in R$ (the $Q_i$'s have degree at most $2D_1$).
+Let $P \in K[X,Y]$ be as in the introduction: $P(X,c_i) = Q_i$ for each $i$ and $P$ is of $Y$ degree at most $2D_2$. Then, $P-AB$ seen as a polynomial in $R[Y]$ has degree at most $2D_2$ and is zero on each $c_i$, so this is the zero polynomial, which means that $P = AB$.
+
+Complexity: Computing $A(X,c_i)$ for each $i$ costs $O(D_1 D_2^2)$. The same is true for computing $b_i$. Then, multiplying $a_i$ by $b_i$ is the cost of multiplying two polynomials of degree at most $D_1$ in $K[X]$, which we will call $O(M(D_1))$. This step is done $2D_2$ times, so in total it takes $O(D_2 M(D_1))$ operations in $K$. And we assumed that computing $P$ does not increase the complexity. So in total, we have a complexity $O(D_1 D_2^2 + M(D_1) D_2)$, which beats the naive algorithm (even if $M(D_1) = D_1^2$).
+\end{solution}
+
+\end{questions}
+
+\section{Integer division}
+
+Let $\beta = 2^w$ be the machine word; in the sequel, we shall assume
+that the processor, given as input $u \in [0, \beta^2 - 1]$ and $v \in
+[1, \beta - 1]$, can compute $\lfloor u/v\rfloor$ (the integer part of
+$u/v$).
+
+Let $A = \sum_{i=0}^{n} a_i \beta^i$ and $B = \sum_{i=0}^m b_i \beta^i$ be
+the expansion of two positive integers in base $\beta$.
+We will prove that the following algorithm returns $A/B$ and $A\mod B$.
+
+\begin{algorithm}
+\caption*{Integer division}
+\begin{algorithmic}[0]
+\Procedure{Guess}{$A,B$}
+\State $g\gets \lfloor (a_n \beta + a_{n-1}) / b_m \rfloor$
+\State \textbf{return} $\min(g,\beta-1)$
+\EndProcedure
+\medskip
+
+\Procedure{Divide}{$A,B$}
+\While{$A \geq B$}
+\State $q_{n-m-1}\gets \textsc{Guess}(A,B)$
+\State $A \gets A-q_{n-m-1}\beta^{n-m-1}B$
+\While{$A<0$} \Comment{Correction loop}
+   \State $q_{n-m-1} \gets q_{n-m-1} - 1$
+   \State $A \gets A + B \beta^{n-m-1}$
+\EndWhile
+\EndWhile
+\State \textbf{return} $(\sum q_k \beta^k, A)$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+%\pagebreak
+
+\begin{questions}
+\question Prove that, up to multiplying $A$ and $B$ by suitable
+powers of $2$, we can assume that $b_{m} \geq \beta / 2$
+\bigskip
+
+\begin{solution}
+For some $r \geq 0$, $2^r b_{m} \in [\beta/2, \beta]$.
+Then replace $A$ by $2^r A$, $B$ by $2^r B$, and in the result keep
+the quotient unchanged and divide the remainder by $2^r$. 
+\end{solution}
+
+\question Prove that, up to replacing $A$ by $A - \beta^{n-m}B$, we can
+assume that $A < \beta^{n-m} B$.
+\bigskip
+
+\begin{solution}
+We have $\beta^{n-m} B = b_m \beta^n + \dots$.
+
+If $a_n < b_m$ then we have $A < \beta^{n-m} B$. Otherwise $a_n \geq b_m \geq \beta/2$. Let $A' = A - \beta^{n-m}B$, then $a_n' = a_n - b_m \leq \beta-1-\beta/2 < \beta/2$ and $A' < \beta^{n-m} B$.
+If we replace $A$ by $A - \beta^{n-m} B$, we have to add $\beta^{n-m}$ to the quotient and don't change the reminder. 
+\end{solution}
+
+Remark: in the previous two questions, also explain how one should
+  correct quotient and remainder in the end to get the result of the
+  original division...
+\bigskip
+
+Define the following loop invariant (for the outer
+while loop)~; we denote by $A_k, Q_k$ the value of $A, Q$ after the
+$k$-th iteration of the loop (where $Q$ is the integer $\sum_i q_i \beta^i$ for all $q_i$'s that have been defined so far).
+\begin{itemize}
+\item $0\leq A_k < \beta^{n-m-k} B$
+\item $A_k + Q_k B = A$. 
+\end{itemize}
+where $n$ and $m$ are the maximal powers of $\beta$ that appear in the original $A$ and $B$ (i.e. before the first loop).
+\bigskip
+
+\question Deduce that, if the loop invariant is correct, when we exit the
+loop $(Q, A)$ are the quotient and the remainder of the Euclidean division
+of $A$ by $B$.
+\bigskip
+
+\begin{solution}
+If the loop invariant is correct, after $n-m$ iterations
+we have $A = Q_k B + A_k$ and $0 \leq A_k < B$, qed. 
+\end{solution}
+
+\question Prove the second statement of the loop invariant, and the
+non-negativity part of the first one.
+%\bigskip
+
+\begin{solution}
+The second statement is easily checked as each modification
+on $A$ induces the corresponding modification on $Q$; the nonnegativity
+part is guaranteed by the Correction step. 
+\end{solution}
+\bigskip
+
+We now turn to proving the loop invariant by induction -- to simplify
+the notations we only deal with the first iteration, but the proof
+carries over to any iteration. We shall split the proof into two
+cases: either $g\leq \beta - 1$ in \textsc{Guess}, or \textsc{Guess} returns $\beta -
+1$.
+\bigskip
+
+\question First subcase: $g\leq \beta - 1$. Prove that
+$q_{n-m-1} b_m \geq a_n \beta + a_{n-1} - b_m + 1$. Deduce that
+$$A - q_{n-m-1} B \beta^{n-m-1} \leq \sum_{k=0}^{n-2} a_k \beta^k + (b_m - 1) \beta^{n-1},$$
+and the last part of the loop invariant.
+\bigskip
+
+\begin{solution}
+The first inequality follows from
+$q_{n-m-1} = g > (a_n \beta + a_{n-1}) / b_m - 1$, so $q_{n-m-1} b_m > a_n \beta + a_{n-1} - b_m \geq a_n \beta + a_{n-1} - b_m + 1$ because it is an integer.
+
+Then
+\begin{eqnarray*}
+  A - q_{n-m+1} B \beta^{n-m-1} & \leq & A - q_{n-m+1} b_m \beta^{n-1}\\
+  & \leq &
+  (A - a_n \beta^n - a_{n-1} \beta^{n-1}) + (b_m - 1) \beta^{n-1}
+\end{eqnarray*}
+from which the desired identity follows; obviously, the rhs is $< b_m
+\beta^{n-1} \leq B \beta^{n-m-1}$, the last part of the loop invariant after
+Step 1. 
+\end{solution}
+
+\question Second subcase: $g \geq \beta$; prove the last part of the
+loop invariant \textit{(hint: use question 2)}. 
+%\bigskip
+
+\begin{solution}
+In that case, $A - q_{n-m+1} B \beta^{n-m-1} = A - (\beta - 1)
+B \beta^{n-m-1} = (A - \beta^{n-m} B) + B \beta^{n-m-1} < B \beta^{n-m-1}$
+thanks to question 2.
+Note that in Q. 5 and 6, the Correction loop preserves this last part of the loop invariant.
+\end{solution}
+\bigskip
+
+We now estimate the number of iterations of the Correction loop.
+\bigskip
+
+\question Prove that we always have  $\textsc{Guess}(A,B) b_m \leq a_n \beta + a_{n-1},$
+and deduce that \[A - \textsc{Guess}(A,B) \beta^{n-m-1} B > -\textsc{Guess}(A,B) \beta^{n-1}.\] Deduce that
+the number of iterations of the Correction loop is at most 2 \textit{(hint: use question 1)}.
+%\bigskip
+
+\begin{solution}
+In all cases, $q_{n-m-1} b_m \leq a_n \beta + a_{n-1}$. From 
+$$
+A -  q_{n-m-1} \beta^{n-m-1} B > a_n \beta + a_{n-1} - q_{n-m-1} \beta^{n-m-1} ((b_m + 1) \beta^m
+$$ we thus deduce that
+$A - q_{n-m-1} \beta^{n-m-1} B > -q_{n-m-1} \beta^{n-1} $. As $2b_m \geq \beta$ (using question 1), we deduce that $A - q_{n-m-1} \beta^{n-m-1} B + 2 \beta^{n-m-1} B
+\geq (2 b_m - q_{n-m-1}) \beta^{n-m-1} > 0$, so at most 2 correction steps
+are required.
+\end{solution}
+\bigskip
+
+\question Conclude on the correction and complexity of the algorithm.
+%\bigskip
+
+\begin{solution}
+The correction has been proved in the previous questions; As
+for the complexity, Guess has unit cost, the outer loop is performed
+$O(n-m+1)$ times, and each operation has cost at most $O(m+1)$ (one needs
+to argue a little bit on that point -- no significant outgoing carries /
+borrows in the additions that occur).
+\end{solution}
+\end{questions}
+
+
+\end{document}
+
+

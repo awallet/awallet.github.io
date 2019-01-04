@@ -1,0 +1,288 @@
+\documentclass[11pt]{exam}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noprintanswers % pour enlever les réponses
+%\printanswers
+
+\unframedsolutions
+\SolutionEmphasis{\itshape\small}
+\renewcommand{\solutiontitle}{\noindent\textbf{A: }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\usepackage[margin=0.99in]{geometry}
+%\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+%\usepackage{fullpage}
+
+
+\usepackage{hyperref}
+\usepackage{appendix}
+\usepackage{enumerate}
+
+
+\usepackage{times,graphicx,epsfig,amsmath,latexsym,amssymb,verbatim}%,revsymb}
+\usepackage{algorithmicx, enumitem, algpseudocode, algorithm, caption}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+% Handling comments and versions %%%
+%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\extra}[1]{}
+
+\renewcommand{\comment}[1]{\texttt{[#1]}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% THEOREMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{proposition}[theorem]{Proposition}
+
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+
+
+\newcommand{\nc}{\newcommand}
+\nc{\eps}{\varepsilon}
+\nc{\RR}{{{\mathbb R}}}
+\nc{\CC}{{{\mathbb C}}}
+\nc{\FF}{{{\mathbb F}}}
+\nc{\NN}{{{\mathbb N}}}
+\nc{\ZZ}{{{\mathbb Z}}}
+\nc{\PP}{{{\mathbb P}}}
+\nc{\QQ}{{{\mathbb Q}}}
+\nc{\UU}{{{\mathbb U}}}
+\nc{\OO}{{{\mathbb O}}}
+\nc{\EE}{{{\mathbb E}}}
+
+\nc{\K}{K}
+\newcommand{\field}{\mathbb{K}}
+\newcommand{\val}{\operatorname{val}}
+\newcommand{\M}{\mathcal{M}}
+\nc{\Inn}[2]{\langle #1, #2 \rangle}
+\newcommand{\vc}[1]{\mathbf{#1}}
+
+\pretolerance=1000
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DOCUMENT STARTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usetikzlibrary{automata}
+\DeclareMathOperator{\Vol}{Vol}
+
+\begin{document}
+
+{\noindent
+   \textsc{ENS Lyon --  M1 -- Computer Algebra}
+ \hfill { E.Kirshanova / A.Wallet // 2017--2018\\
+   	}\\
+  }
+  \hrule
+% Titre de la feuille
+  \begin{center}
+    {\Large\textbf{
+   \textsc{Homework 3} \\[5pt]
+    }
+	Due:  10.04
+	} 
+  \end{center}
+  \hrule \vspace{5mm}
+
+\thispagestyle{empty}
+
+\vspace{0.2cm}
+
+\section{Modular determinant computation}
+
+The problem of computing the determinant $\det A \in \ZZ$ of an $n \times n$ non-singular matrix $A=(a_{i,j}) \in \ZZ^{n \times n}$ can be solved in $\mathcal{O}(n^3)$ operations in $\QQ$ by means of Gaussian elimination. However, one should take this complexity statement with care: if we start counting the number of \emph{word operations} performed during the elimination, the absolute values on numerators and denominators involved grow quite rapidly. There exist a rather involved proof that the length of these values remain polynomial in the number of words, but in this exercise we develop an alternative approach that uses modular computation.
+
+\begin{questions}
+	\question First, we would like to have an a priori bound on the output of the computation $|\det A|$. Show that $|\det A| \leq n^{n/2}B^n$, where $B = \max_{1 \leq i,j \leq n} |a_{i,j}|$. (This inequality is known as Hadamard's inequality).
+	\begin{solution}
+		Consider the $QR$-decomposition of $A = QR$, where $Q$ is an orthonormal matrix and $R$ is upper-triangular (such decomposition is a by-product of Gram-Schmidt orthogonalization). For $a_j$-the $j$th column of $A$ and $q_i$-the $i$th column of $Q$, we have
+		\[
+			a_j = \sum_{i=1}^j q_i r_{i,j}.
+		\]
+		As $q_i$'s are orthonormal, 
+		\[
+		||a_j||^2 = \sum_{i=1}^{j} ||q_i||^2 |r_{ij}|^2 = \sum_{i=1}^{j} |r_{ij}|^2 \geq |r_{ij}|^2.
+		\]
+		Since $R$ is upper-triangular,
+		\[
+			\det(A) = \det(Q)\det(R) = \det(R) = \prod_{j=1}^n |r_{jj}| \leq \prod_{j=1}^n ||a_j|| \leq n^{n/2}B^n.
+		\]
+	\end{solution}  
+	\question Denote $C = n^{n/2}B^n$ and let $p$ be prime between $2C$ and $4C$ (there exist probabilistic polynomial time algorithm that finds such $p$). Now the goal is to compute $\det (A \bmod p)$. For that, modify Gaussian elimination as follows: except of dividing by a pivot element $a_{i,j}$ over $\QQ$, we calculate its inverse modulo $p$. The rest of the computations are performed $\bmod p$, where the set of representatives $\bmod p$ is $[-(p-1)/2, (p-1)/2]$. Show that the algorithm returns $\det(A)$ (over $\ZZ$) and argue that the number of \emph{word} operations needed is $\mathcal{O}(n^5 (\log n + \log B)^2)$ (without using fast integer arithmetic).
+	\begin{solution}
+		We first show that the returned result is indeed $\det(A)$. Let $d := \det(A)$ over $\ZZ$ and let $r = \det(A) \bmod p$. Then $r = d \bmod p$, and equivalently, $p | (d - r)$. Further, $|d-r| \leq |d| + |r| < p/2 + p/2 < p$, which leads to $d=r$ over $\ZZ$.
+		
+		Arithmetic $\bmod p$ (using Extended Euclidean Algorithm) can be done in time $\mathcal{O}(\log^2 C) = \mathcal{O}\left( \frac{n}{2}(\log n + n \log B)^2\right)$. The total number of operations needed to compute the determinant is $\mathcal{O}(n^3)$, giving $\mathcal{O}(n^5(\log n + n \log B)^2)$ total number of operations $\bmod p$.  
+	\end{solution}
+
+	\question Improve the above choosing several small primes. Give an explicit algorithm, argue that it is correct and show its running time (you may assume that getting these primes is for free). \emph{Hint}: you may use the fact that the first $r$ primes are of bit-size $\mathcal{O}(\log r)$.
+	\begin{solution}
+		The idea is to compute several determinants $\det(A)$ modulo primes $p_1, \ldots, p_r$ and then combine them using CRT. Namely,
+		\begin{enumerate}
+			\item set $r = \lceil \log_2(2C+1) \rceil$ and choose $r$ distinct primes
+			\item compute $d_i = \det(A) \bmod p_i$ using Gaussian elimination over $\ZZ_{p_i}$
+			\item use CRT to compute $d = d_i \bmod p_i$ for all $i \leq r$.
+		\end{enumerate}
+		 
+		 Due to our choice of $r$, we have $m = \prod_i m_i > 2^r > 2C+1 > 2 n^{n/2}B^n > 2|d|$, hence the application of CRT returns $\det(A)$ over $\ZZ$.
+		 
+		 
+		 Reduction of one entry $\bmod p_i$ costs $\mathcal{O}(\log B \log r)$, giving for all $n^2$ entries and all primes the cost of $\mathcal{O}(n^2 r \log B \log r)$.
+		 Using the previous question, we can estimate the cost of step 2 for 1 prime $p_i$ as $\mathcal{O}(n^3 \log^2 p_i)=  \mathcal{O}(n^3 \log^2 n)$ (using the hint, $\mathcal{O}(\log r) = \mathcal{O}(\log \log C)$). 
+		 
+		 
+		 For all $r$ primes, step 2 costs $\mathcal{O}(n^3 r \log^2 (n)) = \mathcal{O}(n^4 \log(nB) \log^2(n))$. Finally, step 3 will cost $\mathcal{O}(r^2 \log r^2)$ word operations, which is not dominant.
+		 
+		 Finally, the second step dominates the running time, which if $\mathcal{O}(n^3\log(nB)\log(n)\log(B) + n^4 \log(nB) \log^2(n))$.
+	\end{solution}
+\end{questions}
+
+%In particular, let us assume that the length of a non-zero integer $a  \in \ZZ$, denoted $\lambda(a)$, is the number of 64-bit machine words required to represent $a$, namely for
+%\[
+%	 a = (-1)^s \sum_{0 \leq i \leq n} a_i \cdot 2^{64 i}, \quad \text { we have } \quad \lambda(a) = \lfloor \log_{2^{64}} |a|\rfloor +1 = n+2 = \mathcal{O}(n) ,
+%\]
+%where $s \in \{0,1\}$, $a_i \in \{0, \ldots, 2^{64 - 1}\}$.
+%
+%Recall that at the $k$th elimination step (assuming the pivoting element is the diagonal $a_{k,k}^{(k)}$, where the upper-index denotes the step), the entries of $A$ changes according to the rule
+%\[
+%	
+%\]
+
+
+% \section{The Hadamard transform}
+
+% We define the $n$-dimensional Hadamard transform on the set of functions $f : (\mathbb Z/2\mathbb Z)^n \rightarrow \mathbb C$ as the operator
+% $$T(f)(y) = \sum_{x\in (\mathbb Z/2\mathbb Z)^n} f(x)(-1)^{\Inn{x}{y}},$$
+% where $\Inn{x}{y}=\sum_i x_iy_i$.
+% \begin{questions}
+%   \question For $z\in (\ZZ/2\ZZ)^n$, show that $T(T(f))(z)=2^nf(z)$. What does this say about the inverse transform?
+
+%   To compute the Hadamard transform, we consider each function $f : (\ZZ/2\ZZ)^n \rightarrow \CC$ as a $2^n$-dimensional vector, where the order is defined recursively as $(\ZZ/2\ZZ)^n=(\ZZ/2\ZZ)^{n-1} \times \{0\}, (\ZZ/2\ZZ)^{n-1} \times \{1\}$. For example, if $n=1$, then $f=\big[ f(0)f(1) \big]^T$; if $n=2$, then $f=\big[f(00)f(10)f(01)f(11)\big]^T$.
+
+%   \question Show that $T(f)=H_nf$, where $H_n$ is called the {\em Hadamard matrix} of order $n$ and is defined as $H_n=\begin{bmatrix} H_{n-1} & H_{n-1} \\ H_{n-1} & -H_{n-1}\end{bmatrix}$, for $n\geq 1$ and $H_0=1$.
+
+%   \question Based on the previous matrix-vector product formula, give a fast recursive algorithm to compute the Hadamard transform in $O(n2^n)$ operations in $CC$.
+  
+%   \end{questions}
+\section{$n$-th roots of integers}
+
+We consider the problem of computing a $n$-th root of an integer $a$, where $n$ is odd, or certifies that $a$ does not have such a root. 
+
+\begin{questions}
+  % \question Show that the problem can be reduced to the case where $a$ is also odd.
+  % \begin{solution}
+  %   By ``shifting'', computing the $2$-adic valuation $v$ of $a$ is quick and cheap. If $v\neq n$, we are done. Else, we can write $a=2^na'$, with $a'$ odd.
+  % \end{solution}
+
+  \question Assume $a$ is odd. Formulate the Newton iteration for the problem. Find a modulus for which $1$ is a good starting value (and explain why).
+
+  \begin{solution}
+    We may look at $f(x)=x^n-a$, and start with a prime $p$ and an integer $a_0$ such that $a_0^n\equiv a~[p]$. The iteration is then defined as $a_{i+1}=a_i-a_i^nf'(a_i)^{-1} \bmod p^{2^i}$. From TD10, we know that at each step, $a_{i+1}$ is a $n$-th root modulo $p^{2^i}$.
+
+    As $a$ is odd, we have $a\equiv 1~[2]$.  Moreover, we observe that $f'(1)=n$. It seems natural to start with $a_0:=1$, $u_0=1$ and $p=2$.
+    
+  \end{solution}
+
+  \question Assume that $a$ is the $n$-th power of some integer $b$. Explain how Newton's iteration can give exactly $b$, not only modulo a prime, if it is done for enough rounds. (Hint: you may use the uniqueness property of TD10.)
+
+  \begin{solution}
+    As $b^n = a$, in particular $b$ is odd, and therefore $b\equiv 1~[2]$. We also have $b^n-a = 0 \equiv a_{k}^n -a ~[2^{k}]$, and this holds at each $k$. From the unicity property, we have $b \equiv a_k~[2^k]$. Now if $k>(\log a)/n$, then $0<b<2^k$. Since $a_k$ is always obtained after reduction modulo $2^k$, the congruence relations holds in fact exactly: $b=a_k$ in $\ZZ$.   
+  \end{solution}
+
+  \question  Deduce an algorithm that solves the problem, and estimate its complexity. Recall that computations in $\ZZ/N\ZZ$ can be done in $O(${\sc M}$(N))$.
+
+  \begin{solution}
+    TODO: complexity analysis properly.
+    \end{solution}
+
+
+\end{questions}
+
+
+  \section{Quasi-Cauchy matrices}
+
+  Let $\vc x,\vc y \in K^n $. We assume that $x_i\neq y_j$ for all $i,j$ and that $x_i\neq x_j, y_i\neq y_j$ for $i\neq j$. The {\em Cauchy matrix} associated to these vectors is the matrix $C(\vc x,\vc y):= (1/(x_i-y_j))_{i,j}$. For any $\vc w:=(w_0,\dotsc,w_j)$, we define $D(\vc w)$ as the diagonal matrix whose entries are the $w_j$'s.
+
+  For any $(\vc x,\vc y) \in K^n\times K^n$, we define the $(\vc x, \vc y)$-{\em displacement rank} of a matrix $A$ as the rank of the matrix $\varphi_{\vc x, \vc y}(A):= D(\vc x)\cdot A - A\cdot D(\vc y)$.   For the sake of simplicity, we consider $(\vc x,\vc y)$'s such that $\varphi_{\vc x,\vc y}$ is an invertible map.
+  \begin{questions}
+    \question What is the $(\vc x, \vc y)$-displacement rank of $C(\vc x,\vc y)$?
+    
+    \begin{solution}
+    	We have that $D(\vc x)C(\vc x,\vc y) = (\frac{x_i}{x_i-y_j})_{i,j}$ and $C(\vc x,\vc y)D(\vc y) = \frac{y_j}{x_i-y_j}$. Hence, $\varphi_{\mathbf{x,y}}(C(\vc x,\vc y)) = J$ where $J$ is the $n \times n$ matrix with only ones. And the $(\vc x ,\vc y)$-displacement rank of $C(\vc x,\vc y)$ is 1.
+    \end{solution}
+
+    \question Let $\vc u, \vc v \in K^n$ be two (column) vectors. Show that $\varphi^{-1}_{\vc x, \vc y}(\vc u\cdot \vc v^T)= D(\vc u)C(\vc x, \vc y)D(\vc v)$.
+    
+    	\begin{solution}
+    	Because diagonal matrices commute, we have $\varphi_{\mathbf{x,y}}(D(\mathbf{u})C
+    	(\mathbf{x,y})D(\mathbf{v})) = D(\vc u)\varphi_{\mathbf{x,y}}(C(\vc x,\vc y)) D(\vc v) = D(\vc u) J D(\vc v) = (u_iv_j)_{i,j} = \vc u \vc v^T$.
+    \end{solution}
+
+    \question Deduce that if $M$ has $(\vc x,\vc y)$-displacement rank $r$, then there exist vectors $\vc g_1,\dotsc, \vc g_{r},\vc h_1,\dotsc, \vc h_r$ such that
+    \begin{align}\label{eq1} M = \sum_{j=1}^r D(\vc g_j)C(\vc x, \vc y)D(\vc h_j). \end{align}
+    (Hint: if $N$ has rank $r$, then $N$ can be written as a sum of rank $1$ matrices).
+    
+    \begin{solution}
+    	Let $N_i$ be as in the hint. We know that there exists two vectors $g_i$ and $h_i$ such that $N_i = g_ih_i^T$ (this is true since $\forall \vc u \in \RR^n, N_i \vc u = k \vc v$ for \emph{fixed} $\vc v$; take $\vc u$ being standard basis vector $\vc e_i$, then $N_i = \vc k \vc v$ for $k = N_i \cdot I$). Hence, if $N = D_{(x,y)}(M)$ has rank  $\alpha$, we have vectors $g_1, \cdots, g_\alpha$ and $h_1, \cdots, h_\alpha$ such that $N = \sum_{i = 1}^\alpha g_i h_i^T$. And using previous question plus the linearity of $\varphi_{\mathbf{x,y}}$, we obtain $M=\sum_{j=1}^{\alpha}D(\mathbf{g}_j)C(\mathbf{x,y})D(\mathbf{h}_j)$.
+    \end{solution}
+
+    \question Conversely, prove that if $M$ is of the form \eqref{eq1}, then it has $(\vc x,\vc y)$-displacement rank at most $r$.
+    
+    	\begin{solution}
+    	Perform the computations of previous question in the other way. We then have that $\varphi_{\mathbf{x,y}}(M)$ is a sum of $\alpha$ matrices of rank 1, hence its rank is at most $\alpha$.
+    \end{solution}
+
+    For the rest of this exercise, we say that a matrix $M$ with $(\vc x,\vc y)$-displacement rank $r$ is represented by $(\vc x,\vc y)$-generators of size $r$ if $M$ is given as a sequence of vectors $(\vc g_1,\dotsc, \vc g_r, \vc h_1, \dotsc, \vc h_r) \in (K^n)^{2r}$ such that \eqref{eq1} holds.
+
+    This means that $M$ can be represented by using $O(rn)$ elements, which is compact when the $(\vc x, \vc y)$-displacement rank is low. In the following, we will study whether basic arithmetic of matrices can be done using this representation.
+
+    Recall that if $M$ is a Cauchy matrix and $\vc v$ is a vector, the product $M\vc v$ can be computed in $O(M(n)\log n)$ operations in $K$.
+
+    \question If $M$ is represented by $(\vc x,\vc y)$-generators of size $r$, prove that the product $M\vc v$ can be computed in $O(rM(n)\log n)$ operations.
+    	\begin{solution}
+    		Using eq. \eqref{eq1}, we have $M v = \sum_{j=1}^r = D(\vc g_i) C(\vc x, \vc y) D(\vc h_j) \vc v$. The product $D(\vc h_j) \vc vv$ can be computed in $\mathcal{O}(n)$ steps. Next, multiplying the result by the Cauchy-matrix $C(\vc x, \vc y)$ can be done in time $\mathcal{O}(M(n) \log n)$ (see TD6 or lecture). Finally, $\mathcal{O}(n)$ for the final product by $D(\vc g_j)$. Repeating the above $r$ times, gives the result.
+    	\end{solution}
+
+    \question If $M, M'$ are represented by $(\vc x, \vc y)$-generators of size $r$, resp.~$r'$, give $(\vc x, \vc y)$-generators of size $r+r'$ for $M+M'$, and show that they can be computed in time $O((r+r')n)$.
+    
+    \begin{solution}
+		One immediately verifies that $M'+M = \sum_{i = 1}^r D(\vc g_i) C(\vc x, \vc y) D(\vc h_i) + \sum_{i = 1}^{r'} D(\vc g_i') C(\vc x, \vc y) D(\vc h_i')$. Therefore, $(\vc x, \vc y)$-generators of $M+M'$ are simply concatenated generators of $M, M'$: $((\vc g_i, \vc g_i'), (\vc h_i, \vc h_i'))$. They are of size $\mathcal{O}((r+r')n)$.
+	\end{solution}
+    \question If $M$, resp.~$M'$ are represented by $(\vc x, \vc y)$-generators of size $r$, resp.~by $(\vc y, \vc z)$-generators of size $r'$, give $(\vc x, \vc z)$-generators of size $r+r'$ for $M\cdot M'$, and show that they can be computed in $O(rr'M(n)\log n)$. 
+    \begin{solution}
+    	Denote $\mathbf{G}_M, \mathbf{H}_M$ to be matrices composed of $\vc g_i, \vc h_i$ as columns,  and, similar for the $M'$ matrix.  One shows that the $(\vc x, \vc z)$-generator of $MM'$ are the columns of $(\mathbf{G}, \mathbf{H}^t)$, where $\mathbf{G} = [\mathbf{G}_M | M \cdot \mathbf{G}_M'|] \in \ZZ^{n \times (r+r')}$ and $\mathbf{H} = [M'^t \cdot \mathbf{H}_{M'} | M']$. Once this is done, the running time easily follows, since we can get $M \cdot \mathbf{G}_M'$ in time $\mathcal{O}(rr'M(n)\log n)$ invoking the result of q. 6 $r'$ times. The same complexity holds for computing $M'^t \cdot \mathbf{H}_{M'}$.
+    	
+    	What remains is to prove that $\mathbf{G}, \mathbf{H}$ are actually of this form. 
+    	This I do know. The source of the solution is \url{https://tel.archives-ouvertes.fr/file/index/docid/688388/filename/MOUILLERON_Christophe_2011_These.pdf} page 22.
+    	
+    \end{solution}
+
+    \end{questions}
+  
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

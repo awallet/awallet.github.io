@@ -1,0 +1,315 @@
+\documentclass[11pt]{exam}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noprintanswers % pour enlever les réponses
+%\printanswers
+
+\unframedsolutions
+\SolutionEmphasis{\itshape\small}
+\renewcommand{\solutiontitle}{\noindent\textbf{A: }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%\usepackage[margin=0.73in]{geometry}
+%\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+%\usepackage{fullpage}
+
+
+\usepackage{hyperref}
+\usepackage{appendix}
+\usepackage{enumerate}
+
+
+\usepackage{times,graphicx,epsfig,amsmath,latexsym,amssymb,verbatim}%,revsymb}
+\usepackage{algorithmicx, enumitem, algpseudocode, algorithm, caption}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+% Handling comments and versions %%%
+%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\extra}[1]{}
+
+\renewcommand{\comment}[1]{\texttt{[#1]}}
+
+\newcommand*{\ScProd}[2]{\ensuremath{\langle#1\!\mathbin{,}\!#2\rangle}} %Scalar Product
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% THEOREMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{proposition}[theorem]{Proposition}
+
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+
+
+\newcommand{\nc}{\newcommand}
+\nc{\eps}{\varepsilon}
+\nc{\RR}{{{\mathbb R}}}
+\nc{\CC}{{{\mathbb C}}}
+\nc{\FF}{{{\mathbb F}}}
+\nc{\NN}{{{\mathbb N}}}
+\nc{\ZZ}{{{\mathbb Z}}}
+\nc{\PP}{{{\mathbb P}}}
+\nc{\QQ}{{{\mathbb Q}}}
+\nc{\UU}{{{\mathbb U}}}
+\nc{\OO}{{{\mathbb O}}}
+\nc{\EE}{{{\mathbb E}}}
+
+
+\newcommand{\field}{\mathbb{K}}
+\nc{\K}{K}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\val}{\operatorname{val}}
+\newcommand{\bigO}{\mathcal{O}}
+\DeclareMathOperator{\Span}{Span}
+\newcommand{\vc}[1]{\mathbf{#1}}
+
+\pretolerance=1000
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DOCUMENT STARTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usetikzlibrary{automata}
+\DeclareMathOperator{\Vol}{Vol}
+
+\begin{document}
+
+{\noindent
+   \textsc{ENS Lyon --  M1 -- Computer Algebra}
+   \hfill {E.Kirshanova / A.Wallet // 2017--2018\\
+  }
+  \hrule
+% Titre de la feuille
+  \begin{center}
+    {\Large\textbf{
+   \textsc{Tutorial 10}
+    } } 
+  \end{center}
+  \hrule \vspace{5mm}
+
+  \thispagestyle{empty}
+
+  \section{Time to read your lecture notes}
+
+  \begin{questions}
+    \question Let $K$ be a field. Fill the following table \textbf{without} using fast algorithms.
+
+    \begin{tabular}{l|c|c}
+      & \hspace{2cm}$\ZZ$\hspace{2cm} & \hspace{2cm}$K[X]$\hspace{2cm} \\[2pt]\hline
+      unit operation in complexity &  & \\[2pt]\hline
+      input size & & \\[2pt]\hline
+      Addition/subtraction & & \\[2pt]\hline
+      Multiplication & & \\[2pt]\hline
+      Euclidean division & & \\[2pt]\hline
+      Extended Euclidean Algorithm & & \\[2pt]\hline
+      Multipoints evaluations & & \\[2pt]\hline
+      Interpolation/CRT & &
+    \end{tabular}
+
+    \question Let {\sc M}$(n)$ be the complexity of multiplying two integers of size $n$, and {\sc P}$(n)$ be the complexity of multiplying two polynomials of degree $n$. What are the best values you know for each?
+    \begin{solution}
+       {\sc M}$(n) = n\log n\log\log n$ and {\sc P}$(n)=n\log n$.
+     \end{solution}
+
+     \question What is the complexity of adding/multiplying polynomials in $\ZZ_p[X]$ in terms of bit operations (and using naive algorithms)?
+
+     \begin{solution}
+       The bitsize of a degree $n$ polynomial is $O(n\log p)$. Addition therefore costs $O(n\log p)$ ($n$ additions in $\ZZ_p$), and multiplication of two polynomials of degree $n$ is $O(n^2\log^2 p)$.
+     \end{solution}
+     
+
+    \question Same as question $1$, but fast algorithms are allowed this time.\\
+
+     \begin{tabular}{l|c|c}
+      & \hspace{2cm}$\ZZ$\hspace{2cm} & \hspace{2cm}$K[X]$\hspace{2cm} \\[2pt]\hline
+      unit operation in complexity &  & \\[2pt]\hline
+      input size & & \\[2pt]\hline
+      Addition/subtraction & & \\[2pt]\hline
+      Multiplication & & \\[2pt]\hline
+      Euclidean division & & \\[2pt]\hline
+      Extended Euclidean Algorithm & & \\[2pt]\hline
+      Multipoints evaluations & & \\[2pt]\hline
+      Interpolation/CRT & &
+     \end{tabular}
+
+     \vspace{0.25cm}
+
+     \question Fill the following table for linear algebra.\\
+     \begin{tabular}{l|c|c}
+      & \hspace{2cm}$\mathcal M_n(K)$\hspace{2cm} & \hspace{1cm}sparse (say, $c$ non-zero coeffs)\hspace{1cm} \\\hline
+      unit operation in complexity &  & \\[2pt]\hline
+      input size & & \\[2pt]\hline
+      Addition/subtraction & & \\[2pt]\hline
+      Matrix $\times$ vector & & \\[2pt]\hline
+      Matrix multiplication & & \\[2pt]\hline
+      Gaussian elimination & & \\[2pt]\hline
+      Determinant & & \\[2pt]\hline
+       Linear systems & & \\[2pt]\hline
+       Inversion & & \\[2pt]\hline
+       Characteristic polynomial & & 
+     \end{tabular}
+     
+  \end{questions}
+  \section{One-question, one-minute}
+
+  \begin{questions}
+
+    \question Find the smallest $u\geq 0$ such that
+    $$\begin{cases} u\equiv 1~[2]\\ u\equiv 2~[3]\\ u\equiv 2~[5]. \end{cases}$$
+
+    \begin{solution}
+      $u$ is odd, and finishes by $2$ or $7$. Smallest such number is $17$. 
+    \end{solution}
+
+    \question Explain how Karatsuba's algorithm can be seen as an evaluation/interpolation algorithm.
+
+    \begin{solution}
+      We can evaluate two polynomial of degree $1$ at three points and interpolate for these three values to obtain the product. A choice can be $0,1,\infty$.
+    \end{solution}
+
+    \question Let $K$ be a field, $c=(c_0, \dotsc, c_{n-1}) \in K^n$ and for $a_1, \dotsc, a_n$ elements in $K$, consider the matrix-vector product
+    $$\begin{bmatrix} 1 & a_1 & \dots & a_1^{n-1} \\
+      1 & a_2 & \dots & a_2^{n-1}\\
+      & \vdots & & \\
+      1 & a_n & \dots & a_n^{n-1}\end{bmatrix}\cdot \begin{bmatrix} c_0 \\ c_1 \\ \vdots \\ c_n \end{bmatrix}.$$
+    What is the best complexity you can achieve? Can you do even better if you ask an additional property on the $a_i$'s?
+
+    \begin{solution}
+      This product amounts to evaluate the polynomial $C(X) = \sum_{i=0}^{n-1}c_iX_i$ at the points $a_1, \dotsc, a_n$. Fast multipoint evaluation does it in $O(${\sc M}$(n)\log n)$ operations in $K$. A $\log n$ factor can be removed using FFT if the $a_i$'s are asked to be powers of a root of unity.
+      \end{solution}
+      
+    \end{questions}
+  
+  \section{Newton's iteration and integer roots}
+  Newton's iteration is a fondamental tool in several topics (optimal transport, numerical analysis, ...). It can be seen as an iterative process to approximate a solution of $f(x)=0$, where $f$ is, {\it e.g.~}, a given $\mathcal C^1$- real valued function. Starting from an initial condition $x_0$, one defines
+  $$ x_{i+1} = x_i-\frac{f(x_i)}{f'(x_i)}.$$
+  Under some reasonable assumptions on $f$, it can be shown that the process converges quadratically fast to a solution. With a bit more work, one can show that Euclidean division of two integers of bitsize $n$ can be done in $O(${\sc M}$(n))$: we will use this result in the exercise.
+
+  We will also show that Newton's iteration can also be used with another notion of convergence to compute integer roots of integer polynomials.
+  
+  \begin{questions}
+
+    \question Write down Newton's iteration to compute the inverse of a given $a\in \ZZ$. Use it to show that, if you start from an inverse of $a$ modulo some integer $m$, the next iteration gives you an inverse of $a$ modulo $m^2$. Deduce an algorithm to compute inverses modulo $p^v$, for some prime $p$ and an even\footnote{For the sake of simplicity. An analogous algorithm can be designed in the general case (we leave it as an exercise).} integer $v\geq 1$, and give its complexity.
+    \begin{solution}
+      We want to solve $\frac{1}{x}-a=0$, starting from some initial condition $b_0$. We then have $b_{i+1}=b_i-\frac{1/b_i-a}{-1/b_i^2}=2b_i-b_i^2a$. Now assuming $b_i\cdot a \equiv 1~[m]$, we have $1-b_{i+1}a=1-2b_ia+b_i^2a^2 = (1-b_ia_i)^2 \equiv 0~[m^2]$, which gives the claim.
+
+      We could compute inverse modulo $p^v$ using EEA in $O(\log_2^2(p^v))$ operations. However it is less efficient when $v$ is large than the following algorithm, based on Newton's iteration. In a first step, compute an inverse $b_0$ modulo $p$ with EEA in $O(\log^2 p)$ operations. Then for $i$ from $1$ to $v-1$, let $b_0\gets (2b_0-b_0^2a)\bmod p^{i+1}$, which naively cost $3$ multiplications and one modular reduction: everything can be done in $O(${\sc M}$(\log_2(p^v)))$. This gives $O(\log_2^2p + M(v\log_2 p))$ operations.
+    \end{solution}
+
+    \question Let $P \in \ZZ[X]$, and assume that $a_i\in \ZZ$ such that $P(a_i) \equiv 0~[m]$ and $P'(a_i) \in (\ZZ/m\ZZ)^\times$ for some integer $m$. Define the next ``modular'' Newton iterate $a_{i+1}$, and show that it satisfies the following properties:
+    \begin{itemize}
+    \item $a_{i+1} \equiv a_i~[m]$;
+    \item $P(a_{i+1}) \equiv 0~[m^2]$;
+    \item $P'(a_{i+1}) \in (\ZZ/m^2\ZZ)^\times$.
+    \end{itemize}
+    \begin{solution}
+      The iteration defines $a_{i+1} = a_i - P(a_i)P'(a_i)^{-1} \bmod m^2$. This directly gives the first property, which also implies that $(a_{i+1}-a_i)^2 \equiv 0~[m^2]$. From Taylor expansion for polynomials, we can write $P(a_{i+1})=P(a_i)+P'(a_i)(a_{i+1}-a_i)+Q(a_i)(a_{i+1}-a_i)^2$, for some polynomial $Q$. By definition of the iterate, we have $-P'(a_i)(a_{i+1}-a_i) \equiv P(a_i)~[m^2]$; we obtain the second claim using the previous remark. Lastly, the fact that $a_{i+1} \equiv a_i~[m]$ and that the reductio modulo $m$ is a ring homomorphism imply that, for any polynomial $Q \in \ZZ[X]$, we have $Q(a_{i+1}) \equiv Q(a_i)~[m]$. In particular, $P'(a_{i+1}) \equiv P'(a_i)~[m]$, so that $P'(a_{i+1})$ is invertible modulo $m$. In other words, it is coprime to $m$, hence coprime to $m^2$, and the last claim follows.
+    \end{solution}
+
+    The next question deals with the unicity of the solution given by the above Newton iteration process, assuming $b_0$ is a starting value (thus $P(b_0)\equiv 0~[p]$ and $P'(b_0)$ is invertible modulo $p$).
+    \question (\textbf{Uniqueness property})  If $b,b'$ are integers such that $b \equiv b_0 \equiv b'~[p]$ and $P(b) \equiv P(b')~[p^{2^i}]$, show that $b\equiv b'~[p^{2^i}]$.
+    \begin{solution}
+      Using again Taylor expansion, we may find a polynomial $Q$ such that $P(b')-P(b) = (b-b')(P'(b)-Q(b)(b-b'))$. By assumptions, $P'(b)+Q(b)(b-b') \equiv P'(b) \equiv P'(b_0)~[p]$. In particular, the left hand side is coprime to $p$, hence invertible modulo $p^{2^i}$. Let $u$ be said inverse, so that $u(P(b)-P(b')) \equiv b-b'~[p^{2^i}]$. The claim follows as the left hand side vanishes.
+      
+    \end{solution}
+        
+
+    % \question Design an algorithm that, given an input $a\in \ZZ$ and an odd\footnote{AGain for the sake of simplicity. The even case can be treated as well.} integer $n>2$, certifies that it is not the $n$-th power of an integer, or compute $b\in \ZZ$ such that $b^n =a$.
+
+    % \begin{solution}
+    %   The idea is to do ``2-adic'' Newton iteration over $x^n-a$. Take $k=\lceil \log_2\log_2 a\rceil$, and do $2$-adic iterations up to $2^{2^k} > a$: if the last iteration hold exactly, it gives an $n$-th root, else it means $a$ is not an $n$-th power. TODO: write why.
+
+    %   The Newton iteration cannot start if $a$ is even, so we can first compute $v$ (by shifting) such that $a=2^va'$, with $a'$ odd. If $v\neq n$, return ``fail''. Now $a' \equiv 1~[2]$, so we can start our iteration with $b_0=1$. We have $P'(x)=nx^{n-1}$, which is why we asked $n$ to be odd at the first place, so that $u_{0}:= 1 \equiv P'(a)~[2]$. We then compute $b_{i+1}$ and $P'(b_{i})^{-1}$ at each step:
+    %   $$ b_{i+1} \gets (b_i-P(b_i)\cdot u_i) \bmod 2^{2^{i+1}},~~u_{i+1} \gets (2u_i-u_i^2P'(b_i)) \bmod 2^{2^{i+1}},$$
+    %   where we see from question 1 that $u_{i+1}$ is an inverse of $P'(a)$ modulo $2^{2^{i+1}}$.
+
+    %\end{solution}
+    \question What is missing to design a general algorithm to compute ``modular'' roots of integer polynomials? Assuming this problem can be dealt with, write down an algorithm that compute modular roots of integer polynomials and give its complexity.
+    
+    \begin{solution}
+      By CRT, the problem amounts to computing roots modulo prime powers. However, to start Newton's iteration, we require a root modulo $p$. When $p$ is small, a root can be computed by ``brute force'', just as we did above. In general, there are well-known root finding algorithms over field as $\ZZ/p\ZZ$, that were not covered in the lectures this year. Go see Berlekamp's or Cantor-Zassenhaus'.
+
+      If we can find a starting root, we just iterate Newton's until the exponent is reached. At each step, we also update the current inverse for the derivative. This gives the following:
+      \begin{itemize}
+      \item $a_0 \gets$ Root of $P$ mod $p$;
+      \item $u_0 \gets$ ModInverse$(P'(a_0), p)$;
+      \item for i from $1$ to $v-1$ do
+        \begin{itemize}
+        \item $a_i \gets a_{i-1}-P(a_{i-1})u_i\bmod p^{2^i}$, and $u_i\gets 2u_i-u_i^2P'(a_i)\bmod p^{2^i}$
+        \end{itemize}
+      \item outputs $a_{v-1}$.
+      \end{itemize}
+      To evaluate the complexity, we use the fact that, by assumption, reduction modulo $p^v$ costs $O(${\sc M}$(v\log p))$. In particular, this means that ``computation mod $p^v$'' can be done in this cost: reduce operands, do the needed operation, reduce the result. In particular, evaluating a polynomial of degree $d$ cost $O(d${\sc M}$(v\log p))$, which turns out to be a bound for any step in the above algorithm. There are $v=\log p$ steps, hence the total complexity is $O(\log p\cdot \deg P${\sc M}$(v\log p))$.
+
+      
+    \end{solution}
+    
+  \end{questions}
+
+  \section{Evaluating the derivatives of a polynomial}
+
+  In this exercise we are give a degree $n$ polynomial $P\in K[X]$, for some field $K$, and $a\in K$. Our goal is to evaluate all the derivative of $P$ at $a$.
+
+  \begin{questions}
+    \question Give a naive algorithm to compute $P^{(i)}(a)$ for all $i \in \{0,\dotsc,n\}$. What is its complexity?
+    \begin{solution}
+      Compute $P^{(i)}$ for all $i$. It take $O(i)$ multiplications to obtain $P^{(i+1)}$ from $P^{(i)}$, making this $O(n^2)$ multiplications in total. Each evalutation can be done in $O(i)$ as well. The total complexity is therefore $O(n^2)$.
+    \end{solution}
+    
+      \question If $a=0$, give an algorithm that computes all $P^{(i)}(0)$'s in linear time.
+      \begin{solution}
+        We have $P^{(i)}(O)=i!p_i$. From $P^{(i-1)}(0)$, computing this costs 2 multiplications ($i! = (i-1)!\cdot i$ and $P^{(i)}(0)=i!\cdot p_i$.) We compute all needed evaluation in $O(n)$.
+      \end{solution}
+      
+
+      \question Show that $Q(X)=P(X+a)$ can be computed in quasi-linear time. (Hint: Consider the Euclidean division $P(X)=Q(X)(X-a)^{\deg P/2}+R(X)$, and apply a recursive approach.)
+
+      \begin{solution}
+        We have $P(X+a)=Q(X+a)X^{\deg P/2}+R(X+a)$, with $\deg Q, \deg R< n/2$. A divide-and-conquer approach seems in order:
+        \begin{itemize}
+        \item Compute Euclidan Division of $P$ by $(X-a)^{\deg P/2}$ in $O(${\sc M}$(n))$, and obtain $Q,R$.
+        \item Call recursively the algorithm on $Q,R$.
+        \item Return $Q(X+a)*X^{\deg P/2}+R(X+a)$.
+        \end{itemize}
+        The last step can be done in $O(n)$ by shifting-add. The complexity of the algorithm follows $T(n) = 2T(n/2)+O(${\sc M}$(n))$, from wich we obtain $T(n) = O(${\sc M}$(n)\log n)$.
+      \end{solution}
+
+      \question Conclude with a quasi-linear time algorithm to compute all $P^{(i)}(a)$'s.
+
+      \begin{solution}
+        First compute $Q(X)=P(X+a)$ in quasi-linear time, then evaluate $Q^{(i)}(0)$ for all $i$ in linear time.
+
+      \end{solution}
+        
+
+  \end{questions}
+
+    
+
+\vspace{0.2cm}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

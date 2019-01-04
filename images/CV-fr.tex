@@ -1,0 +1,222 @@
+%% start of file `template.tex'.
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+
+\documentclass[10pt,a4paper, roman]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+
+% moderncv themes
+\moderncvstyle{classic}                             % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
+\moderncvcolor{burgundy}                               % color options 'black', 'blue' (default), 'burgundy', 'green', 'grey', 'orange', 'purple' and 'red'
+%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+%\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+
+% character encoding
+\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+
+% adjust the page margins
+\usepackage[scale=0.81]{geometry}
+\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
+%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+
+% personal data
+\name{Alexandre}{Wallet}
+\title{Docteur en informatique\\Agrégé de mathématiques}                               % optional, remove / comment the line if not wanted
+
+% \address{}{69100 Villeurbanne}{}% optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
+
+\phone[mobile]{(+33) 637572324}                   % optional, remove / comment the line if not wanted; the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
+%\phone[fixed]{+2~(345)~678~901}
+%\phone[fax]{+3~(456)~789~012}
+\email{wallet.alexandre@gmail.com}                               % optional, remove / comment the line if not wanted
+\homepage{http://awallet.github.io}                         % optional, remove / comment the line if not wanted
+%\social[linkedin]{alexandre.wallet}                        % optional, remove / comment the line if not wanted
+%\social[twitter]{jdoe}                             % optional, remove / comment the line if not wanted
+%\social[github]{jdoe}                              % optional, remove / comment the line if not wanted
+%\extrainfo{}                 % optional, remove / comment the line if not wanted
+%\photo[64pt][0.4pt]{picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
+%\quote{Some quote}                                 % optional, remove / comment the line if not wanted
+
+% bibliography adjustements (only useful if you make citations in your resume, or print a list of publications using BibTeX)
+%   to show numerical labels in the bibliography (default is to show no labels)
+%\makeatletter\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}\makeatother
+%   to redefine the bibliography heading string ("Publications")
+%\renewcommand{\refname}{Articles}
+
+% bibliography with mutiple entries
+%\usepackage{multibib}
+%\newcites{book,misc}{{Books},{Others}}
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+%\begin{CJK*}{UTF8}{gbsn}                          % to typeset your resume in Chinese using CJK
+%-----       resume       ---------------------------------------------------------
+\makecvtitle
+
+\section{Situation actuelle}
+\cventry{}{Post-doctorant}{}{\'Ecole Normale Supérieure de Lyon, LIP, équipe AriC}{}{Cryptologie post-quantique, réseaux euclidiens, théorie algébrique des nombres} 
+\section{Intérêts scientifiques}
+\cvlistdoubleitem{Géométrie algébrique}{Théorie des nombres}
+\cvlistdoubleitem{Cryptologie}{Sécurité informatique}
+\cvlistdoubleitem{Calcul formel}{Algorithmique}
+
+\section{Formation}
+\cventry{2013\,--\,2016}{Doctorat d'informatique}{}{Université Pierre et Marie Curie, Paris 6}{}{Thèse: {\em Le problème de décomposition de points dans les variétés Jacobiennes''}\\Directeur: J-C.~Faugère, Encadrante: V.~Vitse.} 
+\cventry{Septembre 2012}{Master de mathématiques fondamentales}{}{\'{E}cole Normale Supérieure de Lyon}{}{Encadré par D.~Perrot.~Mémoire: {\em ``\'Eléments de K-théorie des C*-algèbres''}.}
+\cventry{Juillet 2011}{Agrégation de mathématiques}{}{préparée à l'Université Claude Bernard, Lyon 1}{}{}%Rang: 128/288}  
+\cventry{Septembre 2010}{Master de mathématiques appliquées}{}{Université Claude Bernard, Lyon 1}{}{Encadré par C.~Delaunay.~Mémoire: {\em ``Introduction au problème du logarithme discret''}. }
+
+% \section{Thèse de doctorat}
+% \cventry{Titre}{Le problème de décomposition de points dans les variétés Jacobiennes}{}{}{}{}
+% \cventry{Directeur}{\normalfont Jean-Charles Faugère}{}{}{}{}
+% \cventry{Encadrante}{\normalfont Vanessa Vitse}{}{}{}{}
+% \cventry{Résumé}{\normalfont Le cadre général est l'algorithmique du calcul de logarithmes discrets dans les variétés abéliennes. Des candidates naturelles sont les variétés Jacobiennes des courbes algébriques, particulièrement les courbes elliptiques. J'ai généralisé et formalisé certains algorithmes prometteurs pour les courbes hyperelliptiques, et aussi amélioré des algorithmes connus dans divers contextes. Certaines améliorations permettent d'envisager des calculs se comparant aux records actuels du domaine, et ont été accompagnées d'implémentations dans des langages de calcul formel}{}{}{}{}
+\medskip
+\section{Encadrements d'étudiants}
+\cventry{Avril 2018, 4 mois}{\normalfont Thanh Huyen Nguyen}{}{stage de recherche, \'{E}cole Normale Sup\'{e}rieure de Lyon}{}{Co-encadrée avec E.~Kirshanova et D.~Stehlé.}
+
+\medskip
+\section{Articles de journaux}
+\cventry{Publié}{\normalfont The Point Decomposition Problem in the divisor class group of hyperelliptic curves: toward efficient computations in even characteristic}{avec J-C.~Faugère, Design, Codes and Cryptography (DCC)}{}{}{}
+
+\medskip
+\section{Articles de conférences}
+\cventry{Publié}{\normalfont On the Ring-LWE and Polynomial-LWE problems}{avec M. Ro\c{s}ca et D. Stehlé, International Conference on Cryptology and Information Security, EUROCRYPT 2018}{}{}{}
+\cventry{Publié}{\normalfont Improved Sieving on Algebraic Curves}{avec V. Vitse, International Conference on Cryptology and Information Security in Latin America, LATINCRYPT 2015}{}{}{}
+
+%\cvitem{supervisors}{Supervisors}
+%\cvitem{description}{Short thesis abstract}
+% Vitse, Vanessa, and Alexandre Wallet. "Improved Sieving on Algebraic Curves." . Springer International Publishing, 2015.
+
+\newpage
+\section{Sélection de présentations}
+
+\textbf{Aspects algébriques de ``Learning with errors''}\medskip
+
+\cventry{11 Septembre 2018}%{\normalfont ``On variants of Ring-LWE and PLWE''}
+{\normalfont Séminaire de cryptologie et sécurité, NTT Tokyo, Japon}{}{}{}{}
+\cventry{15 Juin 2018}{\normalfont Séminaire CCA, Centre INRIA de Paris, France}{}{}{}{}
+\cventry{20 Octobre 2017}{\normalfont Lattice Meetings, ENS Lyon, LIP, France}{}{}{}{}\medskip
+
+\textbf{Logarithme discret sur courbes algébriques}\medskip
+
+\cventry{17 Mai 2017}{\normalfont Séminaire ECO/ESCAPE, LIRMM, Montpellier}{}{}{}{}
+\cventry{24 Avril 2017}{\normalfont Journées Codage et Cryptographie, La Bresse}{}{}{}{}
+\cventry{14 Mars 2017}{\normalfont Journées du GDR-IM, LIRMM, Montpellier. Poster}{}{}{}{}
+%\cventry{8 Décembre 2016}{\normalfont ``Décompositions de points dans les variétés Jacobiennes''}{Séminaire GTBAC, Télécom ParisTech, Paris}{}{}{}
+\cventry{25 Août 2015}{\normalfont LATINCRYPT 2015, Guadalajara, Mexique}{}{}{}{}
+%\cventry{12 Octobre 2014}{\normalfont ``Finding relations in Index-Calculus for hyperlliptic Jacobian varieties ''}{Séminaire POLSYS, LIP6, Paris}{}{}{}
+
+\medskip
+\section{Expériences professionnelles et scientifiques}
+\cventry{2012 -- 2013}{Enseignant de mathématiques}{Lycée Parc Chabrières}{Oullins}{}{}
+\cventry{Mai 2012, 4 mois}{Stage de recherche}{Institut Camille Jordan}{Lyon}{encadré par D.~Perrot}{Sujet: K-théorie des $C^*$-algèbres, Géométrie non commutative.}
+\cventry{Mai 2010, 4 mois}{Stage de recherche}{Institut Camille Jordan}{Lyon}{encadré par C.~Delaunay}{Sujet: Problème du logarithme discret.}
+
+\medskip
+\section{Activités d'enseignement}
+
+\cventry{2e semestre 2018}{Enseignant en informatique}{}{\'Ecole Normale Supérieure de Lyon, 69}{}{\begin{itemize}
+  \item Travaux dirigés de Calcul Formel, M1
+  \item \'Evaluateur des stages de L3
+  \end{itemize}
+    }
+\cventry{2013\,--\,2016}{Moniteur en licence d'informatique}{}{Université Pierre et Marie Curie, Paris 6}{}{La charge d'enseignement comprend l'élaboration et la correction des examens.
+  \begin{itemize}
+  \item L3: Introduction à la Cryptologie (TD/TP) 
+  \item L2: Calcul Scientifique (TP), Types et Structures de données en C (TP),\\ Architecture Machine et Représentation (TP), Environnement de Développement (TP),\\ Structures discrètes (TP)
+  \item L1: Initiation à la programmation avec Python (TP)
+  \end{itemize}
+}
+
+\cventry{Autres activités}{\normalfont Master SFPN de l'Université Pierre et Marie Curie, LIP6, mention Sécurité-Cryptologie}{}{}{}{
+  \begin{itemize}
+  \item Elaboration d'examens
+  \item TP ``Attaque par canaux cachés sur une implémentation AES''
+  \end{itemize}
+  }
+\cventry{2012 -- 2013}{Enseignant de mathématiques}{Lycée Parc Chabrières}{Oullins, 69}{}{Classes de seconde.}
+%\cventry{2011 -- 2012}{Khôlleur en classes préparatoires}{Lycée Branly}{Lyon 5e, 69}{}{Classes de spé TSI}
+
+
+\medskip
+\section{Compétences}
+%\cvitem{Scientifiques}{ Variétés abéliennes, courbes algébriques, théorie algorithmique et algébrique des nombres, systèmes polynomiaux, cryptologie, calcul formel.}  
+\cvitem{Langages}{C, C++, Assembleur (8051, x86, MIPS), Python, Shell}
+\cvitem{Calcul Formel}{Magma, Maple, Sage}
+\cvitem{Environnements}{Windows, Linux}
+\cvitem{Autres}{Bases de reverse-engineering et exploitation de failles de sécurité (buffer overflow, injection shellcode,...).}
+
+
+\section{Langues}
+\cvlistdoubleitem{Français: natif}{Japonais: scolaire (B1)}
+\cvlistdoubleitem{Anglais: professionnel}{Russe: scolaire (A2)}
+\cvlistitem{Allemand: scolaire (B1)}%{Russe: Notions}
+
+% \section{Interêts et Loisirs}
+% \cvitem{Sport}{Badminton (Lycée sport-étude), Boxe Thaïe}
+% \cvitem{Musique}{Electronique, Métal}
+
+
+% \cvitem{hobby 2}{Description}
+%\cvitem{hobby 3}{Description}
+
+% \section{Extra 1}
+% \cvlistitem{Item 1}
+% \cvlistitem{Item 2}
+% \cvlistitem{Item 3. This item is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
+
+% \section{Extra 2}
+% \cvlistdoubleitem{Item 1}{Item 4}
+% \cvlistdoubleitem{Item 2}{Item 5\cite{book1}}
+% \cvlistdoubleitem{Item 3}{Item 6. Like item 3 in the single column list before, this item is particularly long to wrap over several lines.}
+
+% \section{References}
+% \begin{cvcolumns}
+%   \cvcolumn{Category 1}{\begin{itemize}\item Person 1\item Person 2\item Person 3\end{itemize}}
+%   \cvcolumn{Category 2}{Amongst others:\begin{itemize}\item Person 1, and\item Person 2\end{itemize}(more upon request)}
+%   \cvcolumn[0.5]{All the rest \& some more}{\textit{That} person, and \textbf{those} also (all available upon request).}
+% \end{cvcolumns}
+
+% % Publications from a BibTeX file without multibib
+% %  for numerical labels: \renewcommand{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}% CONSIDER MERGING WITH PREAMBLE PART
+% %  to redefine the heading string ("Publications"): \renewcommand{\refname}{Articles}
+% \nocite{*}
+% \bibliographystyle{plain}
+% \bibliography{publications}                        % 'publications' is the name of a BibTeX file
+
+% Publications from a BibTeX file using the multibib package
+%\section{Publications}
+%\nocitebook{book1,book2}
+%\bibliographystylebook{plain}
+%\bibliographybook{publications}                   % 'publications' is the name of a BibTeX file
+%\nocitemisc{misc1,misc2,misc3}
+%\bibliographystylemisc{plain}
+%\bibliographymisc{publications}                   % 'publications' is the name of a BibTeX file
+
+\clearpage
+%-----       letter       ---------------------------------------------------------
+%recipient data
+% \recipient{Company Recruitment team}{Company, Inc.\\123 somestreet\\some city}
+% \date{January 01, 1984}
+% \opening{Dear Sir or Madam,}
+% \closing{Yours faithfully,}
+% \enclosure[Attached]{curriculum vit\ae{}}          % use an optional argument to use a string other than "Enclosure", or redefine \enclname
+% \makelettertitle
+
+% \makeletterclosing
+
+%\clearpage\end{CJK*}                              % if you are typesetting your resume in Chinese using CJK; the \clearpage is required for fancyhdr to work correctly with CJK, though it kills the page numbering by making \lastpage undefined
+\end{document}
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

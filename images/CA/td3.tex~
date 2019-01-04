@@ -1,0 +1,424 @@
+\documentclass[11pt]{exam}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\noprintanswers % pour enlever les réponses
+\printanswers
+
+\unframedsolutions
+\SolutionEmphasis{\itshape\small}
+\renewcommand{\solutiontitle}{\noindent\textbf{A: }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%\usepackage[margin=0.73in]{geometry}
+%\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+%\usepackage{fullpage}
+
+
+\usepackage{hyperref}
+\usepackage{appendix}
+\usepackage{enumerate}
+
+
+\usepackage{times,graphicx,epsfig,amsmath,latexsym,amssymb,verbatim}%,revsymb}
+\usepackage{algorithmicx, enumitem, algpseudocode, algorithm, caption}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+% Handling comments and versions %%%
+%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\extra}[1]{}
+
+\renewcommand{\comment}[1]{\texttt{[#1]}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% THEOREMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{proposition}[theorem]{Proposition}
+
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+
+
+\newcommand{\nc}{\newcommand}
+\nc{\eps}{\varepsilon}
+\nc{\RR}{{{\mathbb R}}}
+\nc{\CC}{{{\mathbb C}}}
+\nc{\FF}{{{\mathbb F}}}
+\nc{\NN}{{{\mathbb N}}}
+\nc{\ZZ}{{{\mathbb Z}}}
+\nc{\PP}{{{\mathbb P}}}
+\nc{\QQ}{{{\mathbb Q}}}
+\nc{\UU}{{{\mathbb U}}}
+\nc{\OO}{{{\mathbb O}}}
+\nc{\EE}{{{\mathbb E}}}
+
+
+\newcommand{\field}{\mathbb{K}}
+\nc{\K}{K}
+\newcommand{\val}{\operatorname{val}}
+\newcommand{\MR}{\operatorname{MR}}
+
+%\usepackage[ruled,noend]{algorithm2e}
+
+\pretolerance=1000
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DOCUMENT STARTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usetikzlibrary{automata}
+\DeclareMathOperator{\Vol}{Vol}
+
+\begin{document}
+
+{\noindent
+   \textsc{ENS Lyon --  M1 -- Computer Algebra}
+   \hfill { E.Kirshanova / A.Wallet // 2017--2018\\
+  }
+  \hrule
+% Titre de la feuille
+  \begin{center}
+    {\Large\textbf{
+   \textsc{Tutorial 3}
+    } } 
+  \end{center}
+  \hrule \vspace{5mm}
+
+\thispagestyle{empty}
+
+\vspace{0.2cm}
+
+\section{Recursive division}
+Let $a$ and $b$ be two polynomials in $K[x]$ such that $\deg a=4n$ and $\deg b = 2n$ and take $n$ to be a power of 2. We decompose $a$ and $b$ such that $a(x)=a_h(x)x^{2n}+a_l(x)$ and $b(x)=b_h(x)x^{n}+b_l(x)$, where $\deg a_h, \deg a_l \leqslant 2n$ and $\deg b_h, \deg b_l \leqslant n$.
+
+Consider $D(n)$ as the complexity, in number of arithmetic operations over $K$, required to perform the Euclidean division of a degree $2n$ polynomial by a degree $n$ polynomial. Similarly, we denote by $M(n)$ the complexity of multiplying two degree $n$ polynomials over $R$.
+
+We perform the Euclidean division of $a_h$ by $b_h$ (i.e. $a_h=b_hq_h+r_h, \deg r_h < \deg b_h$).
+
+\begin{questions}
+	\question Show that $\deg(a-bq_hx^n)<3n$ and that $a-bq_hx^n$ is computable using $D(n)+M(n)+O(n)$ operations.
+	\begin{solution}
+		We have
+		\begin{align*}
+		a - b q_h x^n &=
+		a_h x^{2n} + a_l - (b_h x^n + b_l) q_h x^n \\
+		&= (a_h - b_h q_h) x^{2n} + a_l + b_l q_h x^n\\
+		&= r_h x^{2n} + a_l + b_l q_h x^n
+		\end{align*}
+		but $\deg(r_h) < \deg(b_h) \leq n$, so the first term in the sum has a degree $< 3n$. Then, $\deg(a_l) \leq 2n < 3n$. And finally $\deg(b_l q_h x^n) \leq (n-1) + n + n$.
+		
+		To compute $a - b q_h x^n$, we first compute $q_h$ by dividing a polynomial of degree $2n$ by a polynomial of degree $n$, which takes time $D(n)$. Then we multiply $b$ by $q_h$, which are of degree less than $n$, so this takes time $M(n)$. And finally, multiplying by $x^n$ and additions take time $O(n)$.
+	\end{solution}
+	
+	\question Show that we can finish dividing $a$ by $b$ using another $D(n)+M(n)+O(n)$ operations.
+	\begin{solution}
+		With the previous question, we let $a' = a - b q_h x^n$ which has degree less that $3n$. We write as before $a' = a'_h x^n + a'_l$ with $\deg(a'_h) \leq 2n$ and $deg(a'_l) < n$. And $b = b_h x^n + b_l$ as in the previous question.
+		Now compute the division of $a'_h$ by $b_h$, we obtain $a'_h = b_h q'_h + r'_h$ with $\deg(r'_h) < \deg(b_h)$. Let $r = a'-bq_h'$. We show that $\deg(r) < 2n$, so $r$ is the reminder of the Euclidean division of $a$ by $b$. And the quotient of this division is $q_h x^n + q'_h$.
+		\begin{align*}
+		r &= a' - b q'_h \\
+		&= a'_h x^{n} + a'_l - (b_h x^n + b_l) q'_h \\
+		&= (a'_h - b_h q'_h) x^{n} + a'_l + b_l q'_h\\
+		&= r'_h x^{n} + a'_l + b_l q'_h
+		\end{align*}
+		All terms in the previous sum have degree $< 2n$ so $\deg(r) < 2n$ and $r$ is the remainder of the division of $a'$ by $b$. But as $a' = a - b q_h$, $r$ is also the reminder of the division of $a$ by $b$.
+		As in the previous question, the complexity is $D(n) + M(n) + O(n)$.
+	\end{solution}
+	
+	
+	\question What is the value of $D(n)$ if $M(n)=n^\alpha, \alpha > 1$?
+	\begin{solution}
+		We have $$D(2n) = 2D(n) + 2M(n) + O(n).$$
+		If $M(n) = n^{\alpha}$, $\alpha > 1$, this term dominates in the recursion and the complexity is $D(n) = O(M(n))$.
+	\end{solution}
+	
+	
+	\question Same question as before,  for $M(n)=n(\log n)^\alpha, \alpha>1$. 
+	\begin{solution}
+		If $M(n) = n(\log n)^{\alpha}$, $\alpha > 1$, both terms in the recursion are equivalent and a $\log n$ pops up. This gives the complexity $D(n) = O(M(n) \log n)$. This is worse than the complexity obtained by Newton's method.
+		So depending on the multiplication we choose, if we have $M(n) = n^\alpha$ we should use this method but if $M(n) = n(\log n)^\alpha$, it is better to use Newton's method.
+	\end{solution}
+\end{questions}
+
+\section{Applications of the Extended Euclidean Algorithm (EEA)}
+
+\subsection{Computing the inverse}
+
+\begin{questions}
+	
+	\question Let $n$ be an integer, and $0 \leq a <n$ be such that $\gcd (a,n) = 1$. Give an algorithm that computes $a^{-1} \mod n$ in time $O(M(\log n) \log \log n)$.
+	
+	\begin{solution}
+		Compute $u$ and $v$ the coefficients of the extended euclidean algorithm of $a$ and $n$, i.e. $a u + v n = 1$. Then, as $vn = 0 \mod n$, we have $au = 1 \mod n$ and so $u$ is the inverse of $a$ modulo $n$. Remark that we have proven that if $\gcd(a,n) = 1$ then $a$ is invertible modulo $n$. On the contrary, if $a$ is invertible modulo $n$, we have $u$ its inverse, that is $au = 1 + r n$ for some integer $n$. Then $\gcd(a,n) = 1$.
+	\end{solution}
+	
+	\question Let $P \in K[X]$ be a polynomial of degree $d$ with coefficients in a field $K$ and $Q \in K[X]$ be a polynomial of degree less than $d$, such that $\gcd(P,Q) = 1$. Prove that $Q$ is invertible modulo $P$ and give an algorithm to compute its inverse using $O(M(d) \log d)$ operations in $K$.
+	
+	\begin{solution}
+		The same as before.
+	\end{solution}
+	
+\end{questions}
+
+\subsection{Diophantine equation}
+The aim of this exercise is to describe the set of all solutions $(u,v)$ of the equation 
+\begin{equation}\label{dio}
+au+bv=t
+\end{equation}
+
+\begin{questions}
+	\question Show that if $(u,v)=(s_1,s_2)$ is a solution of (\ref{dio}), the general solution is of the form $(u,v)=(s_1+s_1',s_2+s_2')$ for $(s_1',s_2')$ satisfying  $as_1' + bs_2' = 0$.
+	
+	\begin{solution}
+		Let $(u,v)$ be a solution of \ref{dio}, then we have $au + bv = t = a s_1 + b s_2$. We can rewrite it as $a(u-s_1) = -b(v - s_2)$. If we denote $s_1' = u-s_1$ and $s_2' = v-s_2$ we have that the solution $(u,v)$ is of the form $u = s_1 + s_1'$, and $v = s_2 + s_2'$ with $s_1'$ and $s_2'$ satisfying $as_1' + b s_2' = 0$.
+	\end{solution}
+	
+	\question Find all solutions of $au + bv = 0$ for $a,b$ coprime.
+	\begin{solution}
+		Suppose we have $au = -bv$. As $\gcd(a,b) = 1$ and $a | bv$ (because $bv = au$), we have that $a | v$. We write $v = ka$. Then we have $au = -bka$ so as $a \neq 0$, we have $u = -bk$. The solutions of $au + bv = 0$ are then of the form $(-bk, ak)$ for some $k \in \ZZ$. Now, on the contrary, let $k \in \ZZ$, we have $a \cdot (-kb) + b \cdot ka = 0$, so $(-ka, kb)$ is a solution.
+		
+		To conclude, the solutions of $au + bv = 0$ are the $\{(-kb, ka), k \in \ZZ \}$.
+	\end{solution}
+	
+	\question Find a solution of (\ref{dio}) for $a,b$ coprime. 
+	
+	\begin{solution}
+		Using the euclidean extended algorithm, we have $u$ and $v$ such that $au + bv = 1$. Then $(ut, vt)$ is a solution of \ref{dio}.
+	\end{solution}
+	
+	\question Observe that $t$ must be divisible by $\gcd(a,b)$.
+	
+	\begin{solution}
+		Let $d = \gcd(a,b)$, we have $d | au$ and $d | bv$ so $d | au+bv$ and then $d | t$.
+	\end{solution}
+	
+	\question Using the previous questions, give the general solution of (\ref{dio}).
+	
+	\begin{solution}
+		For $a$ and $b$ co-prime, we have seen that if $(u_0, v_0)$ are the coefficients given by the extended euclidean algorithm, the solution of (\ref{dio}) are $\{ (u_0t-kb, v_0t+ka), k \in \ZZ \}$.
+		If $a$ and $b$ are not coprime, let $d = \gcd(a,b)$, the equation $au + bv = t$ can be rewriten $a'u + b'v = t'$, with $a' = a/d, \ b' = a/d, \ t' = t/d$ and $a'$ and $b'$ are coprime so we can use the first part of the question.
+	\end{solution}
+	
+\end{questions}
+
+\section{Rational function reconstruction}
+
+Let $K$ be a field, $m\in K[X]$ of degree $n>0$, and $f\in K[X]$ such that $\deg f<n$. For a fixed $k\in\left\lbrace 1,\ldots,n\right\rbrace$, we want to find a pair of polynomials $(r,t)\in K[X]^2$, satisfying
+\begin{equation}\label{ARR}
+r = t\cdot f\mod m,\qquad\deg r <k,\qquad\deg t \leqslant n-k \quad \text{and} \quad t \neq 0
+\end{equation}
+
+\begin{questions}
+	\question Consider $A(X)=\sum_{l= 0}^{N-1}a_lX^l\in K[X]$ a polynomial. Show that if $A(X)=P(X)/Q(X) \mod X^{N}$, where $P,Q\in K[X]$, $Q(0)=1$ and $\deg P < \deg Q $, then the coefficients of $A$, starting from $a_{\deg Q}$ can be computed as a linear recurrent sequence of previous $\deg Q$ coefficients of $A$. What can you say in the converse setting when the coefficients of $A$ satisfy a linear recurrence relation?
+	
+	\begin{solution}
+		We have $QA = P \mod X^{M+N}$, by multiplying both sides of the equations by $Q$. Write $Q(X) = \sum_{l= 0}^{M}q_lX^l$ (with $M$ the degree of $Q$). If $M > N$, $a_M$ does not exists so the condition is verified. We then assume that $M \leq N$. We have
+		\begin{align*}
+		QA
+		&= \sum_{i= 0}^{M}\sum_{j= 0}^{N-1}q_ia_jX^{i+j} \\
+		&= \sum_{k= 0}^{M+N-1} \sum_{i+j = k}q_ia_jX^{k} \\
+		&= \sum_{k= 0}^{N-1} \sum_{i+j = k}q_ia_jX^{k} \mod X^N \\
+		&= \sum_{k= 0}^{M-1} \sum_{i+j = k}q_ia_jX^{k} + \sum_{k= M}^{N-1} \sum_{i=0}^M q_ia_{k-i}X^{k} \mod X^N \\
+		\end{align*}
+		
+		But this polynomial is equal to $P$ modulo $X^N$ and $P$ has degree less than $M-1$, so all coefficients of the second polynomial in the above sum with $k \geq M$ are zero. That is, for all $k \geq M$, $\sum_{i=0}^M q_ia_{k-i} = 0$, i.e. $a_k = -\sum_{i=1}^M q_ia_{k-i}$ (because $q_0 = 1$). So the coefficient of $A$, from $a_M$ satisfy a recurrent linear relation of order less than $M$.
+		
+		The converse is true. We can perform the computations from down to up.
+	\end{solution}
+	
+	
+	\question Inside (\ref{ARR}), consider the case when $m=x^n$. Describe a linear algebra-based method for finding some $t$ and $r$. (Hint: do \textbf{not} use the previous question).
+	
+	\begin{solution}
+		We write $r = tf \mod m$. If we manage to find $t$ such that $tf \mod m$ has degree $< k$ and $\deg(t) \leq n-k$, we are done. The constraint $\deg(tf \mod m) < k$ can be rewritten $(tf)_i = 0$ for all $k \leq i < n$ (where $(tf)_i$ is the $i$th coefficient of $tf$). This gives us $n-k$ linear equations in the coefficients of $t$. And $\deg(t) \leq n-k$ allows us to have up to $n-k+1$ coefficients for $t$. So the system is under-determined and we have a non trivial solution, that is we have a $t \neq 0$ such that $r = tf \mod m$ has degree $< k$ and $\deg(t) \leq n-k$.
+	\end{solution}
+	
+	\question Show that, if $(r_1,t_1)$ and $(r_2,t_2)$ are two pairs of polynomials that satisfy (\ref{ARR}), then we have $r_1t_2=r_2t_1$.
+	
+	\begin{solution}
+		We have $\frac{r_1}{t_1} \equiv f \equiv \frac{r_2}{t_2} \mod m$ so $r_1t_2=r_2t_1 \mod m$. But $\deg(r_1) < k$ and $\deg(t_2) \leq n-k$. So $\deg(r_1t_2) < n$. The same is true for $r_2t_1$, so they are equal in $K[X]$ and not only modulo $m$.
+	\end{solution}
+	
+	
+	We will use the Extended Euclidean Algorithm to solve problem (\ref{ARR}).
+	
+	
+	\question Let $r_j,u_j,v_j\in F[X]$ be the quantities computed during the $j$-th pass of the Extended Euclidean Algorithm for the pair $(m,f)$, where $j$ is minimal such that $\deg r_j <k$. Show that $(r_j, v_j)$ satisfy (\ref{ARR}). What can you say about the complexity of this method?
+	
+	\begin{solution}
+		We have $u_j m + v_j f = r_j$, i.e. $v_j f = r_j \mod m$.
+		To fix notations, we assume $u_0m+v_0f =r_0$ and $u_1m+v_1f = r_1$, so $u_0=1, v_0 = 0$, $u_1=0, v_1 = 1$.
+		 We choose $j$ such that $\deg(r_j) < k$. And $r_j \neq 0$ so $v_j \neq 0$. It remains to show that $\deg(v_j) \leq n-k$. This is a classical result that $\deg(v_j) \leq \deg(\max(m,f)) - \deg(r_j)$. We show this below. If we write $r_{j-2} = r_{j-1}q_{j-1} + r_j$, we have $v_j = v_{j-2} - q_{j-1}v_{j-1}$ (can be easily verified by writing out first, say, three steps of EEA). We can prove by induction that $\deg(v_j)$ is strictly increasing (for $j \geq 1$), that is $\deg(v_j) = \deg(q_{j-1}v_{j-1})$. Then, we have $\deg(v_j) = \sum_{i = 2}^{j-1} \deg(q_i) + \deg(v_1)$. But $v_1 = 1$ and the degree of the reminder decreases by the same amount as the degree of the quotient at each step. So $\sum_{i = 2}^{j-1} \deg(q_i) \leq \deg(m) - \deg(r_j)$ and we have proven what we wanted.
+	\end{solution}
+	
+	
+	\question \textbf{Application}. Given $2n$ consecutive terms of a recursive sequence of order $n$, give the recurrence. (Hint: this is where you use question 1). Illustrate your method on the Fibonacci sequence.
+	
+	\begin{solution}
+		Recall, a recurrence of order $d$ defined by a linear sequence is $a_n = q_1 a_{n-1}+q_2 a_{n-2} + \ldots + q_d a_{n-d}.$
+		
+		Let $a_0, \cdots, a_{2n-1}$ be the first $2n$ terms of the sequence. And $q_1, \cdots, q_n$ be such that $a_k = \sum_{i = 1}^n q_i a_{k-i}$ for $k \geq n$. Write $A = \sum_{i = 0}^{2n-1} a_i X^i$ and $Q = 1+\sum_{i = 1}^n q_i X^i$. We have $QA = P \mod X^{2n}$ for some $P$ of degree at most $n-1$ using question 1.
+		Let's compute the rational reconstruction of $A$ mod $X^{2n}$ with $k = n$. That is, we compute $r$ and $t$ such that $tA = r \mod X^{2n}$ with $\deg(r) < n$ and $\deg(t) \leq 2n-n = n$. We know that $P$ and $Q$ are also solution of \ref{ARR}.  We reduce $r$ and $t$ so that they are coprime. Then $t(0) \neq 0$ otherwise $r(0) = t(0) A(0) + 0^{2n} \cdot \text{something} = 0$ and both $r$ and $t$ are divisible by $X$, which contradict the fact that they are coprime. We can then scale $r$ and $t$ by a scalar so that $t(0) = 1$. According to question 1, the coefficients of $A$ satisfy a linear relation of degree $\deg(t)$, whose coefficients are given by the coefficients of $t$. This may not be the same relation as the one given by $Q$, but we have found a relation of degree less than $n$ (if this relation is not unique, we cannot hope to recover $Q$).
+		
+		As for the Fibonacci sequence of order 2, take $a_2=1, a_3=2, a_4=3, a_5 = 5$ (with $a_0 = 0, a_1=1$). Let $A(x) = 1+2x+3x^2+5x^3$. We want to find polynomials $t(x) = t_0 +t_1x+t_2x^2, \deg(t) =2$ and $r(x)=r_0 + r_1x, \deg(r)=  1$ s.t.\ $r = t \cdot A \bmod~x^4$. From the constraint on the degree of $r$, we obtain two equation for the coefficients of $t$:
+		\[
+		\begin{cases}
+			3t_0+2t_1+t_2 = 0\\
+			5t_0+3t_1+2t_2 = 0.
+		\end{cases}
+	\]
+	Letting $t_1 = 1$, we obtain $t_1 = -1, t_2 = -1$, from where we obtain the coefficient of $r:$ $r_0= 1, r_2 = -4$. Hence, we've got $t = 1-x-x^2$ (the characteristic polynomial for the Fibonacci sequence), and $r = -4x+1$. From the above arguments on obtaining the coefficients of $a_2$ from $a_1, a_0$, we have $a_2 = - \sum_{i=1}^2 t_i a_{2-i} = 1 \cdot a_1 + 1 \cdot a_0$, which is indeed correct for the sequence in question.
+	\end{solution}
+	
+\end{questions}
+
+
+%\section{Montgomery Multiplication }
+%
+%Let $N, R$ be relatively prime integers. We study an elegant idea of Peter Montgomery on how to compute $\bmod~N$ only performing operations $\bmod~R$. In particular, when $R$ is a power of $2$  and $N$ is odd (and usually large), it gives an efficient algorithm to compute $a^x \bmod N$. In the following, $R$ is a power-of-two.
+%
+%\begin{questions}
+%	
+%	\question Given $N, R$ relatively prime, let  $t,s$ satisfy $Rs - Nt = 1.$
+%	% Such $t, s$ can be found using EEA.
+%        For a natural number $a$, define the Montgomery reduction as
+%	\begin{align}
+%		\MR(a) \stackrel{\small\text{def}}{=} \frac{1}{R}(a+(at \bmod~R) \cdot N).
+%	\end{align}
+%	Show that $\MR(a)$ is an nonnegative integer. How many operations are needed to compute $\MR()$?
+%	\begin{solution}
+%		This exercise is taken from \\ \url{https://rjlipton.wordpress.com/2018/02/06/doing-mod-n-via-mod-r/}
+%		
+%		Let $c = at // R$, where $//$ denotes integer division. Then $at \bmod~R = at -cR$.  Therefore,
+%		\[
+%			\MR(a) = \frac{1}{R}(a+(at \bmod~R) \cdot N) = \frac{1}{R}(a+aNt-cRN) = \frac{1}{R}(a+a(Rs-1)-cRN) = as - cN.
+%		\]
+%		By definition, $\MR(a)$ is positive, except $\MR(0)=0$.
+%		To compute $\MR(a)$, we need 2 multiplications, 1 division by $R$ and one $\bmod~R$ operation.
+%	\end{solution}
+%	\question Let $b$ be any integer, $c = at // R$ and $c'=(at-b)//R$, where $//$ denotes integer division. In other words, $c=\lfloor \frac{at}{R}\rfloor$ and $c'=\lfloor \frac{at-b}{R}\rfloor$. Show that
+%	\begin{align}
+%		\MR(a+bN) &= \MR(a)+(c-c')N \\
+%		\MR(a+bR) &= b+\MR(a) 
+%	\end{align}
+%	\begin{solution}
+%		Let $c' = (at-b)//R=\lfloor \frac{at-b}{R}\rfloor $. We have,
+%		\begin{align*}
+%			\MR(a+bN) &= \frac{1}{R}(a+bN+(at+bNt(\bmod~R) )N) = \frac{1}{R}(a+bN+(at+b(Rs-1)(\bmod~R))N) \\
+%			& = \frac{1}{R}(a+bN+(at-b(\bmod~R))N) = \frac{1}{R}(a+bN+(at-b-c'R)N) \\
+%			& = \frac{1}{R}(a+atN - c'RN) = \frac{1}{R}(a+a(Rs-1)-c'RN) = \frac{1}{R}(aRs-c'RN) \\
+%			& = as-c'N = \MR(a)+(c-c')N.
+%		\end{align*}
+%		That is, $\MR(a+bN)$ increases by 1 with $b$ only when $at-b$ crosses a multiple of $R$. Intuitively, $\MR()$ imitates division by $R$. As for the second equality, we have
+%		\begin{align*}
+%			\MR(a+bR) = \frac{1}{R}(a+bR+(at+bRt (\bmod~R))N) = \frac{1}{R}(a+bR+(at \bmod R)N) = b+\MR(a).
+%		\end{align*}
+%		It follows that for $a=0$, $\MR(bR) = b$ and $\MR(bR^2) = bR$.
+%	\end{solution}
+%	\question Given $a,b \in\ZZ$, we want to compute $a \cdot b \bmod~N$. Define
+%	$a' = a \cdot R \bmod~N, b' = b\cdot R  \bmod~N$, and let
+%	\[
+%		a \odot b \stackrel{\small\text{def}}{=} MR(ab).
+%	\]
+%	First, show that 
+%	\[
+%		a' \odot b' = aR \odot bR \bmod~N.
+%	\]
+%	Second, show that for $a,b < N$ and $R>N$:
+%	\[
+%		a' \odot b'<2 \cdot N,
+%	\]
+%	That means you can avoid taking $\bmod~N$ at the end by simply returning $u-N$ when $u>2N$. You can redefine $\MR()$ function such that is always returns a number less than $N$.
+%	\begin{solution}
+%		Let $\alpha = ar //N$ and $\beta = bR // N$. Furthermore, let $\gamma = \alpha \beta N - a \beta R - b \alpha R$.
+%		We have
+%		\begin{align*}
+%			a' \odot b' = \MR((aR-\alpha N)(bR - \beta N)) = \MR(aR \cdot bR + \gamma N) = \MR(aR \cdot bR) + \gamma' N \equiv aR \odot bR \bmod~N,
+%		\end{align*}
+%		where for the congruence we use the result of question 2. This means that we can iterate the product $a_1 \odot a_2 \odot \ldots$ with only one division by $R$ and one reduction $\bmod~R$ per $\odot$.
+%		
+%		Second, by definition, we have $a \odot b = \MR(ab) \leq \frac{N^2+(R-1)N}{R} < 2N$.
+%		
+%	This already gives us an algorithm to compute the product of $a_i$'s $\bmod~N$: transform $a_i' = aR \bmod~N$ and compute $\odot_i a_i'$. However, this still requires computing $\bmod~N$ for each $a_i$. Next we show how to get rid of this $\bmod~N$ computation altogether.
+%	\end{solution}
+%	\question Now we are ready to develop an algorithm for computing $c= a^x \bmod~R$. Setting $r = R \bmod~N$ and
+%	\[
+%		b = \underbrace{a \odot a \odot \ldots \odot a}_{x \text{ times}},
+%	\]
+%	show that  $\MR(br^m)$ returns $c$.
+%	Give a fast exponentiation algorithm that precomputes $r = R \bmod~N$ and $r_2 = R^2 \bmod N$ and uses $\odot$ operation to compute $a^x \bmod~N$. (Hint: the algorithm should be very similar to the `classical' fast exponentiation algorithm).
+%
+%	\begin{solution}
+%		By definition of $\MR()$, we have $b = c s^{m-1} \bmod~N$. Hence, $c = b r^{m-1} \bmod~N$ and $\MR(c') = \MR(br^m) = br^{m-1} \bmod~N = c s^{m-1} r^{m-1} \bmod~N = c \bmod~N$.
+%		From here, we can reduce iterated multiplication to exponentiation $\bmod~N$. The algorithm is as follows:
+%		
+%	\begin{minipage}[t]{6cm}
+%		\vspace{0pt}  
+%		\begin{algorithmic}[H]
+%			\Function{FastExp}{$a,x$}
+%			\State $A \gets a$ 
+%			\State $X \gets x$ 
+%			\State $Y \gets 1$ 
+%			\While{$X>0$}
+%			\If{X is even}
+%			\State $A \gets A \cdot A$
+%			\State $X \gets X // 2$
+%			\Else
+%			\State $Y \gets A \cdot Y$
+%			\State $X \gets X-1$
+%			\EndIf
+%			\EndWhile
+%			\State Return $Y$
+%			\EndFunction
+%		\end{algorithmic}
+%	\end{minipage}%
+%	\begin{minipage}[t]{6cm}
+%		\vspace{0pt}
+%		\begin{algorithmic}[H]
+%			\Function{MontFastExp}{$a,x$}
+%			\State $A \gets a \odot r_2$ 
+%			\State $X \gets x$ 
+%			\State $Y \gets r$ 
+%			\While{$X>0$}
+%			\If{X is even}
+%			\State $A \gets A \odot A$
+%			\State $X \gets X // 2$
+%			\Else
+%			\State $Y \gets A \odot Y$
+%			\State $X \gets X-1$
+%			\EndIf
+%			\EndWhile
+%			\State Return $Y \odot 1$
+%			\EndFunction
+%		\end{algorithmic}
+%	\end{minipage}
+%	\end{solution}
+%\end{questions}
+%
+%
+%
+%
+
+
+
+\end{document}
+
