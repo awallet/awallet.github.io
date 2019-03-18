@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.12.18)  4 JAN 2019 12:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.12.18)  18 MAR 2019 11:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1153,10 +1153,6 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 Package hyperref Info: Option `breaklinks' set `true' on input line 56.
 Package hyperref Info: Option `bookmarksopen' set `true' on input line 56.
 
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\\' on input line 56.
-
 (./CV-eng.aux)
 \openout1 = `CV-eng.aux'.
 
@@ -1315,30 +1311,6 @@ File: mt-mvs.cfg 2006/07/05 v1.1 microtype config. file: Marvosym Euro (RS)
 \makecvheadpicturewidth=\skip82
 \makecvheadnamebox=\box58
 
-./CV-eng.tex:59: Argument of \@iiminipage has an extra }.
-<inserted text> 
-                \par 
-l.59 \makecvtitle
-                 
-I've run across a `}' that doesn't seem to match anything.
-For example, `\def\a#1{...}' and `\a}' would produce
-this error. If you simply proceed now, the `\par' that
-I've just inserted will cause me to report a runaway
-argument that might be the root of the problem. But if
-your `}' was spurious, just type `2' and it will go away.
-
-Runaway argument?
-{b}{\@firstoftwo {\nobreak \@xcentercr }}\def \reserved@b {\@xcentercr \ETC.
-./CV-eng.tex:59: Paragraph ended before \@iiminipage was complete.
-<to be read again> 
-                   \par 
-l.59 \makecvtitle
-                 
-I suspect you've forgotten a `}', causing me to apply this
-control sequence to too much text. How can we recover?
-My plan is to forget the whole thing and hope for the best.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 59--59
 
  []
@@ -1349,39 +1321,20 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 61.
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-./CV-eng.tex:101: Undefined control sequence.
-l.101 \paragraph
-                {\textbf{Algebraic aspects of ``Learning with errors''}}\med...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-./CV-eng.tex:108: Undefined control sequence.
-l.108 \paragraph
-                {\textbf{Discrete logarithm over algebraic curves}}\medskip
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-[2]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 220.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 220.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 222.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 222.
  (./CV-eng.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 220.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 220.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 222.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 222.
 Package rerunfilecheck Info: File `CV-eng.out' has not changed.
 (rerunfilecheck)             Checksum: 4CBD0DB6A1250BFD2F9ACD4A7A37B699;1477.
  ) 
 Here is how much of TeX's memory you used:
- 29746 strings out of 492982
- 553345 string characters out of 6134895
- 627620 words of memory out of 5000000
- 32885 multiletter control sequences out of 15000+600000
+ 29745 strings out of 492982
+ 553340 string characters out of 6134895
+ 627461 words of memory out of 5000000
+ 32884 multiletter control sequences out of 15000+600000
  587493 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  69i,12n,58p,10365b,335s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1395,7 +1348,7 @@ xmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr
 /usr/share/texmf/fonts/type1/public/lm/lmro17.pfb></usr/share/texmf/fonts/type1
 /public/lm/lmro9.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/public/marvosym/marvosym.pfb>
-Output written on CV-eng.pdf (2 pages, 279613 bytes).
+Output written on CV-eng.pdf (2 pages, 278588 bytes).
 PDF statistics:
  122 PDF objects out of 1000 (max. 8388607)
  104 compressed objects within 2 object streams
