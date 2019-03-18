@@ -25,13 +25,15 @@
 
 % personal data
 \name{Alexandre}{Wallet}
-\title{Docteur en informatique\\Agrégé de mathématiques}                               % optional, remove / comment the line if not wanted
-\address{90, Rue Racine}{69100 Villeurbanne}{}% optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
+\title{Docteur en informatique}                               % optional, remove / comment the line if not wanted
+
+% \address{}{69100 Villeurbanne}{}% optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
+
 \phone[mobile]{(+33) 637572324}                   % optional, remove / comment the line if not wanted; the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
 %\phone[fixed]{+2~(345)~678~901}
 %\phone[fax]{+3~(456)~789~012}
 \email{wallet.alexandre@gmail.com}                               % optional, remove / comment the line if not wanted
-\homepage{perso.ens-lyon.fr/alexandre.wallet/}                         % optional, remove / comment the line if not wanted
+\homepage{http://awallet.github.io}                         % optional, remove / comment the line if not wanted
 %\social[linkedin]{alexandre.wallet}                        % optional, remove / comment the line if not wanted
 %\social[twitter]{jdoe}                             % optional, remove / comment the line if not wanted
 %\social[github]{jdoe}                              % optional, remove / comment the line if not wanted
@@ -57,11 +59,11 @@
 \makecvtitle
 
 \section{Situation actuelle}
-\cventry{}{Post-doctorant}{}{\'Ecole Normale Supérieure de Lyon, LIP, équipe AriC}{}{Cryptologie post-quantique, Réseaux euclidiens, Théorie algébrique des nombres} 
+\cventry{}{Post-doctorant}{}{NTT Secure Platform Laboratories, Tokyo}{}{Cryptologie post-quantique, réseaux euclidiens, théorie algébrique des nombres} 
 \section{Intérêts scientifiques}
 \cvlistdoubleitem{Géométrie algébrique}{Théorie des nombres}
-\cvlistdoubleitem{Cryptologie}{Sécurité Informatique}
-\cvlistdoubleitem{Calcul Formel}{Algorithmique}
+\cvlistdoubleitem{Cryptologie}{Sécurité informatique}
+\cvlistdoubleitem{Calcul formel}{Algorithmique}
 
 \section{Formation}
 \cventry{2013\,--\,2016}{Doctorat d'informatique}{}{Université Pierre et Marie Curie, Paris 6}{}{Thèse: {\em Le problème de décomposition de points dans les variétés Jacobiennes''}\\Directeur: J-C.~Faugère, Encadrante: V.~Vitse.} 
@@ -74,19 +76,19 @@
 % \cventry{Directeur}{\normalfont Jean-Charles Faugère}{}{}{}{}
 % \cventry{Encadrante}{\normalfont Vanessa Vitse}{}{}{}{}
 % \cventry{Résumé}{\normalfont Le cadre général est l'algorithmique du calcul de logarithmes discrets dans les variétés abéliennes. Des candidates naturelles sont les variétés Jacobiennes des courbes algébriques, particulièrement les courbes elliptiques. J'ai généralisé et formalisé certains algorithmes prometteurs pour les courbes hyperelliptiques, et aussi amélioré des algorithmes connus dans divers contextes. Certaines améliorations permettent d'envisager des calculs se comparant aux records actuels du domaine, et ont été accompagnées d'implémentations dans des langages de calcul formel}{}{}{}{}
+\medskip
+\section{Encadrements d'étudiants}
+\cventry{Avril 2018, 4 mois}{\normalfont Thanh Huyen Nguyen}{}{stage de recherche, \'{E}cole Normale Sup\'{e}rieure de Lyon}{}{Co-encadrée avec E.~Kirshanova et D.~Stehlé.}
 
-
-\section{Expériences professionnelles et scientifiques}
-\cventry{2012 -- 2013}{Enseignant de mathématiques}{Lycée Parc Chabrières}{Oullins, 69}{}{}
-\cventry{Mai 2012, 4 mois}{Stage de recherche}{Institut Camille Jordan}{Lyon, 69}{encadré par D.~Perrot}{Sujet: K-théorie des $C^*$-algèbres, Géométrie non commutative.}
-\cventry{Mai 2010, 4 mois}{Stage de recherche}{Institut Camille Jordan}{Lyon, 69}{encadré par C.~Delaunay}{Sujet: Problème du logarithme discret.}
-
+\medskip
 \section{Articles de journaux}
-\cventry{Publié}{The Point Decomposition Problem in the divisor class group of hyperelliptic curves: toward efficient computations in even characteristic}{avec J-C.~Faugère}{Design, Codes and Cryptography (DCC), Journal (auteur principal)}{}{}
+\cventry{Soumis}{\normalfont On the smoothing parameter and last minimum of random orthogonal lattices}{avec E.~Kirshanova, T.~H.~Nguyen, et D.~Stehlé, Design, Codes and Cryptography (DCC)}{}{}{}
+\cventry{Publié}{\normalfont The Point Decomposition Problem in the divisor class group of hyperelliptic curves: toward efficient computations in even characteristic}{avec J-C.~Faugère, Design, Codes and Cryptography (DCC)}{}{}{}
 
+\medskip
 \section{Articles de conférences}
-\cventry{Accepté}{On the Ring-LWE and Polynomial-LWE problems}{avec M. Ro\c{s}ca et D. Stehlé}{International Conference on Cryptology and Information Security, EUROCRYPT 2018}{}{}
-\cventry{Publié}{Improved Sieving on Algebraic Curves}{avec V. Vitse}{International Conference on Cryptology and Information Security in Latin America}{LATINCRYPT 2015}{}
+\cventry{Publié}{\normalfont On the Ring-LWE and Polynomial-LWE problems}{avec M. Ro\c{s}ca et D. Stehlé, International Conference on Cryptology and Information Security, EUROCRYPT 2018}{}{}{}
+\cventry{Publié}{\normalfont Improved Sieving on Algebraic Curves}{avec V. Vitse, International Conference on Cryptology and Information Security in Latin America, LATINCRYPT 2015}{}{}{}
 
 %\cvitem{supervisors}{Supervisors}
 %\cvitem{description}{Short thesis abstract}
@@ -111,18 +113,16 @@
 \cventry{25 Août 2015}{\normalfont LATINCRYPT 2015, Guadalajara, Mexique}{}{}{}{}
 %\cventry{12 Octobre 2014}{\normalfont ``Finding relations in Index-Calculus for hyperlliptic Jacobian varieties ''}{Séminaire POLSYS, LIP6, Paris}{}{}{}
 
+\medskip
+\section{Expériences professionnelles et scientifiques}
+\cventry{2012 -- 2013}{Enseignant de mathématiques}{Lycée Parc Chabrières}{Oullins}{}{}
+\cventry{Mai 2012, 4 mois}{Stage de recherche}{Institut Camille Jordan}{Lyon}{encadré par D.~Perrot}{Sujet: K-théorie des $C^*$-algèbres, Géométrie non commutative.}
+\cventry{Mai 2010, 4 mois}{Stage de recherche}{Institut Camille Jordan}{Lyon}{encadré par C.~Delaunay}{Sujet: Problème du logarithme discret.}
 
-
-\section{Compétences}
-\cvitem{Scientifiques}{ Variétés abéliennes, courbes algébriques, Théorie algorithmique et algébrique des nombres, Systèmes polynomiaux, Cryptologie, Calcul formel.}  
-\cvitem{Langages}{C, C++, Assembleur (8051, x86, MIPS), Python, Shell}
-\cvitem{Calcul Formel}{Magma, Maple, Sage}
-\cvitem{Environnements}{Windows, Linux}
-\cvitem{Autres}{Bases de reverse-engineering et exploitation de failles de sécurité (buffer overflow, injection shellcode,...).}
-
+\medskip
 \section{Activités d'enseignement}
 
-\cventry{2e semestre\\2018}{Enseignant en informatique}{}{\'Ecole Normale Supérieure de Lyon, 69}{}{\begin{itemize}
+\cventry{2e semestre 2018}{Enseignant en informatique}{}{\'Ecole Normale Supérieure de Lyon, 69}{}{\begin{itemize}
   \item Travaux dirigés de Calcul Formel, M1
   \item \'Evaluateur des stages de L3
   \end{itemize}
@@ -142,13 +142,22 @@
   \end{itemize}
   }
 \cventry{2012 -- 2013}{Enseignant de mathématiques}{Lycée Parc Chabrières}{Oullins, 69}{}{Classes de seconde.}
-\cventry{2011 -- 2012}{Khôlleur en classes préparatoires}{Lycée Branly}{Lyon 5e, 69}{}{Classes de spé TSI}
+%\cventry{2011 -- 2012}{Khôlleur en classes préparatoires}{Lycée Branly}{Lyon 5e, 69}{}{Classes de spé TSI}
+
+
+\medskip
+\section{Compétences}
+%\cvitem{Scientifiques}{ Variétés abéliennes, courbes algébriques, théorie algorithmique et algébrique des nombres, systèmes polynomiaux, cryptologie, calcul formel.}  
+\cvitem{Langages}{C, C++, Assembleur (8051, x86, MIPS), Python, Shell}
+\cvitem{Calcul Formel}{Magma, Maple, Sage}
+\cvitem{Environnements}{Windows, Linux}
+\cvitem{Autres}{Bases de reverse-engineering et exploitation de failles de sécurité (buffer overflow, injection shellcode,...).}
 
 
 \section{Langues}
-\cvlistitem{Français: Natif}%{Espagnol: Notions}
-\cvlistitem{Anglais: Professionnel}%{Japonais: Notions}
-\cvlistitem{Allemand: Scolaire}%{Russe: Notions}
+\cvlistdoubleitem{Français: natif}{Japonais: scolaire (B1)}
+\cvlistdoubleitem{Anglais: professionnel}{Russe: scolaire (A2)}
+\cvlistitem{Allemand: scolaire (B1)}%{Russe: Notions}
 
 % \section{Interêts et Loisirs}
 % \cvitem{Sport}{Badminton (Lycée sport-étude), Boxe Thaïe}
