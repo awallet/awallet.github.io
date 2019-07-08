@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.12.18)  18 MAR 2019 11:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.12.18)  8 JUL 2019 11:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1321,19 +1321,19 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 61.
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 222.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 222.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 226.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 226.
  (./CV-eng.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 222.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 222.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 226.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 226.
 Package rerunfilecheck Info: File `CV-eng.out' has not changed.
 (rerunfilecheck)             Checksum: 4CBD0DB6A1250BFD2F9ACD4A7A37B699;1477.
  ) 
 Here is how much of TeX's memory you used:
- 29745 strings out of 492982
- 553340 string characters out of 6134895
- 627461 words of memory out of 5000000
+ 29746 strings out of 492982
+ 553346 string characters out of 6134895
+ 626461 words of memory out of 5000000
  32884 multiletter control sequences out of 15000+600000
  587493 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1348,10 +1348,10 @@ xmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr
 /usr/share/texmf/fonts/type1/public/lm/lmro17.pfb></usr/share/texmf/fonts/type1
 /public/lm/lmro9.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/public/marvosym/marvosym.pfb>
-Output written on CV-eng.pdf (2 pages, 278588 bytes).
+Output written on CV-eng.pdf (3 pages, 280109 bytes).
 PDF statistics:
- 122 PDF objects out of 1000 (max. 8388607)
- 104 compressed objects within 2 object streams
- 14 named destinations out of 1000 (max. 500000)
+ 126 PDF objects out of 1000 (max. 8388607)
+ 107 compressed objects within 2 object streams
+ 15 named destinations out of 1000 (max. 500000)
  19045 words of extra memory for PDF output out of 20736 (max. 10000000)
 

@@ -61,9 +61,10 @@
 \section{Situation actuelle}
 \cventry{}{Post-doctorant}{}{NTT Secure Platform Laboratories, Tokyo}{}{Cryptologie post-quantique, réseaux euclidiens, théorie algébrique des nombres} 
 \section{Intérêts scientifiques}
-\cvlistdoubleitem{Géométrie algébrique}{Théorie des nombres}
+
 \cvlistdoubleitem{Cryptologie}{Sécurité informatique}
 \cvlistdoubleitem{Calcul formel}{Algorithmique}
+\cvlistdoubleitem{Géométrie algébrique}{Théorie des nombres}
 
 \section{Formation}
 \cventry{2013\,--\,2016}{Doctorat d'informatique}{}{Université Pierre et Marie Curie, Paris 6}{}{Thèse: {\em Le problème de décomposition de points dans les variétés Jacobiennes''}\\Directeur: J-C.~Faugère, Encadrante: V.~Vitse.} 
