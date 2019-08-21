@@ -70,7 +70,7 @@
 \section{Education}
 \cventry{2013\,--\,2016}{Ph.~D. in computer science}{}{Université Pierre et Marie Curie, Sorbonne, Paris}{}{Thesis: {\em ``Le problème de décomposition de points dans les variétés Jacobiennes''}\\Advisor: J-C.~Faugère, Supervisor: V.~Vitse} 
 \cventry{September 2012}{Master degree in fundamental mathematics}{}{\'{E}cole Normale Supérieure de Lyon}{}{Memoir: {\em ``\'Eléments de K-théorie des C*-algèbres''}. }
-\cventry{July 2011}{``Agrégation'' in mathematics}{}{prepared at Université Claude Bernard, Lyon 1}{}{Highly selective nation-wide qualification on mathematics at post-graduate level}%Ranked: 128/288}  
+\cventry{July 2011}{``Agrégation'' in mathematics}{}{prepared at Université Claude Bernard, Lyon 1}{}{Highly selective nation-wide qualification in mathematics at post-graduate level}%Ranked: 128/288}  
 \cventry{September 2010}{Master degree in applied mathematics}{}{Université Claude Bernard, Lyon 1}{}{Memoir: {\em ``Introduction au problème du logarithme discret''}. }
 
 % \section{Thèse de doctorat}
@@ -81,15 +81,17 @@
 
 \medskip
 \section{Supervision of students}
-\cventry{April 2018, \\4 months}{\normalfont Thanh Huyen Nguyen, research internship at \'{E}cole Normale Sup\'{e}rieure de Lyon}{}{}{}{In collaboration with E.~Kirshanova and D.~Stehlé}
+\cventry{April 2018, \\4 months}{\normalfont Thanh Huyen Nguyen, research internship at ENS de Lyon}{}{}{}{In collaboration with E.~Kirshanova and D.~Stehlé}
 
 \medskip
 \section{Journal articles}
-\cventry{Submitted}{\normalfont On the smoothing parameter and last minimum of random orthogonal lattices}{with E.~Kirshanova, H.~T.~Nguyen and D.~Stehlé, Design, Codes and Cryptography (DCC)}{}{}{}
+\cventry{Submitted\\(Revisions)}{\normalfont On the smoothing parameter and last minimum of random orthogonal lattices}{with E.~Kirshanova, T.~H.~Nguyen and D.~Stehlé, Design, Codes and Cryptography (DCC)}{}{}{}
 \cventry{Published}{\normalfont The Point Decomposition Problem in the divisor class group of hyperelliptic curves: toward efficient computations in even characteristic}{with J-C.~Faugère, Design, Codes and Cryptography (DCC)}{}{}{}
 
 \medskip
 \section{Peer-reviewed conferences}
+
+\cventry{Accepted}{\normalfont One Bit is All It Takes: A Devastating Timing Attack on BLISS's Non-Constant Time Sign Flips}{with M. Tibouchi, International Workshop on Mathematical Cryptology, MATHCRYPT 2019}{}{}{}
 \cventry{Published}{\normalfont On the Ring-LWE and Polynomial-LWE problems}{with M. Rosca and D. Stehlé, International Conference on Cryptology and Information Security, EUROCRYPT 2018}{}{}{}
 \cventry{Published}{\normalfont Improved Sieving on Algebraic Curves}{with V. Vitse, International Conference on Cryptology and Information Security in Latin America, LATINCRYPT 2015}{}{}{}
 
@@ -118,6 +120,8 @@
 
 \medskip
 \section{Professional and scientific experiences}
+
+\cventry{2017 -- 2019}{Post-doctoral researcher}{ENS de Lyon}{France}{Supervisor: D.~Stehlé}{Topics: post-quantum cryptology, lattices, algebraic number theory}
 \cventry{2012 -- 2013}{Maths teacher}{Parc Chabrières Highschool}{Oullins, France}{}{}
 \cventry{May 2012,\\ 4 months}{Research internship}{Camille Jordan Institute}{Lyon, France}{}{Topic: K-theory for $C^*$-algebras and non-commutative index theory. Supervisor: D.~Perrot}
 \cventry{May 2010,\\ 4 months}{Research internship}{Camille Jordan Institute}{Lyon, France}{}{Topic: Introduction to the discrete logarithm problem. Supervisor: C.~Delaunay}
@@ -159,7 +163,7 @@
 \cvitem{Environments}{Windows, Linux}
 \cvitem{Other}{Basic skills in reverse-engineering, web-security fault exploitations and injections.}
 
-
+\newpage
 \section{Languages}
 \cvlistdoubleitem{French: native}{Japanese: school level (B1)}
 \cvlistdoubleitem{English: full professionnal proficiency}{Russian: school level (A2)}
