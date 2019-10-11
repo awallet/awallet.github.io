@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.12.18)  21 AUG 2019 04:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.12.18)  11 OCT 2019 15:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1333,7 +1333,7 @@ Package rerunfilecheck Info: File `CV-fr.out' has not changed.
 Here is how much of TeX's memory you used:
  29750 strings out of 492982
  553379 string characters out of 6134895
- 626432 words of memory out of 5000000
+ 626433 words of memory out of 5000000
  32884 multiletter control sequences out of 15000+600000
  587694 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1348,7 +1348,7 @@ xmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr
 /usr/share/texmf/fonts/type1/public/lm/lmro17.pfb></usr/share/texmf/fonts/type1
 /public/lm/lmro9.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/public/marvosym/marvosym.pfb>
-Output written on CV-fr.pdf (3 pages, 280528 bytes).
+Output written on CV-fr.pdf (3 pages, 280525 bytes).
 PDF statistics:
  126 PDF objects out of 1000 (max. 8388607)
  107 compressed objects within 2 object streams
