@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.12.18)  11 OCT 2019 15:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.12.18)  4 JAN 2020 16:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1319,6 +1319,17 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 61.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 61.
+./CV-fr.tex:91: Undefined control sequence.
+<argument> ...r une version étendue dans le {\it 
+                                                  Journal of Cryptology}.
+l.91 ...due dans le {\it Journal of Cryptology}.}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
@@ -1331,27 +1342,28 @@ Package rerunfilecheck Info: File `CV-fr.out' has not changed.
 (rerunfilecheck)             Checksum: CBBB0747ED1BD1915F82293BC955ABF1;1688.
  ) 
 Here is how much of TeX's memory you used:
- 29750 strings out of 492982
- 553379 string characters out of 6134895
+ 29754 strings out of 492982
+ 553424 string characters out of 6134895
  626433 words of memory out of 5000000
- 32884 multiletter control sequences out of 15000+600000
- 587694 words of font info for 74 fonts, out of 8000000 for 9000
+ 32887 multiletter control sequences out of 15000+600000
+ 590690 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  69i,12n,58p,10364b,335s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/en
 c/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/s
 hare/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/publi
-c/lm/lmmi9.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/te
-xmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr
-17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts
-/type1/public/lm/lmri9.pfb></usr/share/texmf/fonts/type1/public/lm/lmro10.pfb><
-/usr/share/texmf/fonts/type1/public/lm/lmro17.pfb></usr/share/texmf/fonts/type1
-/public/lm/lmro9.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/marvosym/marvosym.pfb>
-Output written on CV-fr.pdf (3 pages, 280525 bytes).
+c/lm/lmbx9.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi9.pfb></usr/share/te
+xmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr
+12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/font
+s/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri9.pfb></
+usr/share/texmf/fonts/type1/public/lm/lmro10.pfb></usr/share/texmf/fonts/type1/
+public/lm/lmro17.pfb></usr/share/texmf/fonts/type1/public/lm/lmro9.pfb></usr/sh
+are/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/marvosym/marvosym.pfb>
+Output written on CV-fr.pdf (3 pages, 306267 bytes).
 PDF statistics:
- 126 PDF objects out of 1000 (max. 8388607)
- 107 compressed objects within 2 object streams
+ 130 PDF objects out of 1000 (max. 8388607)
+ 110 compressed objects within 2 object streams
  15 named destinations out of 1000 (max. 500000)
- 19045 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 19557 words of extra memory for PDF output out of 20736 (max. 10000000)
 
