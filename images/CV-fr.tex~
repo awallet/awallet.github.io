@@ -83,21 +83,21 @@
 
 \medskip
 \section{Articles de journaux}
-\cventry{Soumis\\(Révisions)}{\normalfont On the smoothing parameter and last minimum of random orthogonal lattices}{avec E.~Kirshanova, T.~H.~Nguyen, et D.~Stehlé, Design, Codes and Cryptography (DCC)}{}{}{}
+\cventry{\`A paraître}{\normalfont On the smoothing parameter and last minimum of random orthogonal lattices}{avec E.~Kirshanova, T.~H.~Nguyen, et D.~Stehlé, Design, Codes and Cryptography (DCC)}{}{}{}
 \cventry{Publié}{\normalfont The Point Decomposition Problem in the divisor class group of hyperelliptic curves: toward efficient computations in even characteristic}{avec J-C.~Faugère, Design, Codes and Cryptography (DCC)}{}{}{}
 
 \medskip
 \section{Articles de conférences}
-\cventry{Accepté}{\normalfont An LLL algorithm for module lattices}{avec A. Pellet-\,-Mary, C. Lee et D. Stehlé, International Conference on Cryptology and Information Security, ASIACRYPT 2019}{}{}{}
+\cventry{\`A paraître}{\normalfont Uprooting the FALCON tree? How to recover secret keys from Gram-Schmidt norms}{avec P. A.~Fouque, P.~Kirchner, M.~Tibouchi ett Y.~Yu, EUROCRYPT 2020}{}{}{}
+\cventry{Publié}{\normalfont An LLL algorithm for module lattices}{avec A. Pellet-\,-Mary, C. Lee et D. Stehlé, ASIACRYPT 2019}{}{}{}
 \cventry{Publié}{\normalfont One Bit is All It Takes: A Devastating Timing Attack on BLISS's Non-Constant Time Sign Flips}{avec M. Tibouchi, International Workshop on Mathematical Cryptology, MATHCRYPT 2019}{}{}{}
-\cventry{Publié}{\normalfont On the Ring-LWE and Polynomial-LWE problems}{avec M. Ro\c{s}ca et D. Stehlé, International Conference on Cryptology and Information Security, EUROCRYPT 2018}{}{}{}
-\cventry{Publié}{\normalfont Improved Sieving on Algebraic Curves}{avec V. Vitse, International Conference on Cryptology and Information Security in Latin America, LATINCRYPT 2015}{}{}{}
+\cventry{Publié}{\normalfont On the Ring-LWE and Polynomial-LWE problems}{avec M. Ro\c{s}ca et D. Stehlé, EUROCRYPT 2018}{}{}{}
+\cventry{Publié}{\normalfont Improved Sieving on Algebraic Curves}{avec V. Vitse, LATINCRYPT 2015}{}{}{}
 
 %\cvitem{supervisors}{Supervisors}
 %\cvitem{description}{Short thesis abstract}
 % Vitse, Vanessa, and Alexandre Wallet. "Improved Sieving on Algebraic Curves." . Springer International Publishing, 2015.
 
-\newpage
 \section{Sélection de présentations}
 
 \textbf{Side-channel sur BLISS}\medskip
