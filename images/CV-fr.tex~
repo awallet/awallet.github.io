@@ -88,9 +88,9 @@
 
 \medskip
 \section{Articles de conférences}
-\cventry{\`A paraître}{\normalfont Uprooting the FALCON tree? How to recover secret keys from Gram-Schmidt norms}{avec P. A.~Fouque, P.~Kirchner, M.~Tibouchi ett Y.~Yu, EUROCRYPT 2020}{}{}{}
-\cventry{Publié}{\normalfont An LLL algorithm for module lattices}{avec A. Pellet-\,-Mary, C. Lee et D. Stehlé, ASIACRYPT 2019}{}{}{}
-\cventry{Publié}{\normalfont One Bit is All It Takes: A Devastating Timing Attack on BLISS's Non-Constant Time Sign Flips}{avec M. Tibouchi, International Workshop on Mathematical Cryptology, MATHCRYPT 2019}{}{}{}
+\cventry{\`A paraître}{\normalfont Uprooting the FALCON tree? How to recover secret keys from Gram-Schmidt norms}{avec P.~A.~Fouque, P.~Kirchner, M.~Tibouchi ett Y.~Yu, EUROCRYPT 2020}{}{}{}
+\cventry{Publié}{\normalfont An LLL algorithm for module lattices}{avec C.~Lee, A.~Pellet-\,-Mary, et D.~Stehlé, ASIACRYPT 2019}{}{}{}
+\cventry{Publié}{\normalfont One Bit is All It Takes: A Devastating Timing Attack on BLISS's Non-Constant Time Sign Flips}{avec M. Tibouchi, MATHCRYPT 2019}{}{}{}
 \cventry{Publié}{\normalfont On the Ring-LWE and Polynomial-LWE problems}{avec M. Ro\c{s}ca et D. Stehlé, EUROCRYPT 2018}{}{}{}
 \cventry{Publié}{\normalfont Improved Sieving on Algebraic Curves}{avec V. Vitse, LATINCRYPT 2015}{}{}{}
 
