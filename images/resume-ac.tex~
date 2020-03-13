@@ -132,57 +132,51 @@ L'usage est de ranger les auteurs par ordre alphabétique.
 
 \subsection*{Conférences internationales avec comité de sélection}
 
-\begin{itemize}[label=$\bullet$]
-    
-\item {\em Uprooting the FALCON tree? How to recover secret keys from Gram-Schmidt norms}, P.-A.~Fouque, P.~Kirchner, M.~Tibouchi, A.~Wallet, Y.~Yang , EUROCRYPT 2020 \textbf{(à paraître)}.\\
-  \url{https://eprint.iacr.org/2019/1180.pdf}
-\item  {\em An LLL algorithm for module lattices}, C.~Lee, A.~Pellet-\,-Mary, D.~Stehlé, A.~Wallet, ASIACRYPT 2019.\\
-  Parmi les trois articles retenus pour une version étendue dans le {\em Journal of Cryptology}.\\
-  \url{https://eprint.iacr.org/2019/1035.pdf}
+\begin{itemize}
+  
+\item[2020:] \href{https://eprint.iacr.org/2019/1456}{\em MODFALCON: compact signatures based on module-NTRU lattices}, C.~Chuengsatiansup, T.~Prest, D.~Stehlé, A.~Wallet, K.~Xagawa, AsiaCCS 2020 \textbf{(à paraître)}.
+  
+\item[2020:] \href{https://eprint.iacr.org/2019/1180.pdf}{\em Key Recovery from Gram-Schmidt Norm Leakage in Hash-and-Sign Signatures over NTRU Lattices},\\ P.-A.~Fouque, P.~Kirchner, M.~Tibouchi, A.~Wallet, Y.~Yu , EUROCRYPT 2020 \textbf{(à paraître)}.
+%  \url{https://eprint.iacr.org/2019/1180.pdf}
+\item[2019:]  \href{https://eprint.iacr.org/2019/1035.pdf}{\em An LLL algorithm for module lattices}, C.~Lee, A.~Pellet-\hspace{.1pt}-Mary, D.~Stehlé, A.~Wallet, ASIACRYPT 2019.
+  Parmi les trois articles retenus pour une version étendue dans le {\em Journal of Cryptology}.
+ %\url{https://eprint.iacr.org/2019/1035.pdf}
 
-\item {\em On the Ring-LWE and Polynomial-LWE problems}, M.~Ro\cs ca, D.~Stehlé, A.~Wallet, EUROCRYPT 2018.\\
-  \url{https://eprint.iacr.org/2018/170.pdf}
-\item {\em Improved Sieving over Algebraic Curves}, V.~Vitse, A.~Wallet, LATINCRYPT 2015.\\
-  \url{http://hal.upmc.fr/hal-01203086/document}
+\item[2018:] \href{https://eprint.iacr.org/2018/170.pdf}{\em On the Ring-LWE and Polynomial-LWE problems}, M.~Ro\cs ca, D.~Stehlé, A.~Wallet, EUROCRYPT 2018.
+  %\url{https://eprint.iacr.org/2018/170.pdf}
+\item[2015:] \href{http://hal.upmc.fr/hal-01203086/document}{\em Improved Sieving over Algebraic Curves}, V.~Vitse, A.~Wallet, LATINCRYPT 2015.
+  %\url{http://hal.upmc.fr/hal-01203086/document}
 \end{itemize}
 
 
 \subsection*{Journaux internationaux}
 
-\begin{itemize}[label=$\bullet$]
+\begin{itemize}
+    \item[2019:]   \href{https://eprint.iacr.org/2020/057.pdf}{\em On the smoothing parameter and last minimum of random orthgonal lattices}, E.~Kirshanova, H.~T.~Nguyen, D.~Stehlé, A.~Wallet.
+    Designs, Codes and Cryptography (DCC).
 
-  \item  {\em The Point Decomposition Problem in the divisor class group of hyperelliptic curves: toward efficient computations in even characteristic}, J-C.~Faugère, A.~Wallet.\\
-  Design, Codes and Cryptography (DCC), 2017.\\
-  \url{https://awallet.github.io/images/HyperSum.pdf}
-
-\item \textbf{A paraître:}
-  \begin{itemize}
-  \item   {\em On the smoothing parameter and last minimum of random orthgonal lattices}, E.~Kirshanova, H.~T.~Nguyen, D.~Stehlé, A.~Wallet.\\
-    Design, Codes and Cryptography (DCC), 2020.\\
-    Prépublication: \url{https://awallet.github.io/images/smooth.pdf}
-    % \item {\em One Bit is All It Takes: a devastating attack against BLISS' non constant-time sign flips},  M.~Tibouchi, A.~Wallet.\\
-    %   Journal of Mathematical Cryptology, version étendue de l'article publié à MATHCRYPT 2019.
-      
-    % \item {\em An LLL algorithm for module lattice}, C.~Lee, A.~Pellet-\,-Mary, D.~Stehlé, A.~Wallet.\\
-    %   Journal of Cryptology, version étendue de l'article publié à ASIACRYPT 2019. 
-      
+  \item[2017:]  \href{https://awallet.github.io/images/HyperSum.pdf}{\em The Point Decomposition Problem in the divisor class group of hyperelliptic curves: toward efficient computations in even characteristic}, J-C.~Faugère, A.~Wallet. Designs, Codes and Cryptography (DCC).
+  %\url{https://awallet.github.io/images/HyperSum.pdf}
+\end{itemize}
+  
+\textbf{A paraître:}
+  \begin{itemize}[label=$\bullet$]
+  \item   \href{https://eprint.iacr.org/2019/898.pdf}{\em One Bit is All It Takes: a devastating timing attack agains BLISS non constant-time sign flips}, M.~Tibouchi, A.~Wallet. Journal of Mathematical Cryptology.
     \end{itemize}
-  \end{itemize}
   
 
 \subsection*{Atelier international, avec comité de sélection}
 
-\begin{itemize}[label=$\bullet$]
-\item {\em One Bit is All It Takes: a devastating attack against BLISS' non constant-time sign flips}, M.~Tibouchi, A.~Wallet, MATHCRYPT 2019, affilié à la conférence CRYPTO 2019.\\
-  \url{https://eprint.iacr.org/2019/898.pdf}
+\begin{itemize}
+\item[2019:] \href{https://eprint.iacr.org/2019/898.pdf}{\em One Bit is All It Takes: a devastating attack against BLISS non constant-time sign flips}, M.~Tibouchi, A.~Wallet, MATHCRYPT 2019, affilié à la conférence CRYPTO 2019.
+%  \url{https://eprint.iacr.org/2019/898.pdf}
 \end{itemize}
 
 
-\subsection*{Prépublication ou archives}
+\subsection*{Prépublications, rapports, ou  archives}
 
 \begin{itemize}[label=$\bullet$]
-\item {\em \textsc{Modfalcon}: compact signatures based on module-NTRU lattices}, C.~Chuengsatiansup, T.~Prest, D.~Stehlé, A.~Wallet, K.~Xagawa, archive ePrint IACR.\\
-  \url{https://eprint.iacr.org/2019/1456.pdf}~\textbf{(en cours de soumission)}
+\item[2020:] \href{https://eprint.iacr.org/2020/230}{\em Lattice analysis of the MiNTRU problem}, C.~Lee, A.~Wallet, archive ePrint IACR.
 \end{itemize}
 
 
@@ -252,7 +246,7 @@ J'ai aussi donné \textbf{un court exposé} à l'édition 2017 des Journées Nat
 \subsection*{Séminaires (sélections)}
 
 Nos résultats sur les variantes algébriques de Learning With Errors à EUROCRYPT ont suscité un vif intérêt de la communauté.
-J'ai eu l'occasion de le présenter dans \textbf{un exposé long} à de nombreux séminaires en France et à l'étranger.
+J'ai eu l'occasion de le présenter dans \textbf{des exposés longs} à de nombreux séminaires en France et à l'étranger.
 La liste ci-dessous recense certains de ces exposés. D'autres exposés longs plus anciens concernent mes travaux de thèse.\\
 
 \noindent\textbf{Internationaux:}\\
@@ -289,9 +283,9 @@ La liste ci-dessous recense certains de ces exposés. D'autres exposés longs pl
 \subsubsection*{Activités administratives et d'organisation}
 
 \begin{itemize}[label = $\bullet$]
-  \item Automne 2018: pendant mon post-doctorat à l'ENS de Lyon, j'ai participé à l'organisation de l'édition 2018 des Journées C2.
-\item Juillet 2017: j'ai fait partie du comité d'harmonisation pour l'obtention du label HRS4R (Human Ressource Strategies For Researchers) à l'ENS de Lyon, en tant que représentant des doctorants et post-doctorants. %J'ai participé aux échanges des réunions en partageant mon expérience.
-\item Septembre 2015: j'ai été membre du comité d'organisation de la conférence internationale Cryptographic Hardware and Embedded Systems (CHES), à Saint-Malo. %Mon travail s'est partagé entre l'accueil et la réception des participants, la gestion des problèmes ``au fil de l'eau'', et l'organisation des transitions entre les exposés et les séances.
+  \item Automne 2018: pendant mon post-doctorat à l'ENS de Lyon, j'ai participé à l'organisation de l'édition 2018 des \href{https://jc2-2018.sciencesconf.org/}{Journées C2}.
+\item Juillet 2017: j'ai fait partie du comité d'harmonisation pour l'obtention du label \href{https://euraxess.ec.europa.eu/jobs/hrs4r}{HRS4R} (Human Ressource Strategies For Researchers) à l'ENS de Lyon, en tant que représentant des doctorants et post-doctorants. %J'ai participé aux échanges des réunions en partageant mon expérience.
+\item Septembre 2015: j'ai été membre du comité d'organisation de la conférence internationale Cryptographic Hardware and Embedded Systems (\href{https://ches.iacr.org/2015/}{CHES}), à Saint-Malo. %Mon travail s'est partagé entre l'accueil et la réception des participants, la gestion des problèmes ``au fil de l'eau'', et l'organisation des transitions entre les exposés et les séances.
 \end{itemize}
 
 \subsubsection*{Comités de relectures}
@@ -319,7 +313,7 @@ J'ai participé plus sporadiquement au processus pour d'autres conférences du d
 % \begin{itemize}[label=$\bullet$]
 % \item
   \paragraph{Encadrement d'un stage de recherche:} {\em Huyen Nguyen}, étudiante du M2 informatique de l'ENS de Lyon, promotion 2018. Co-encadrée avec Elena Kirshanova (ENS Lyon) et Damien Stehlé (ENS Lyon):\\[5pt]
-    Sujet du stage : Etude des quantités fondamentales (minima successifs, paramètre de lissage) de réseaux orthogonaux à des matrices dont les entrées ont été tirées selon une distribution Gaussienne discrète. Cet encadrement a conduit à l'écriture d'un article en voie de publication au journal {\em Design, Codes and Cryptography}. Huyen poursuit actuellement son travail en thèse.
+    Sujet du stage : Etude des quantités fondamentales (minima successifs, paramètre de lissage) de réseaux orthogonaux à des matrices dont les entrées ont été tirées selon une distribution Gaussienne discrète. Cet encadrement a conduit à l'écriture d'un article en publication au journal {\em Designs, Codes and Cryptography}. Huyen poursuit actuellement son travail en thèse.
 
     \paragraph{Encadrement scientifique non officiel:}
 
