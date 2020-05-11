@@ -68,7 +68,7 @@
 \cvlistdoubleitem{Algebraic geometry}{Number theory}
 
 \section{Education}
-\cventry{2013\,--\,2016}{Ph.~D. in computer science}{}{Université Pierre et Marie Curie, Sorbonne, Paris}{}{Thesis: {\em ``Le problème de décomposition de points dans les variétés Jacobiennes''}\\Advisor: J-C.~Faugère, Supervisor: V.~Vitse} 
+\cventry{2013\,--\,2016}{Ph.~D. in computer science}{}{Sorbonne, Université Pierre et Marie Curie (Paris 6)}{}{Thesis: {\em ``Le problème de décomposition de points dans les variétés Jacobiennes''}\\Advisor: J-C.~Faugère, Supervisor: V.~Vitse} 
 \cventry{September 2012}{Master degree in fundamental mathematics}{}{\'{E}cole Normale Supérieure de Lyon}{}{Memoir: {\em ``\'Eléments de K-théorie des C*-algèbres''}. }
 \cventry{July 2011}{``Agrégation'' in mathematics}{}{prepared at Université Claude Bernard, Lyon 1}{}{Highly selective nation-wide qualification in mathematics at post-graduate level}%Ranked: 128/288}  
 \cventry{September 2010}{Master degree in applied mathematics}{}{Université Claude Bernard, Lyon 1}{}{Memoir: {\em ``Introduction au problème du logarithme discret''}. }
@@ -80,22 +80,21 @@
 % \cventry{Résumé}{\normalfont Le cadre général est l'algorithmique du calcul de logarithmes discrets dans les variétés abéliennes. Des candidates naturelles sont les variétés Jacobiennes des courbes algébriques, particulièrement les courbes elliptiques. J'ai généralisé et formalisé certains algorithmes prometteurs pour les courbes hyperelliptiques, et aussi amélioré des algorithmes connus dans divers contextes. Certaines améliorations permettent d'envisager des calculs se comparant aux records actuels du domaine, et ont été accompagnées d'implémentations dans des langages de calcul formel}{}{}{}{}
 
 \medskip
-\section{Supervision of students}
-\cventry{April 2018, \\4 months}{\normalfont Thanh Huyen Nguyen, research internship at ENS de Lyon}{}{}{}{In collaboration with E.~Kirshanova and D.~Stehlé}
-
-\medskip
 \section{Journal articles}
-\cventry{To appear}{\normalfont On the smoothing parameter and last minimum of random orthogonal lattices}{with E.~Kirshanova, T.~H.~Nguyen and D.~Stehlé, Design, Codes and Cryptography (DCC)}{}{}{}
-\cventry{Published}{\normalfont The Point Decomposition Problem in the divisor class group of hyperelliptic curves: toward efficient computations in even characteristic}{with J-C.~Faugère, Design, Codes and Cryptography (DCC)}{}{}{}
+
+\cventry{To appear}{\normalfont One Bit is All It Takes: A Devastating Timing Attack on BLISS's Non-Constant Time Sign Flips}{with M. Tibouchi, Journal of Mathematical Cryptology}{}{}{}
+\cventry{2019}{\normalfont On the smoothing parameter and last minimum of random orthogonal lattices}{with E.~Kirshanova, T.~H.~Nguyen and D.~Stehlé, Design, Codes and Cryptography (DCC)}{}{}{}
+\cventry{2017}{\normalfont The Point Decomposition Problem in the divisor class group of hyperelliptic curves: toward efficient computations in even characteristic}{with J-C.~Faugère, Design, Codes and Cryptography (DCC)}{}{}{}
 
 \medskip
 \section{Peer-reviewed conferences}
 
-\cventry{To appear}{\normalfont Uprooting the FALCON tree? How to recover secret keys from Gram-Schmidt norms}{with P. A.~Fouque, P.~Kirchner, M.~Tibouchi and Y.~Yu,  EUROCRYPT 2020}{}{}{}
-\cventry{Published}{\normalfont An LLL algorithm for module lattices}{with C. Lee, A. Pellet-\,-Mary, and D. Stehlé,  ASIACRYPT 2019}{}{}{}
-\cventry{Published}{\normalfont One Bit is All It Takes: A Devastating Timing Attack on BLISS's Non-Constant Time Sign Flips}{with M. Tibouchi, MATHCRYPT 2019}{}{}{}
-\cventry{Published}{\normalfont On the Ring-LWE and Polynomial-LWE problems}{with M. Rosca and D. Stehlé, EUROCRYPT 2018}{}{}{}
-\cventry{Published}{\normalfont Improved Sieving on Algebraic Curves}{with V. Vitse, LATINCRYPT 2015}{}{}{}
+\cventry{2020}{\normalfont MODFALCON: compact signatures based on module-NTRU lattices}{with C.~Chuengsatiansup, T.~Prest, D.~Stehlé and K.~Xagawa, AsiaCCS 2020}{}{}{}
+\cventry{2020}{\normalfont Uprooting the FALCON tree? How to recover secret keys from Gram-Schmidt norms}{with P. A.~Fouque, P.~Kirchner, M.~Tibouchi and Y.~Yu,  EUROCRYPT 2020}{}{}{}
+\cventry{2019}{\normalfont An LLL algorithm for module lattices}{with C. Lee, A. Pellet-\,-Mary, and D. Stehlé,  ASIACRYPT 2019}{}{}{}
+\cventry{2019}{\normalfont One Bit is All It Takes: A Devastating Timing Attack on BLISS's Non-Constant Time Sign Flips}{with M. Tibouchi, MATHCRYPT 2019}{}{}{}
+\cventry{2018}{\normalfont On the Ring-LWE and Polynomial-LWE problems}{with M. Rosca and D. Stehlé, EUROCRYPT 2018}{}{}{}
+\cventry{2015}{\normalfont Improved Sieving on Algebraic Curves}{with V. Vitse, LATINCRYPT 2015}{}{}{}
 
 %\cvitem{supervisors}{Supervisors}
 %\cvitem{description}{Short thesis abstract}
@@ -133,36 +132,27 @@
 \cventry{May 2012,\\ 4 months}{Research internship}{Camille Jordan Institute}{Lyon, France}{}{Topic: K-theory for $C^*$-algebras and non-commutative index theory. Supervisor: D.~Perrot}
 \cventry{May 2010,\\ 4 months}{Research internship}{Camille Jordan Institute}{Lyon, France}{}{Topic: Introduction to the discrete logarithm problem. Supervisor: C.~Delaunay}
 
-\medskip
-\section{Teachings}
-\cventry{2018\\2nd semester}{Teacher assistant in Computer Science}{}{\'{E}cole Normale Supérieure de Lyon, 69}{}{
-  \begin{itemize}
-  \item Tutorials in Computer Algebra in master degree
-  \item Evaluation of undergraduate interns
-  \end{itemize}
-}
-\cventry{2013\,--\,2016}{Teacher assistant in bachelor of computer science}{}{Université Pierre et Marie Curie, Sorbonne, Paris}{}{
-  \begin{itemize}
-  \item 3rd year: Introduction to Cryptology  
-  \item 2nd year: Scientific computations , Types and Data structures in C,\\ Machine Architecture and Representation , Development and compilation environment , Discrete structures 
-  \item 1st year: Introduction to programming with Python 
-  \end{itemize}
-}
-\cventry{Other}{\normalfont Master SFPN of Université Pierre et Marie Curie, LIP6, specialization in Computer security and Cryptology}{}{}{}{
-  \begin{itemize}
-  \item Elaboration of exams
-  \item Realization of a Side-Channel Attack (SCA) on a faulty AES implementation
-  \end{itemize}
-}
-\cventry{2012 -- 2013}{Maths Teacher}{Parc Chabrières Highschool}{Oullins, 69}{}{
-    \begin{itemize}
-    \item Full responsibility of two classes for an entire year: lectures and exercises, homeworks, exams.
-    \item Trimestrial meetings with the team of teachers and the hierarchy.
-    \item Relationships with parents, orientation of students.
-    \end{itemize}
-  }
 
 \medskip
+\section{Supervision of students}
+\cventry{April 2018, \\4 months}{\normalfont Thanh Huyen Nguyen, research internship at ENS de Lyon}{}{}{}{In collaboration with E.~Kirshanova and D.~Stehlé}
+
+
+\medskip
+\section{Teachings}
+\cventry{2018\\2nd semester}{Teacher assistant in Computer Science}{}{\'{E}cole Normale Supérieure de Lyon}{}{
+  Tutorials in master's degree (with exams), evaluation of undergraduate interns
+}
+\cventry{2013\,--\,2016}{Teacher assistant in bachelor of computer science}{}{Sorbonne UPMC Paris 6}{}{
+  Tutorials from first to third year, elaboration and correction of exams
+}
+\cventry{Other}{\normalfont Master SFPN at UPMC Paris 6, specialization in Computer security and Cryptology}{}{}{}{
+  Elaboration of exams, tutorial on side-channel attacks against AES
+}
+\cventry{2012 -- 2013}{Maths Teacher}{Parc Chabrières Highschool}{Oullins}{}{
+  Full responsibility of two classes for a year
+}
+
 \section{Skills}
 %\cvitem{Research related}{Abelian varieties, algebraic curves, Algebraic and Algorithmic Number Theory, Polynomial Systems, Cryptology, Computer Algebra.}  
 \cvitem{Programming}{Basic skills in C, C++, Assembler (8051, x86, MIPS), Python, Shell}
@@ -170,7 +160,6 @@
 \cvitem{Environments}{Windows, Linux}
 \cvitem{Other}{Basic skills in reverse-engineering, web-security fault exploitations and injections.}
 
-\newpage
 \section{Languages}
 \cvlistdoubleitem{French: native}{Japanese: school level (B1)}
 \cvlistdoubleitem{English: full professionnal proficiency}{Russian: school level (A2)}
