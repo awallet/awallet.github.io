@@ -25,7 +25,7 @@
 
 % personal data
 \name{Alexandre}{Wallet}
-\title{Docteur en informatique}                               % optional, remove / comment the line if not wanted
+\title{Docteur en informatique, agrégé de mathématiques}                               % optional, remove / comment the line if not wanted
 
 % \address{}{69100 Villeurbanne}{}% optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
 
@@ -59,7 +59,7 @@
 \makecvtitle
 
 \section{Situation actuelle}
-\cventry{}{Post-doctorant}{}{NTT Secure Platform Laboratories, Tokyo}{}{Cryptographie post-quantique, réseaux euclidiens, théorie algébrique des nombres} 
+\cventry{}{Chargé de recherche}{}{Inria, Centre de Rennes Bretagne-Atlantique}{}{Cryptographie post-quantique, théorie algorithmique des nombres, réseaux euclidiens} 
 \section{Intérêts scientifiques}
 
 \cvlistdoubleitem{Cryptologie}{Sécurité informatique}
@@ -99,6 +99,10 @@
 \medskip
 \section{Sélection de présentations}
 
+\textbf{Exposé invité:} ``Mod-NTRU trapdoors and applications''\medskip
+
+\cventry{29 avril 2020}{\normalfont Atelier ``Lattices: From Theory to Practice'', Simons Institute for the Theory of Computing, Berkeley, USA}{}{}{}{}\medskip
+
 \textbf{Side-channel sur BLISS}\medskip
 
 \cventry{18 Août 2019}{\normalfont MATHCRYPT, Santa Barbara, USA}{}{}{}{}\medskip
@@ -122,6 +126,7 @@
 
 \section{Expériences professionnelles et scientifiques}
 
+\cventry{2019 -- 2020}{Post-doctorant}{NTT Secure Platform Laboratories, Tokyo}{}{supervisé par M.~Tibouchi}{Thèmes: cryptographie post-quantique appliquée, théorie algorithmique des nombres, réseaux euclidiens}
 \cventry{2017 -- 2019}{Post-doctorant}{ENS de Lyon}{}{supervisé par D.~Stehlé}{Thèmes: réseaux euclidiens, cryptographie post-quantique, théorie algébrique des nombres}
 \cventry{2012 -- 2013}{Enseignant de mathématiques}{Lycée Parc Chabrières}{Oullins}{}{}
 \cventry{Mai 2012, 4 mois}{Stage de recherche}{Institut Camille Jordan}{Lyon}{encadré par D.~Perrot}{Sujet: K-théorie des $C^*$-algèbres, Géométrie non commutative.}
