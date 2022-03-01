@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.11.12)  1 SEP 2021 10:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.11.12)  24 NOV 2021 14:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -847,18 +847,18 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 {/usr/share/texlive/texmf-dist/fonts/map/pdftex/updmap/pdftex.map}] [2]
 [3]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 231.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 231.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 232.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 232.
  (./CV-fr.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 231.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 231.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 232.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 232.
 Package rerunfilecheck Info: File `CV-fr.out' has not changed.
-(rerunfilecheck)             Checksum: B44BED3C8A5F2621EAD4BF358587A8C5;1678.
+(rerunfilecheck)             Checksum: 1E75ED1FFF6CE81D1DD9B2AA662EEE7C;1622.
  ) 
 Here is how much of TeX's memory you used:
  22192 strings out of 482485
  404021 string characters out of 5949860
- 683749 words of memory out of 5000000
+ 682749 words of memory out of 5000000
  37375 multiletter control sequences out of 15000+600000
  583791 words of font info for 75 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
@@ -875,7 +875,7 @@ ic/lm/lmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri9.pfb><
 ive/texmf-dist/fonts/type1/public/lm/lmro9.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/public/lm/lmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
 c/marvosym/marvosym.pfb>
-Output written on CV-fr.pdf (3 pages, 255352 bytes).
+Output written on CV-fr.pdf (3 pages, 255767 bytes).
 PDF statistics:
  122 PDF objects out of 1000 (max. 8388607)
  104 compressed objects within 2 object streams

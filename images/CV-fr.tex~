@@ -25,14 +25,14 @@
 
 % personal data
 \name{Alexandre}{Wallet}
-\title{Docteur en informatique, agrégé de mathématiques}                               % optional, remove / comment the line if not wanted
+%\title{Chargé de recherche Inria}                               % optional, remove / comment the line if not wanted
 
 % \address{}{69100 Villeurbanne}{}% optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
 
 \phone[mobile]{(+33) 637572324}                   % optional, remove / comment the line if not wanted; the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
 %\phone[fixed]{+2~(345)~678~901}
 %\phone[fax]{+3~(456)~789~012}
-\email{wallet.alexandre@gmail.com}                               % optional, remove / comment the line if not wanted
+\email{alexandre.wallet@inria.fr}                               % optional, remove / comment the line if not wanted
 \homepage{http://awallet.github.io}                         % optional, remove / comment the line if not wanted
 %\social[linkedin]{alexandre.wallet}                        % optional, remove / comment the line if not wanted
 %\social[twitter]{jdoe}                             % optional, remove / comment the line if not wanted
@@ -59,7 +59,7 @@
 \makecvtitle
 
 \section{Situation actuelle}
-\cventry{}{Chargé de recherche}{}{Inria, Centre de Rennes Bretagne-Atlantique}{}{Cryptographie post-quantique, théorie algorithmique des nombres, réseaux euclidiens} 
+\cventry{}{Chargé de recherche}{}{Inria, Centre de Rennes Bretagne-Atlantique}{}{Cryptographie post-quantique appliquée, théorie algorithmique des nombres, réseaux euclidiens} 
 \section{Intérêts scientifiques}
 
 \cvlistdoubleitem{Cryptologie}{Sécurité informatique}
@@ -80,15 +80,15 @@
 
 \medskip
 \section{Articles de journaux}
-\cventry{\`A paraître}{\normalfont One Bit is All It Takes: A Devastating Timing Attack on BLISS Non-Constant Time Sign Flips}{avec Mehdi Tibouchi, Journal of Mathematical Cryptology}{}{}{}
+\cventry{2020}{\normalfont One Bit is All It Takes: A Devastating Timing Attack on BLISS Non-Constant Time Sign Flips}{avec Mehdi Tibouchi, Journal of Mathematical Cryptology}{}{}{}
 \cventry{2019}{\normalfont On the smoothing parameter and last minimum of random orthogonal lattices}{avec E.~Kirshanova, T.~H.~Nguyen, et D.~Stehlé, Design, Codes and Cryptography (DCC)}{}{}{}
 \cventry{2017}{\normalfont The Point Decomposition Problem in the divisor class group of hyperelliptic curves: toward efficient computations in even characteristic}{avec J-C.~Faugère, Design, Codes and Cryptography (DCC)}{}{}{}
 
 \medskip
 \section{Articles de conférences}
 \cventry{2020}{\normalfont MODFALCON: compact signatures based on module-NTRU lattices}{avec C.~Chuengsatiansup, T.~Prest, D.~Stehlé et K.~Xagawa, AsiaCCS 2020}{}{}{}
-\cventry{2020}{\normalfont Uprooting the FALCON tree? How to recover secret keys from Gram-Schmidt norms}{avec P.~A.~Fouque, P.~Kirchner, M.~Tibouchi ett Y.~Yu, EUROCRYPT 2020}{}{}{}
-\cventry{2019}{\normalfont An LLL algorithm for module lattices}{avec C.~Lee, A.~Pellet-\,-Mary, et D.~Stehlé, ASIACRYPT 2019}{}{}{}
+\cventry{2020}{\normalfont Uprooting the FALCON tree? How to recover secret keys from Gram-Schmidt norms}{avec P.~A.~Fouque, P.~Kirchner, M.~Tibouchi et Y.~Yu, EUROCRYPT 2020}{}{}{}
+\cventry{2019}{\normalfont An LLL algorithm for module lattices}{avec C.~Lee, A.~Pellet-Mary, et D.~Stehlé, ASIACRYPT 2019}{}{}{}
 \cventry{2019}{\normalfont One Bit is All It Takes: A Devastating Timing Attack on BLISS's Non-Constant Time Sign Flips}{avec M. Tibouchi, MATHCRYPT 2019}{}{}{}
 \cventry{2018}{\normalfont On the Ring-LWE and Polynomial-LWE problems}{avec M. Ro\c{s}ca et D. Stehlé, EUROCRYPT 2018 }{}{}{}
 \cventry{2015}{\normalfont Improved Sieving on Algebraic Curves}{avec V. Vitse, LATINCRYPT 2015}{}{}{}
@@ -96,7 +96,7 @@
 %\cvitem{supervisors}{Supervisors}
 %\cvitem{description}{Short thesis abstract}
 % Vitse, Vanessa, and Alexandre Wallet. "Improved Sieving on Algebraic Curves." . Springer International Publishing, 2015.
-\medskip
+\newpage
 \section{Sélection de présentations}
 
 \textbf{Exposé invité:} ``Mod-NTRU trapdoors and applications''\medskip
@@ -126,21 +126,21 @@
 
 \section{Expériences professionnelles et scientifiques}
 
-\cventry{02/2019 -- 11/2020}{Post-doctorant}{NTT Secure Platform Laboratories, Tokyo}{}{supervisé par M.~Tibouchi}{Thèmes: cryptographie post-quantique appliquée, théorie algorithmique des nombres, réseaux euclidiens}
-\cventry{01/2017 -- 12/2018}{Post-doctorant}{ENS de Lyon}{}{supervisé par D.~Stehlé}{Thèmes: réseaux euclidiens, cryptographie post-quantique, théorie algébrique des nombres}
+\cventry{02/2019 -- 11/2020}{Post-doctorant}{NTT Secure Platform Laboratories, Tokyo}{}{supervisé par M.~Tibouchi}{Cryptographie post-quantique appliquée, théorie algorithmique des nombres, réseaux euclidiens}
+\cventry{01/2017 -- 12/2018}{Post-doctorant}{ENS de Lyon}{}{supervisé par D.~Stehlé}{Réseaux euclidiens, cryptographie post-quantique, théorie algébrique des nombres}
 \cventry{09/2012 -- 08/2013}{Enseignant de mathématiques}{Lycée Parc Chabrières}{Oullins}{}{}
 \cventry{Mai 2012, 4 mois}{Stage de recherche}{Institut Camille Jordan}{Lyon}{encadré par D.~Perrot}{Sujet: K-théorie des $C^*$-algèbres, Géométrie non commutative.}
 \cventry{Mai 2010, 4 mois}{Stage de recherche}{Institut Camille Jordan}{Lyon}{encadré par C.~Delaunay}{Sujet: Problème du logarithme discret.}
 
 \medskip
-\section{Encadrements d'étudiants}
+\section{Encadrements de stages}
 \cventry{Avril 2018, 4 mois}{\normalfont Thanh Huyen Nguyen}{}{stage de recherche, ENS de Lyon}{}{Co-encadrée avec E.~Kirshanova et D.~Stehlé.}
 
 
 \medskip
 \section{Activités d'enseignement}
-
-\cventry{2e semestre 2018}{Enseignant en informatique}{}{\'Ecole Normale Supérieure de Lyon}{}{    Chargé de TD en M1, évaluateur des stages de L3 }
+\cventry{1er semestre 2021}{Enseignant en informatique}{}{\'Ecole Polytechnique}{}{Chargé de TD/TP de Java en 1ère année}
+\cventry{2e semestre 2018}{Enseignant en informatique}{}{\'Ecole Normale Supérieure de Lyon}{}{    Chargé de TD de calcul formel en M1, évaluateur des stages de L3 }
 \cventry{2013\,--\,2016}{Moniteur en licence d'informatique}{}{Université Pierre et Marie Curie, Paris 6}{}{Chargé de TD/TP de la L1 à la L3
       % La charge d'enseignement comprend l'élaboration et la correction des examens.
   % \begin{itemize}
@@ -164,7 +164,7 @@
 \medskip
 \section{Compétences}
 %\cvitem{Scientifiques}{ Variétés abéliennes, courbes algébriques, théorie algorithmique et algébrique des nombres, systèmes polynomiaux, cryptologie, calcul formel.}  
-\cvitem{Langages}{C, C++, Assembleur (8051, x86, MIPS), Python, Shell}
+\cvitem{Langages}{C, C++, Java, Python, Shell}
 \cvitem{Calcul Formel}{Magma, Maple, Sage}
 \cvitem{Environnements}{Windows, Linux}
 \cvitem{Autres}{Bases de reverse-engineering et exploitation de failles de sécurité (buffer overflow, injection shellcode,...).}
