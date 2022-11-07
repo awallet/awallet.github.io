@@ -27,7 +27,7 @@
 \name{Alexandre}{Wallet}
 \title{Ph.~D.~in computer science}                               % optional, remove / comment the line if not wanted
 
-%\address{90, Rue Racine}{69100 Villeurbanne}{}% optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
+\address{90, Rue Racine}{69100 Villeurbanne}{}% optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
 \phone[mobile]{(+33) 637572324}                   % optional, remove / comment the line if not wanted; the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
 %\phone[fixed]{+2~(345)~678~901}
 %\phone[fax]{+3~(456)~789~012}
@@ -59,7 +59,7 @@
 \makecvtitle
 
 \section{Current position}
-\cventry{}{Researcher}{}{Inria, Rennes Bretagne-Atlantique center}{}{}
+\cventry{}{Researcher}{}{Inria, Rennes Bretagne-Atlantique center}{}{Post-quantum cryptology, algorithmic number theory, euclidean and algebraic lattices}
 
 \section{Scientific interests}
 
@@ -82,17 +82,15 @@
 \medskip
 \section{Journal articles}
 
-\cventry{2021}{\normalfont One Bit is All It Takes: A Devastating Timing Attack on BLISS's Non-Constant Time Sign Flips}{with M. Tibouchi, Journal of Mathematical Cryptology}{}{}{}
+\cventry{To appear}{\normalfont One Bit is All It Takes: A Devastating Timing Attack on BLISS's Non-Constant Time Sign Flips}{with M. Tibouchi, Journal of Mathematical Cryptology}{}{}{}
 \cventry{2019}{\normalfont On the smoothing parameter and last minimum of random orthogonal lattices}{with E.~Kirshanova, T.~H.~Nguyen and D.~Stehlé, Design, Codes and Cryptography (DCC)}{}{}{}
 \cventry{2017}{\normalfont The Point Decomposition Problem in the divisor class group of hyperelliptic curves: toward efficient computations in even characteristic}{with J-C.~Faugère, Design, Codes and Cryptography (DCC)}{}{}{}
 
 \medskip
 \section{Peer-reviewed conferences}
 
-\cventry{2022}{\normalfont Shorter Hash-and-Sign Lattice-Based Signatures}{with T. Espitau, M. Tibouchi and Y. Yu, CRYPTO 2022}{}{}{}
-\cventry{2022}{\normalfont Mitaka: A Simpler, Parallelizable, Maskable Variant of Falcon}{with T. Espitau, P.A. Fouque, F. Gérard, M. Rossi, A. Takahashi, M. Tibouchi and Y. Yu, EUROCRYPT 2022}{}{}{}
 \cventry{2020}{\normalfont MODFALCON: compact signatures based on module-NTRU lattices}{with C.~Chuengsatiansup, T.~Prest, D.~Stehlé and K.~Xagawa, AsiaCCS 2020}{}{}{}
-\cventry{2020}{\normalfont Key Recovery from Gram-Schmidt Norm Leakage in Hash-and-Sign Signatures over NTRU Lattices}{with P. A.~Fouque, P.~Kirchner, M.~Tibouchi and Y.~Yu,  EUROCRYPT 2020}{}{}{}
+\cventry{2020}{\normalfont Uprooting the FALCON tree? How to recover secret keys from Gram-Schmidt norms}{with P. A.~Fouque, P.~Kirchner, M.~Tibouchi and Y.~Yu,  EUROCRYPT 2020}{}{}{}
 \cventry{2019}{\normalfont An LLL algorithm for module lattices}{with C. Lee, A. Pellet-\,-Mary, and D. Stehlé,  ASIACRYPT 2019}{}{}{}
 \cventry{2019}{\normalfont One Bit is All It Takes: A Devastating Timing Attack on BLISS's Non-Constant Time Sign Flips}{with M. Tibouchi, MATHCRYPT 2019}{}{}{}
 \cventry{2018}{\normalfont On the Ring-LWE and Polynomial-LWE problems}{with M. Rosca and D. Stehlé, EUROCRYPT 2018}{}{}{}
@@ -102,76 +100,76 @@
 %\cvitem{description}{Short thesis abstract}
 % Vitse, Vanessa, and Alexandre Wallet. "Improved Sieving on Algebraic Curves." . Springer International Publishing, 2015.
 
-\section{Invited talks}
-
-\cventry{7 October 2022}{\normalfont \textit{Mitaka: a simpler, parallelizable, maskable variant of Falcon}, C2 seminar, Paris}{}{}{}{}
-\cventry{21-25 March 2022}{\normalfont \textit{Do not overstretch NTRU-like problems}, workshop on Post-quantum cryptanalysis, Birmingham University}{}{}{}{}
-\cventry{29 April 2020}{\normalfont \textit{Mod-NTRU trapdoors and applications}, workshop ``Lattices: From Theory to Practice'', Simons Institute for the Theory of Computing, Berkeley, USA}{}{}{}{}
-
-% \textbf{Side-channel against BLISS}\medskip
-
-% \cventry{18 August 2019}{\normalfont MATHCRYPT, Santa Barbara, USA}{}{}{}{}\medskip
+\newpage
+\section{Selected presentations}
 
 
-% \textbf{Algebraic aspects of ``Learning with errors''}\medskip
+\textbf{Invited talk:} ``Mod-NTRU trapdoors and applications''\medskip
 
-% \cventry{11 September 2018}{\normalfont Cryptology and security seminar NTT, Tokyo, Japan}{}{}{}{}
-% \cventry{15 June 2018}{\normalfont CCA Seminar, INRIA Center, Paris, France}{}{}{}{}
-% \cventry{20 October 2017}{\normalfont Lattice Meetings, ENS Lyon, LIP, France}{}{}{}{}
-% \medskip
+\cventry{29 April 2020}{\normalfont Workshop ``Lattices: From Theory to Practice'', Simons Institute for the Theory of Computing, Berkeley, USA}{}{}{}{}\medskip
 
-% \textbf{Discrete logarithm over algebraic curves}\medskip
+\textbf{Side-channel against BLISS}\medskip
 
-% \cventry{17 May 2017}{\normalfont ECO/ESCAPE Seminar, LIRMM, Montpellier, France}{}{}{}{}
-% \cventry{24 April 2017}{\normalfont National days of Coding et Cryptograpy, La Bresse, France}{}{}{}{}
-% \cventry{14 March 2017}{\normalfont National days of the Mathematical Computer Science society, LIRMM, Montpellier, France}{}{}{}{}
-% %\cventry{8 December 2016}{\normalfont ``Décompositions de points dans les variétés Jacobiennes''}{Séminaire GTBAC, Télécom ParisTech, Paris}{}{}{}
-% \cventry{25 August 2015}{\normalfont LATINCRYPT 2015}{Guadalajara, Mexico}{}{}{}{}
-% %\cventry{12 October 2014}{\normalfont ``Finding relations in Index-Calculus for hyperelliptic Jacobian varieties ''}{Séminaire POLSYS, LIP6, Paris}{}{}{}
+\cventry{18 August 2019}{\normalfont MATHCRYPT, Santa Barbara, USA}{}{}{}{}\medskip
+
+
+\textbf{Algebraic aspects of ``Learning with errors''}\medskip
+
+\cventry{11 September 2018}{\normalfont Cryptology and security seminar NTT, Tokyo, Japan}{}{}{}{}
+\cventry{15 June 2018}{\normalfont CCA Seminar, INRIA Center, Paris, France}{}{}{}{}
+\cventry{20 October 2017}{\normalfont Lattice Meetings, ENS Lyon, LIP, France}{}{}{}{}
+\medskip
+
+\textbf{Discrete logarithm over algebraic curves}\medskip
+
+\cventry{17 May 2017}{\normalfont ECO/ESCAPE Seminar, LIRMM, Montpellier, France}{}{}{}{}
+\cventry{24 April 2017}{\normalfont National days of Coding et Cryptograpy, La Bresse, France}{}{}{}{}
+\cventry{14 March 2017}{\normalfont National days of the Mathematical Computer Science society, LIRMM, Montpellier, France}{}{}{}{}
+%\cventry{8 December 2016}{\normalfont ``Décompositions de points dans les variétés Jacobiennes''}{Séminaire GTBAC, Télécom ParisTech, Paris}{}{}{}
+\cventry{25 August 2015}{\normalfont LATINCRYPT 2015}{Guadalajara, Mexico}{}{}{}{}
+%\cventry{12 October 2014}{\normalfont ``Finding relations in Index-Calculus for hyperelliptic Jacobian varieties ''}{Séminaire POLSYS, LIP6, Paris}{}{}{}
 
 \medskip
 \section{Professional and scientific experiences}
 
 \cventry{02/2019 -- 11/2020}{Post-doctoral researcher}{NTT Secure Platform Laboratories, Tokyo}{Japan}{Supervisor: M.~Tibouchi}{Topics: applied post-quantum cryptography, algorithmic number theory}
 \cventry{01/2017 -- 12/2018}{Post-doctoral researcher}{ENS de Lyon}{France}{Supervisor: D.~Stehlé}{Topics: post-quantum cryptology, lattices, algebraic number theory}
-%\cventry{09/2012 -- 08/2013}{Maths teacher}{Parc Chabrières Highschool}{Oullins, France}{}{}
+\cventry{09/2012 -- 08/2013}{Maths teacher}{Parc Chabrières Highschool}{Oullins, France}{}{}
 \cventry{May 2012,\\ 4 months}{Research internship}{Camille Jordan Institute}{Lyon, France}{}{Topic: K-theory for $C^*$-algebras and non-commutative index theory. Supervisor: D.~Perrot}
 \cventry{May 2010,\\ 4 months}{Research internship}{Camille Jordan Institute}{Lyon, France}{}{Topic: Introduction to the discrete logarithm problem. Supervisor: C.~Delaunay}
 
 
 \medskip
 \section{Supervision of students}
-\cventry{Since April 2022}{\normalfont Léo Ackermann, Ph.D. student at IRISA, Rennes}{}{}{}{Co-supervised with Adeline Roux-Langlois}
-\cventry{Since October 2021}{\normalfont Thi Thu Quyen Nguyen, Ph.D. student at IRISA, Rennes}{}{}{}{Co-supervised with Adeline Roux-Langlois}
 \cventry{April 2018, \\4 months}{\normalfont Thanh Huyen Nguyen, research internship at ENS de Lyon}{}{}{}{In collaboration with E.~Kirshanova and D.~Stehlé}
 
 
-% \medskip
-% \section{Teachings}
-% \cventry{2018\\2nd semester}{Teacher assistant in Computer Science}{}{\'{E}cole Normale Supérieure de Lyon}{}{
-%   Tutorials in master's degree (with exams), evaluation of undergraduate interns
-% }
-% \cventry{2013\,--\,2016}{Teacher assistant in bachelor of computer science}{}{Sorbonne UPMC Paris 6}{}{
-%   Tutorials from first to third year, elaboration and correction of exams
-% }
-% \cventry{Other}{\normalfont Master SFPN at UPMC Paris 6, specialization in Computer security and Cryptology}{}{}{}{
-%   Elaboration of exams, tutorial on side-channel attacks against AES
-% }
-% \cventry{2012 -- 2013}{Maths Teacher}{Parc Chabrières Highschool}{Oullins}{}{
-%   Full responsibility of two classes for a year
-% }
+\medskip
+\section{Teachings}
+\cventry{2018\\2nd semester}{Teacher assistant in Computer Science}{}{\'{E}cole Normale Supérieure de Lyon}{}{
+  Tutorials in master's degree (with exams), evaluation of undergraduate interns
+}
+\cventry{2013\,--\,2016}{Teacher assistant in bachelor of computer science}{}{Sorbonne UPMC Paris 6}{}{
+  Tutorials from first to third year, elaboration and correction of exams
+}
+\cventry{Other}{\normalfont Master SFPN at UPMC Paris 6, specialization in Computer security and Cryptology}{}{}{}{
+  Elaboration of exams, tutorial on side-channel attacks against AES
+}
+\cventry{2012 -- 2013}{Maths Teacher}{Parc Chabrières Highschool}{Oullins}{}{
+  Full responsibility of two classes for a year
+}
 
-% \section{Skills}
-% %\cvitem{Research related}{Abelian varieties, algebraic curves, Algebraic and Algorithmic Number Theory, Polynomial Systems, Cryptology, Computer Algebra.}  
-% \cvitem{Programming}{Basic skills in C, C++, Assembler (8051, x86, MIPS), Python, Shell}
-% \cvitem{Computer algebra}{Magma, Maple, Sage}
-% \cvitem{Environments}{Windows, Linux}
-% \cvitem{Other}{Basic skills in reverse-engineering, web-security fault exploitations and injections.}
+\section{Skills}
+%\cvitem{Research related}{Abelian varieties, algebraic curves, Algebraic and Algorithmic Number Theory, Polynomial Systems, Cryptology, Computer Algebra.}  
+\cvitem{Programming}{Basic skills in C, C++, Assembler (8051, x86, MIPS), Python, Shell}
+\cvitem{Computer algebra}{Magma, Maple, Sage}
+\cvitem{Environments}{Windows, Linux}
+\cvitem{Other}{Basic skills in reverse-engineering, web-security fault exploitations and injections.}
 
-% \section{Languages}
-% \cvlistdoubleitem{French: native}{Japanese: school level (B1)}
-% \cvlistdoubleitem{English: full professionnal proficiency}{Russian: school level (A2)}
-% \cvlistitem{German: school level (B1)}%{Russe: Notions}
+\section{Languages}
+\cvlistdoubleitem{French: native}{Japanese: school level (B1)}
+\cvlistdoubleitem{English: full professionnal proficiency}{Russian: school level (A2)}
+\cvlistitem{German: school level (B1)}%{Russe: Notions}
 
 % \section{Interêts et Loisirs}
 % \cvitem{Sport}{Badminton (Lycée sport-étude), Boxe Thaïe}

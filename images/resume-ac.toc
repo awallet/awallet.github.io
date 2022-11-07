@@ -1,12 +1,11 @@
 \babel@toc {french}{}
-\contentsline {section}{\numberline {1}Renseignements g\IeC {\'e}n\IeC {\'e}raux}{1}{section.1}
-\contentsline {section}{\numberline {2}Exp\IeC {\'e}riences scientifiques et professionnelles}{2}{section.2}
-\contentsline {section}{\numberline {3}Formation}{2}{section.3}
-\contentsline {section}{\numberline {4}Auditions, classements}{2}{section.4}
-\contentsline {section}{\numberline {5}Publications}{2}{section.5}
-\contentsline {section}{\numberline {6}Collaborations en cours}{3}{section.6}
-\contentsline {paragraph}{Projet CNRS-RFFI}{4}{section*.8}
-\contentsline {section}{\numberline {7}Diffusions scientifiques et autres activit\IeC {\'e}s}{4}{section.7}
-\contentsline {section}{\numberline {8}Encadrements scientifiques, enseignements}{5}{section.8}
-\contentsline {paragraph}{Encadrement d'un stage de recherche:}{5}{section*.14}
-\contentsline {paragraph}{Encadrement scientifique non officiel:}{5}{section*.15}
+\contentsline {section}{\numberline {1}Renseignements généraux}{1}{section.1}%
+\contentsline {section}{\numberline {2}Expériences scientifiques et professionnelles}{2}{section.2}%
+\contentsline {section}{\numberline {3}Formation}{2}{section.3}%
+\contentsline {section}{\numberline {4}Publications}{2}{section.4}%
+\contentsline {section}{\numberline {5}Diffusions scientifiques et autres activités}{3}{section.5}%
+\contentsline {section}{\numberline {6}Collaborations, implications dans des projets}{4}{section.6}%
+\contentsline {section}{\numberline {7}Encadrements scientifiques, enseignements}{4}{section.7}%
+\contentsline {paragraph}{Encadrement de doctorants:}{4}{section*.12}%
+\contentsline {paragraph}{Encadrement d'un stage de recherche:}{5}{section*.13}%
+\contentsline {paragraph}{Encadrement scientifique non officiel:}{5}{section*.14}%

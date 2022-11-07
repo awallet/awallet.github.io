@@ -133,8 +133,9 @@
 \cventry{Mai 2010, 4 mois}{Stage de recherche}{Institut Camille Jordan}{Lyon}{encadré par C.~Delaunay}{Sujet: Problème du logarithme discret.}
 
 \medskip
-\section{Encadrements de stages}
-\cventry{Avril 2018, 4 mois}{\normalfont Thanh Huyen Nguyen}{}{stage de recherche, ENS de Lyon}{}{Co-encadrée avec E.~Kirshanova et D.~Stehlé.}
+\section{Encadrements}
+\cventry{Depuis le 4/11/2021}{\normalfont Quyen Thi Thu Nguyen}{}{Doctorante CIFRE (Univ. Rennes 1 et IDEMIA)}{}{Co-encadrée avec A.~Roux-Langlois.}
+\cventry{Avril 2018, stage\\4 mois}{\normalfont Thanh Huyen Nguyen}{}{stage de recherche, ENS de Lyon}{}{Co-encadrée avec E.~Kirshanova et D.~Stehlé.}
 
 
 \medskip
@@ -161,7 +162,7 @@
 %\cventry{2011 -- 2012}{Khôlleur en classes préparatoires}{Lycée Branly}{Lyon 5e, 69}{}{Classes de spé TSI}
 
 
-\medskip
+\newpage
 \section{Compétences}
 %\cvitem{Scientifiques}{ Variétés abéliennes, courbes algébriques, théorie algorithmique et algébrique des nombres, systèmes polynomiaux, cryptologie, calcul formel.}  
 \cvitem{Langages}{C, C++, Java, Python, Shell}
