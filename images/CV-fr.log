@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.11.12)  7 NOV 2022 11:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.11.12)  29 AUG 2023 12:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -843,43 +843,46 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 61.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 61.
+Package microtype Info: Character `029' is missing
+(microtype)             in font `T1/lmr/m/sc/10'.
+(microtype)             Ignoring protrusion settings for this character.
 [1
 
 {/usr/share/texlive/texmf-dist/fonts/map/pdftex/updmap/pdftex.map}] [2]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 240.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 240.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 242.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 242.
 
 (./CV-fr.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 240.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 240.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 242.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 242.
 Package rerunfilecheck Info: File `CV-fr.out' has not changed.
 (rerunfilecheck)             Checksum: D0F2B01D34148F01E20FD7B48063E5D4;1331.
  ) 
 Here is how much of TeX's memory you used:
- 22200 strings out of 482485
- 404123 string characters out of 5949860
+ 22212 strings out of 482485
+ 404278 string characters out of 5949860
  682749 words of memory out of 5000000
- 37374 multiletter control sequences out of 15000+600000
- 588728 words of font info for 82 fonts, out of 8000000 for 9000
+ 37377 multiletter control sequences out of 15000+600000
+ 591944 words of font info for 87 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 76i,12n,68p,771b,325s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 76i,12n,68p,771b,331s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/t
 exlive/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texlive/texmf-di
 st/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/lm/lmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi9.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/lm/lmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/lm/lmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri10.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri9.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/lm/lmro10.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/lm/lmro9.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/lm/lmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/marvosym/marv
-osym.pfb>
-Output written on CV-fr.pdf (2 pages, 267147 bytes).
+ic/lm/lmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsc10.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/lm/lmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr9.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/lm/lmri9.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/lm/lmro10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/lm/lmro9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy6.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/marvosym/marvosym.pfb>
+Output written on CV-fr.pdf (2 pages, 288783 bytes).
 PDF statistics:
- 108 PDF objects out of 1000 (max. 8388607)
- 91 compressed objects within 1 object stream
+ 112 PDF objects out of 1000 (max. 8388607)
+ 94 compressed objects within 1 object stream
  11 named destinations out of 1000 (max. 500000)
- 20045 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 22093 words of extra memory for PDF output out of 24883 (max. 10000000)
 

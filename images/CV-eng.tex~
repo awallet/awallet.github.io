@@ -32,7 +32,7 @@
 %\phone[fixed]{+2~(345)~678~901}
 %\phone[fax]{+3~(456)~789~012}
 
-\email{wallet.alexandre@gmail.com}                               % optional, remove / comment the line if not wanted
+\email{alexandre.wallet@inria.fr}                               % optional, remove / comment the line if not wanted
 \homepage{http://awallet.github.io}                         % optional, remove / comment the line if not wanted
 %\social[linkedin]{alexandre.wallet}                        % optional, remove / comment the line if not wanted
 %\social[twitter]{jdoe}                             % optional, remove / comment the line if not wanted
