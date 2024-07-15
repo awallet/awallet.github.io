@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Alexandre Wallet - Home</title><link href="http://awallet.github.io/" rel="alternate"></link><link href="http://awallet.github.io/feeds/home.atom.xml" rel="self"></link><id>http://awallet.github.io/</id><updated>2017-10-19T00:00:00+02:00</updated><entry><title>Who was I ?</title><link href="http://awallet.github.io/" rel="alternate"></link><published>2017-10-19T00:00:00+02:00</published><updated>2017-10-19T00:00:00+02:00</updated><author><name>Alexandre Wallet</name></author><id>tag:awallet.github.io,2017-10-19:/</id><summary type="html">&lt;h1&gt;One-liner&lt;/h1&gt;
+&lt;p&gt;Researcher in Crypto and Maths. &lt;/p&gt;
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;h1&gt;Detailed&lt;/h1&gt;
+&lt;p&gt;I am a full-time researcher at &lt;a href="https://www.inria.fr/fr/centre-inria-rennes-bretagne-atlantique"&gt;Inria Rennes&lt;/a&gt;, within &lt;a href="https://www.irisa.fr"&gt;IRISA&lt;/a&gt;. In general, I like about everything summed up by the following keywords:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Algorithms, Cryptology, Computer Security&lt;/li&gt;
+&lt;li&gt;Algebraic Geometry, Number Theory, Computer Algebra&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;More precisely, at the moment I am interested in lattice-based cryptography …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;One-liner&lt;/h1&gt;
+&lt;p&gt;Researcher in Crypto and Maths. &lt;/p&gt;
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;h1&gt;Detailed&lt;/h1&gt;
+&lt;p&gt;I am a full-time researcher at &lt;a href="https://www.inria.fr/fr/centre-inria-rennes-bretagne-atlantique"&gt;Inria Rennes&lt;/a&gt;, within &lt;a href="https://www.irisa.fr"&gt;IRISA&lt;/a&gt;. In general, I like about everything summed up by the following keywords:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Algorithms, Cryptology, Computer Security&lt;/li&gt;
+&lt;li&gt;Algebraic Geometry, Number Theory, Computer Algebra&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;More precisely, at the moment I am interested in lattice-based cryptography. My work deals with the study of its theoretical foundations, as well as concrete and practical realizations of constructions and attacks.&lt;/p&gt;
+&lt;p&gt;Previously, I was a post-doctorate researcher in &lt;a href="http://www.ntt.co.jp"&gt;NTT&lt;/a&gt; Secure Platform Laboratories, in Tokyo. I worked there with &lt;a href="https://www.normalesup.org/~tibouchi/index.html"&gt;Mehdi Tibouchi&lt;/a&gt;. Before that, I was a post-doctorate researcher in team &lt;a href="http://www.ens-lyon.fr/LIP/AriC/crypto"&gt;AriC&lt;/a&gt;, at &lt;a href="http://www.ens-lyon.fr/LIP/"&gt;LIP&lt;/a&gt;, in Ecole Normale Supérieure de Lyon (&lt;a href="http://www.ens-lyon.fr/"&gt;ENSL&lt;/a&gt;), France. I worked there with &lt;a href="http://perso.ens-lyon.fr/damien.stehle/"&gt;Damien Stehlé&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;h1&gt;Sum-ups&lt;/h1&gt;
+&lt;p&gt;Find my academic CV &lt;a href="images/resume-ac.pdf"&gt;here&lt;/a&gt; (in french), and a shorter CV &lt;a href="images/resume.pdf"&gt;ici&lt;/a&gt; (english version &lt;a href="images/resume-eng.pdf"&gt;here&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;h1&gt;Contact&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Email: alexandre (dot) wallet (at) inria (dot) fr&lt;/li&gt;
+&lt;li&gt;Address: Inria, Centre de Rennes Bretagne-Atlantique&lt;br/&gt;
+Campus de Beaulieu &lt;br/&gt;
+35042 Rennes Cedex &lt;br/&gt;
+France&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Home"></category></entry></feed>
